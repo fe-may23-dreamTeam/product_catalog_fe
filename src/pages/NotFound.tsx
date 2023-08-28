@@ -13,9 +13,9 @@ const NotFound = () => {
           Page not found
         </h1>
         <p className="mt-6 text-base leading-7 text-gray-600">
-          Most likely, this page has been moved or deleted.
-          <br /> You may have made a mistake when entering the address.
-          <br /> Please check it again.
+          Most likely, this page has been moved or deleted
+          <br /> You may have made a mistake when entering the address
+          <br /> Please check it again
         </p>
         <div className="mt-10 flex items-center justify-center gap-x-6">
           <a
