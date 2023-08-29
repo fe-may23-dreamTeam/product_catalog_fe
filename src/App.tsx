@@ -1,5 +1,7 @@
+import BurgerMenu from './pages/BurgerMenu';
+
 const App = () => {
-  return <div></div>;
+  return <div><BurgerMenu/></div>;
 };
 
 export default App;
