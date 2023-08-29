@@ -5,10 +5,10 @@ import classNames from 'classnames';
 type Callback = (page: number) => number;
 
 type Props = {
-  total: number,
-  perPage: number,
-  currentPage: number,
-  onPageChange: (page: number | Callback) => void,
+  total: number;
+  perPage: number;
+  currentPage: number;
+  onPageChange: (page: number | Callback) => void;
 };
 
 const Pagination: FC<Props> = ({
@@ -28,7 +28,7 @@ const Pagination: FC<Props> = ({
       return;
     }
 
-    onPageChange(prevPage => prevPage - 1);
+    onPageChange((prevPage) => prevPage - 1);
   }
 
   function moveToNextPage() {
@@ -36,7 +36,7 @@ const Pagination: FC<Props> = ({
       return;
     }
 
-    onPageChange(prevPage => prevPage + 1);
+    onPageChange((prevPage) => prevPage + 1);
   }
 
   return (
@@ -44,7 +44,19 @@ const Pagination: FC<Props> = ({
       <div className="flex gap-x-4">
         <a
           className={classNames(
-            ['flex items-center', 'justify-center', 'text-grey_primary', 'border', 'border-grey_icons', 'rounded-full', 'text-sm', 'h-8', 'w-8', 'hover:border-grey_primary', 'focus:border-grey_primary'],
+            [
+              'flex items-center',
+              'justify-center',
+              'text-grey_primary',
+              'border',
+              'border-grey_icons',
+              'rounded-full',
+              'text-sm',
+              'h-8',
+              'w-8',
+              'hover:border-grey_primary',
+              'focus:border-grey_primary',
+            ],
             {
               'text-grey_icons': currentPage === 1,
               '!border-grey_icons': currentPage === 1,
@@ -63,7 +75,20 @@ const Pagination: FC<Props> = ({
             <li key={pageNo}>
               <a
                 className={classNames(
-                  ['flex items-center', 'justify-center', 'text-grey_primary', 'border', 'border-grey', 'rounded-full', 'text-sm', 'h-8', 'w-8', 'hover:border-grey_primary', 'focus:text-white', 'focus:bg-grey_primary'],
+                  [
+                    'flex items-center',
+                    'justify-center',
+                    'text-grey_primary',
+                    'border',
+                    'border-grey',
+                    'rounded-full',
+                    'text-sm',
+                    'h-8',
+                    'w-8',
+                    'hover:border-grey_primary',
+                    'focus:text-white',
+                    'focus:bg-grey_primary',
+                  ],
                   {
                     'bg-grey_primary': currentPage === pageNo,
                     '!text-white': currentPage === pageNo,
@@ -80,7 +105,19 @@ const Pagination: FC<Props> = ({
 
         <a
           className={classNames(
-            ['flex items-center', 'justify-center', 'text-grey_primary', 'border', 'border-grey_icons', 'rounded-full', 'text-sm', 'h-8', 'w-8', 'hover:border-grey_primary', 'focus:border-grey_primary'],
+            [
+              'flex items-center',
+              'justify-center',
+              'text-grey_primary',
+              'border',
+              'border-grey_icons',
+              'rounded-full',
+              'text-sm',
+              'h-8',
+              'w-8',
+              'hover:border-grey_primary',
+              'focus:border-grey_primary',
+            ],
             {
               'text-grey_icons': currentPage === totalPages,
               '!border-grey_icons': currentPage === totalPages,
