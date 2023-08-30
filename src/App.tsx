@@ -1,16 +1,5 @@
-import Pagination from './components/Pagination';
-
 const App = () => {
-  return (
-    <div>
-      <Pagination
-        total={15}
-        perPage={3}
-        currentPage={5}
-        onPageChange={() => {}}
-      />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default App;

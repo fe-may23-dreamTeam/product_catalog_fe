@@ -14,7 +14,7 @@ type Props = {
 const Pagination: FC<Props> = ({
   total,
   perPage,
-  currentPage = 1,
+  currentPage,
   onPageChange,
 }) => {
   const totalPages: number = Math.ceil(total / perPage);
@@ -45,21 +45,22 @@ const Pagination: FC<Props> = ({
         <a
           className={classNames(
             [
-              'flex items-center',
+              'flex',
+              'items-center',
               'justify-center',
-              'text-grey_primary',
+              'text-primary',
               'border',
-              'border-grey_icons',
+              'border-icons',
               'rounded-full',
               'text-sm',
               'h-8',
               'w-8',
-              'hover:border-grey_primary',
-              'focus:border-grey_primary',
+              'hover:border-primary',
+              'focus:border-primary',
             ],
             {
-              'text-grey_icons': currentPage === 1,
-              '!border-grey_icons': currentPage === 1,
+              '!text-icons': currentPage === 1,
+              '!border-icons': currentPage === 1,
               'cursor-not-allowed': currentPage === 1,
             },
           )}
@@ -76,21 +77,22 @@ const Pagination: FC<Props> = ({
               <a
                 className={classNames(
                   [
-                    'flex items-center',
+                    'flex',
+                    'items-center',
                     'justify-center',
-                    'text-grey_primary',
+                    'text-primary',
                     'border',
-                    'border-grey',
+                    'border-elements',
                     'rounded-full',
                     'text-sm',
                     'h-8',
                     'w-8',
-                    'hover:border-grey_primary',
+                    'hover:border-primary',
                     'focus:text-white',
-                    'focus:bg-grey_primary',
+                    'focus:bg-primary',
                   ],
                   {
-                    'bg-grey_primary': currentPage === pageNo,
+                    'bg-primary': currentPage === pageNo,
                     '!text-white': currentPage === pageNo,
                   },
                 )}
@@ -106,21 +108,22 @@ const Pagination: FC<Props> = ({
         <a
           className={classNames(
             [
-              'flex items-center',
+              'flex',
+              'items-center',
               'justify-center',
-              'text-grey_primary',
+              'text-primary',
               'border',
-              'border-grey_icons',
+              'border-icons',
               'rounded-full',
               'text-sm',
               'h-8',
               'w-8',
-              'hover:border-grey_primary',
-              'focus:border-grey_primary',
+              'hover:border-primary',
+              'focus:border-primary',
             ],
             {
-              'text-grey_icons': currentPage === totalPages,
-              '!border-grey_icons': currentPage === totalPages,
+              '!text-icons': currentPage === totalPages,
+              '!border-icons': currentPage === totalPages,
               'cursor-not-allowed': currentPage === totalPages,
             },
           )}
