@@ -11,13 +11,13 @@ const CartItem = () => {
 
   const increaseCount = () => {
     if (itemCount < maxItems) {
-      setItemCount(prevCount => prevCount + 1);
+      setItemCount((prevCount) => prevCount + 1);
     }
   };
 
   const decreaseCount = () => {
     if (itemCount > minItems) {
-      setItemCount(prevCount => prevCount - 1);
+      setItemCount((prevCount) => prevCount - 1);
     }
   };
 
@@ -26,9 +26,7 @@ const CartItem = () => {
     <div className="border max-w-3xl text-sm text-primary flex flex-wrap rounded-2xl p-4 gap-4 justify-between items-center sm:p-6 sm:gap-6">
       <div className="flex justify-between items-center gap-4 sm:gap-6 w-full md:w-auto">
         <button>
-          <IoMdClose
-            className='text-icons w-4 h-4 hover:scale-150 ease-in duration-300'
-          />
+          <IoMdClose className="text-icons w-4 h-4 hover:scale-150 ease-in duration-300" />
         </button>
 
         <img
@@ -65,7 +63,7 @@ const CartItem = () => {
                 '!cursor-not-allowed': itemCount === minItems,
               },
             )}
-           onClick={decreaseCount}
+            onClick={decreaseCount}
           >
             <FaMinus />
           </span>
@@ -99,9 +97,7 @@ const CartItem = () => {
             <FaPlus />
           </span>
         </div>
-        <p className="text-primary font-extrabold text-[22px]">
-          $1099
-        </p>
+        <p className="text-primary font-extrabold text-[22px]">$1099</p>
       </div>
     </div>
   );
