@@ -7,6 +7,7 @@ module.exports = {
   theme: {
     screens: {
       tablet: '640px',
+      middle: '768px',
       desktop: '1200px',
     },
     extend: {
@@ -31,6 +32,7 @@ module.exports = {
     },
     boxShadow: {
       custom: '0px 3px 13px 0px rgba(23, 32, 49, 0.40)',
+      option: '0px 2px 15px 0px rgba(0, 0, 0, 0.05)',
     },
   },
   plugins: [],

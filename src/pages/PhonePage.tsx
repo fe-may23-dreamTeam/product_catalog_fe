@@ -32,19 +32,19 @@ const itemOnPageOptions = [
 
 const PhonePage: React.FC = () => {
   return (
-    <div className="container mx-auto flex flex-col px-4 pt-6 sm:px-6 desktop:w-[1200px]">
+    <main className="container mx-auto flex flex-col px-4 pt-6 tablet:px-6 desktop:w-[1200px]">
       <div className="mb-8">
-        <h1 className="font-mont mb-2 text-[32px] font-extrabold leading-[41px] tracking-[0.32px] text-stone-950 sm:mt-10 sm:text-5xl">
+        <h1 className="font-mont mb-2 text-[32px] font-extrabold leading-[41px] tracking-[0.32px] text-stone-950 tablet:mt-10 tablet:text-5xl">
           Mobile phones
         </h1>
-        <div className="font-mont text-sm font-semibold leading-[21px] text-gray-secondary">
+        <div className="font-mont text-sm font-semibold leading-[21px] text-secondary">
           {`${modelsAmount} models`}
         </div>
       </div>
       {/*  */}
       <div className="flex gap-4 mb-6">
         <Dropdown
-          className="w-[136px] sm:w-[187px]"
+          className="w-[136px] tablet:w-[187px]"
           label="Sort By"
           options={sortOptions}
         />
@@ -55,7 +55,7 @@ const PhonePage: React.FC = () => {
           options={itemOnPageOptions}
         />
       </div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 desktop:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 tablet:grid-cols-2 middle:grid-cols-3 desktop:grid-cols-4">
         {/* Cards */}
         <div
           className="container box-border rounded-lg p-8 max-w-xs border
@@ -81,32 +81,8 @@ const PhonePage: React.FC = () => {
         >
           Card component
         </div>
-        <div
-          className="container box-border rounded-lg p-8 max-w-xs border
-    border-grey bg-white"
-        >
-          Card component
-        </div>
-        <div
-          className="container box-border rounded-lg p-8 max-w-xs border
-    border-grey bg-white"
-        >
-          Card component
-        </div>
-        <div
-          className="container box-border rounded-lg p-8 max-w-xs border
-    border-grey bg-white"
-        >
-          Card component
-        </div>
-        <div
-          className="container box-border rounded-lg p-8 max-w-xs border
-    border-grey bg-white"
-        >
-          Card component
-        </div>
       </div>
-    </div>
+    </main>
   );
 };
 
