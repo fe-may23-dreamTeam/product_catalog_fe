@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 import { useState } from 'react';
 import classNames from 'classnames';
-import { IoMdClose } from 'react-icons/io';
-import { FaMinus, FaPlus } from 'react-icons/fa';
+// import { IoMdClose } from 'react-icons/io';
+import { FiMinus, FiPlus, FiX } from 'react-icons/fi';
 
 const CartItem = () => {
   const [itemCount, setItemCount] = useState(1);
@@ -26,7 +26,7 @@ const CartItem = () => {
     <div className="border max-w-3xl text-sm text-primary flex flex-wrap rounded-2xl p-4 gap-4 justify-between items-center sm:p-6 sm:gap-6">
       <div className="flex justify-between items-center gap-4 sm:gap-6 w-full md:w-auto">
         <button>
-          <IoMdClose className="text-icons w-4 h-4 hover:scale-150 ease-in duration-300" />
+          <FiX className="text-icons w-4 h-4 hover:scale-150 ease-in duration-300" />
         </button>
 
         <img
@@ -65,7 +65,7 @@ const CartItem = () => {
             )}
             onClick={decreaseCount}
           >
-            <FaMinus />
+            <FiMinus />
           </span>
 
           <span>{itemCount}</span>
@@ -94,7 +94,7 @@ const CartItem = () => {
             )}
             onClick={increaseCount}
           >
-            <FaPlus />
+            <FiPlus />
           </span>
         </div>
         <p className="text-primary font-extrabold text-[22px]">$1099</p>
