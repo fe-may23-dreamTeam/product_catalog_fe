@@ -6,8 +6,8 @@ module.exports = {
   content: ['./src/**/*.{html,tsx}'],
   theme: {
     screens: {
-      'tablet': '640px',
-      'desktop': '1200px',
+      tablet: '640px',
+      desktop: '1200px',
     },
     extend: {
       fontFamily: {
