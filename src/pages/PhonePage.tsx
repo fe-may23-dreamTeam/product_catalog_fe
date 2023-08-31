@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 import { Dropdown } from '../components/Dropdown';
 import { Card } from '../components/Card';
@@ -59,15 +58,6 @@ const PhonePage: React.FC = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 gap-4 tablet:grid-cols-2 desktop:grid-cols-4">
-        {/* Cards */}
-        {/* <div
-          className=" box-border rounded-lg p-8 min-w-xs border
-    border-grey bg-white"
-        >
-          Card component
-        </div>
-     */}
-
         <Card
           phoneInfo={{
             phoneImage: require('../assets/images/iphone11.png'),
