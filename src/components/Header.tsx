@@ -7,7 +7,7 @@ import { FiShoppingBag, FiMenu, FiHeart } from 'react-icons/fi';
 import { NavLinkType } from '../services/types/NavLinks';
 
 type Props = {
-links: NavLinkType[],
+  links: NavLinkType[];
 };
 
 export const Header: React.FC<Props> = ({ links }) => {
@@ -28,10 +28,7 @@ export const Header: React.FC<Props> = ({ links }) => {
           <ul className="flex tablet:space-x-8 desktop:space-x-16 tablet:px-4 desktop:px-6">
             {links.map((link) => (
               <li key={link.name}>
-                <NavLink
-                  className={getLinkClass}
-                  to={`${link.path}`}
-                >
+                <NavLink className={getLinkClass} to={`${link.path}`}>
                   {link.name}
                 </NavLink>
               </li>
@@ -44,7 +41,6 @@ export const Header: React.FC<Props> = ({ links }) => {
         <div className="border-l border-elements box-border">
           <a className="px-4 py-6 desktop:p-6 hidden tablet:flex" href="/#">
             <FiHeart />
-            {/* <img className="h-4 w-4" src={favourites} alt="Favoritires" /> */}
           </a>
         </div>
         <div className="border-l border-elements box-border mx-0">
@@ -53,11 +49,9 @@ export const Header: React.FC<Props> = ({ links }) => {
             href="/#"
           >
             <FiShoppingBag />
-            {/* <img className="h-4 w-4" src={FiShoppingBag} alt="Cart" /> */}
           </a>
           <a className="px-4 py-6 flex tablet:hidden" href="/#">
             <FiMenu />
-            {/* <img className="h-4 w-4 tablet:hidden" src={FiMenu} alt="Menu" /> */}
           </a>
         </div>
       </div>

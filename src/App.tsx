@@ -16,6 +16,7 @@ const App = () => {
       <div className="p-4">
         <Outlet />
       </div>
+
     </div>
   );
 };
