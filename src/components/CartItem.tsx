@@ -22,7 +22,7 @@ const CartItem = () => {
 
   return (
     // !!! delete class border (was added for visualisation without background)
-    <div className="border max-w-3xl text-sm text-primary flex flex-wrap rounded-2xl p-4 gap-4 justify-between items-center sm:p-6 sm:gap-6">
+    <div className="border max-w-3xl text-sm text-primary flex flex-wrap rounded-2xl p-4 gap-4 justify-between items-center sm:p-6 sm:gap-6 sm:flex-nowrap">
       <div className="flex justify-between items-center gap-4 sm:gap-6 w-full md:w-auto">
         <button>
           <FiX className="text-icons w-4 h-4 hover:scale-150 ease-in duration-300" />
