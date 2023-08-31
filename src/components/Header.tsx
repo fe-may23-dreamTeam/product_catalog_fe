@@ -4,21 +4,18 @@ import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 import React from 'react';
 import { FiShoppingBag, FiMenu, FiHeart } from 'react-icons/fi';
+import { NavLinkType } from '../services/types/NavLinks';
 
 type Props = {
-  navLinks: string[];
+links: NavLinkType[],
 };
 
-export const Header: React.FC<Props> = ({ navLinks }) => {
+export const Header: React.FC<Props> = ({ links }) => {
   const getLinkClass = ({ isActive }: { isActive: boolean }) =>
     classNames(
       'uppercase text-secondary font-extrabold text-xs hover:text-primary relative active:text-primary focus:text-primary font-Mont',
       { 'text-primary pb-6 border-b-4 border-primary': isActive },
     );
-
-  const normalizedLink = (link: string) => {
-    return link.toLowerCase();
-  };
 
   return (
     <header className="h-16 border-b border-elements pl-4 desktop:pl-6 flex justify-between items-center relative">
@@ -29,13 +26,13 @@ export const Header: React.FC<Props> = ({ navLinks }) => {
 
         <nav className="hidden tablet:flex">
           <ul className="flex tablet:space-x-8 desktop:space-x-16 tablet:px-4 desktop:px-6">
-            {navLinks.map((link) => (
-              <li key={link}>
+            {links.map((link) => (
+              <li key={link.name}>
                 <NavLink
                   className={getLinkClass}
-                  to={`/${normalizedLink(link)}`}
+                  to={`${link.path}`}
                 >
-                  {link}
+                  {link.name}
                 </NavLink>
               </li>
             ))}
