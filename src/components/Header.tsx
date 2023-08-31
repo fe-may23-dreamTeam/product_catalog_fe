@@ -1,44 +1,42 @@
 /* eslint-disable max-len */
 import logo from '../assets/images/logo.png';
-import menu from '../assets/images/menu-icon.svg';
-import cart from '../assets/images/cart-icon.svg';
-import favourites from '../assets/images/favourites-icon.svg';
-import { useState } from 'react';
 import classNames from 'classnames';
+import { NavLink } from 'react-router-dom';
+import React from 'react';
+import { FiShoppingBag, FiMenu, FiHeart } from 'react-icons/fi';
 
-const navLinks = ['Home', 'Phones', 'Tablets', 'Accessories'];
+type Props = {
+  navLinks: string[];
+};
 
-export const Header = () => {
-  const [activeLink, setActiveLink] = useState<string | null>(null);
+export const Header: React.FC<Props> = ({ navLinks }) => {
+  const getLinkClass = ({ isActive }: { isActive: boolean }) =>
+    classNames(
+      'uppercase text-secondary font-extrabold text-xs hover:text-primary relative active:text-primary focus:text-primary font-Mont',
+      { 'text-primary pb-6 border-b-4 border-primary': isActive },
+    );
 
-  const handleLinkClick = (link: string) => {
-    setActiveLink(link);
+  const normalizedLink = (link: string) => {
+    return link.toLowerCase();
   };
 
   return (
-    <header className="h-16 border-b border-gray-300 pl-4 lg:pl-6 flex justify-between items-center relative">
+    <header className="h-16 border-b border-elements pl-4 desktop:pl-6 flex justify-between items-center relative">
       <div className="flex justify-start gap-6">
-        <a href="#">
+        <a href="/">
           <img className="flex" src={logo} alt="" />
         </a>
 
-        <nav className="hidden sm:flex">
-          <ul className="flex sm:space-x-8 xl:space-x-16 sm:px-4 xl:px-6">
+        <nav className="hidden tablet:flex">
+          <ul className="flex tablet:space-x-8 desktop:space-x-16 tablet:px-4 desktop:px-6">
             {navLinks.map((link) => (
               <li key={link}>
-                <a
-                  className={classNames(
-                    'uppercase text-gray-400 font-extrabold text-xs hover:text-gray-900 relative',
-                    {
-                      'text-gray-900 pb-6 border-b-4 border-gray-900':
-                        activeLink === link,
-                    },
-                  )}
-                  href="#"
-                  onClick={() => handleLinkClick(link)}
+                <NavLink
+                  className={getLinkClass}
+                  to={`/${normalizedLink(link)}`}
                 >
                   {link}
-                </a>
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -46,17 +44,23 @@ export const Header = () => {
       </div>
 
       <div className="flex items-center justify-end">
-        <div className="border-l border-gray-300 box-border">
-          <a className="px-4 py-6 xl:p-6 hidden sm:flex" href="#">
-            <img className="h-4 w-4" src={favourites} alt="Favoritires" />
+        <div className="border-l border-elements box-border">
+          <a className="px-4 py-6 desktop:p-6 hidden tablet:flex" href="/#">
+            <FiHeart />
+            {/* <img className="h-4 w-4" src={favourites} alt="Favoritires" /> */}
           </a>
         </div>
-        <div className="border-l border-gray-300 box-border mx-0">
-          <a className="px-4 py-6 xl:p-6 hidden sm:flex justify-end" href="#">
-            <img className="h-4 w-4" src={cart} alt="Cart" />
+        <div className="border-l border-elements box-border mx-0">
+          <a
+            className="px-4 py-6 desktop:p-6 hidden tablet:flex justify-end"
+            href="/#"
+          >
+            <FiShoppingBag />
+            {/* <img className="h-4 w-4" src={FiShoppingBag} alt="Cart" /> */}
           </a>
-          <a className="px-4 py-6 flex sm:hidden" href="#">
-            <img className="h-4 w-4 sm:hidden" src={menu} alt="Menu" />
+          <a className="px-4 py-6 flex tablet:hidden" href="/#">
+            <FiMenu />
+            {/* <img className="h-4 w-4 tablet:hidden" src={FiMenu} alt="Menu" /> */}
           </a>
         </div>
       </div>
