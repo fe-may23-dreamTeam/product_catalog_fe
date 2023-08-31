@@ -6,7 +6,7 @@ const navLinks = ['Home', 'Phones', 'Tablets', 'Accessories'];
 const App = () => {
   return (
     <div>
-      <Header navLinks={navLinks}/>
+      <Header navLinks={navLinks} />
 
       <div className="p-4">
         <Outlet />

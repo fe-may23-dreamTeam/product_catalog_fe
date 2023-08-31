@@ -6,7 +6,7 @@ export const Root = () => (
     <Routes>
       <Route path="/" element={<App />}>
         <Route index element={<h1>Home</h1>} />
-        <Route path="home" element={<Navigate to="/" replace/>} />
+        <Route path="home" element={<Navigate to="/" replace />} />
         <Route path="phones">
           <Route path=":phoneId?" element={<h1>Phones Page</h1>} />
         </Route>
