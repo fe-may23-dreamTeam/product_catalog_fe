@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 import React, { useState } from 'react';
-import arrowDown from '../assets/Icons/Chevron (Arrow Down).svg';
-import arrowUp from '../assets/Icons/Chevron (Arrow Up).svg';
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 
 type Props = {
   className?: string;
@@ -12,6 +11,7 @@ type Props = {
 export const Dropdown: React.FC<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const { className, label, options } = props;
+  const [currentValue, setCurrentValue] = useState(options[0].label);
 
   return (
     <div>
@@ -21,24 +21,18 @@ export const Dropdown: React.FC<Props> = (props) => {
       <div className="relative">
         <button
           onClick={() => setIsOpen((prev) => !prev)}
-          onBlur={() => setIsOpen(false)}
+          onBlur={() => setTimeout(() => {
+            setIsOpen(false);
+          }, 100)}
           className={`${className} h-10 rounded-lg border-2 border-icons hover:border-secondary focus:border-secondary flex justify-between items-center px-[12px] py-[10px]`}
         >
           <p className="text-stone-950 text-sm font-bold leading-[21px]">
-            {options[0].value}
+            {currentValue}
           </p>
           {!isOpen ? (
-            <img
-              src={arrowDown}
-              alt="\/"
-              className='h-5 w-5'
-            />
+            <FiChevronDown className='text-icons' />
           ) : (
-            <img
-              src={arrowUp}
-              alt="/\"
-              className='h-5 w-5'
-            />
+            <FiChevronUp className='text-icons' />
           )}
         </button>
 
@@ -51,15 +45,19 @@ export const Dropdown: React.FC<Props> = (props) => {
             tabIndex={-1}
           >
             <div role="none">
-              {options.map((elem) => (
+              {options.map((option) => (
                 <button
-                  key={elem.value}
+                  key={option.value}
                   className="text-secondary hover:text-primary block px-4 py-2 text-sm w-full text-left hover:bg-hover-bg hover:rounded-lg hover:text-stone-950"
                   role="menuitem"
                   tabIndex={-1}
-                  id={`menu-item-${elem.value}`}
+                  id={`menu-item-${option.value}`}
+                  onClick={() => {
+                    setCurrentValue(option.label);
+                    setIsOpen(false);
+                  }}
                 >
-                  {elem.label}
+                  {option.label}
                 </button>
               ))}
             </div>

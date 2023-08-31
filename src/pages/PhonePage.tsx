@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react';
-import { Dropdown } from '../Components/Dropdown';
+import { Dropdown } from '../components/Dropdown';
 
 const modelsAmount = '95';
 
@@ -34,10 +34,10 @@ const PhonePage: React.FC = () => {
   return (
     <main className="container mx-auto flex flex-col px-4 pt-6 tablet:px-6 desktop:w-[1200px]">
       <div className="mb-8">
-        <h1 className="font-mont mb-2 text-[32px] font-extrabold leading-[41px] tracking-[0.32px] text-stone-950 tablet:mt-10 tablet:text-5xl">
+        <h1 className="mb-2 text-[32px] font-extrabold leading-[41px] tracking-[0.32px] tablet:mt-10 tablet:text-5xl">
           Mobile phones
         </h1>
-        <div className="font-mont text-sm font-semibold leading-[21px] text-secondary">
+        <div className="text-sm font-semibold leading-[21px] text-secondary">
           {`${modelsAmount} models`}
         </div>
       </div>
