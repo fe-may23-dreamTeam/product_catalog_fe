@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 import { useState } from 'react';
 import classNames from 'classnames';
-// import { IoMdClose } from 'react-icons/io';
 import { FiMinus, FiPlus, FiX } from 'react-icons/fi';
 
 const CartItem = () => {
