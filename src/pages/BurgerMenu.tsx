@@ -38,14 +38,14 @@ const BurgerMenu = () => {
           href="/liked"
           className="w-1/2 h-16 border border-elements flex items-center justify-center relative group transition-opacity duration-300"
         >
-          <FiHeart/>
+          <FiHeart />
           <span className="absolute w-full h-0.5 bg-primary bottom-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
         </a>
         <a
           href="/shopping-cart"
           className="w-1/2 h-16 border border-elements flex items-center justify-center relative group transition-opacity duration-300"
         >
-          <FiShoppingBag/>
+          <FiShoppingBag />
           <span className="absolute w-full h-0.5 bg-primary bottom-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
         </a>
       </footer>

@@ -38,10 +38,9 @@ export const Card = (props: CardProps) => {
         <img className="h-32 mx-auto" src={phoneImage} alt="phone-image" />
         <h3 className="text-sm font-semibold mt-4">{phoneTitle}</h3>
         <div className="flex gap-2">
-          <h3 className="text-xl font-extrabold leading-8">
-            {discountPrice}
-          </h3>
-          <h3 className="text-xl font-semibold leading-8 line-through
+          <h3 className="text-xl font-extrabold leading-8">{discountPrice}</h3>
+          <h3
+            className="text-xl font-semibold leading-8 line-through
           text-grey_secondary decoration-from-font"
           >
             {phonePrice}
