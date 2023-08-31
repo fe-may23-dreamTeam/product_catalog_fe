@@ -12,9 +12,7 @@ export const ProductProperties = (props: Props) => {
           <div className="text-xs text-secondary font-bold">
             {property.name}
           </div>
-          <div className="text-xs text-primary font-bold">
-            {property.value}
-          </div>
+          <div className="text-xs text-primary font-bold">{property.value}</div>
         </li>
       ))}
     </ul>

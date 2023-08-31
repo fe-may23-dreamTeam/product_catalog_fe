@@ -13,7 +13,7 @@ export type PhoneInfo = {
 };
 
 const phoneInfo: PhoneInfo = {
-  phoneImage: require('./assets/icons/iPhone_14_Pro.png'),
+  phoneImage: require('./assets/images/iphone11.png'),
   phoneTitle: 'Apple iPhone 14 Pro 128GB Silver (MQ023)',
   phonePrice: '$899',
   discountPrice: '$859',
