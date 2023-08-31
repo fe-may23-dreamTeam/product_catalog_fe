@@ -2,9 +2,6 @@
 import { Button } from './Button';
 import { ProductProperties } from './ProductProperties';
 import { PhoneInfo } from '../App';
-import emptyHeartIcon from '../assets/icons/empty-heart_icon.svg';
-// eslint-disable-next-line max-len
-import filledHeartIcon from '../assets/icons/filled-heart_icon.svg';
 import { useState } from 'react';
 import { FiHeart } from 'react-icons/fi';
 
@@ -39,10 +36,9 @@ export const Card = (props: CardProps) => {
         <img className="mx-auto" src={phoneImage} alt="phone-image" />
         <h3 className="text-sm font-semibold mt-4">{phoneTitle}</h3>
         <div className="flex gap-2">
-          <h3 className="text-xl font-extrabold leading-8">
-            {discountPrice}
-          </h3>
-          <h3 className="text-xl font-semibold leading-8 line-through
+          <h3 className="text-xl font-extrabold leading-8">{discountPrice}</h3>
+          <h3
+            className="text-xl font-semibold leading-8 line-through
           text-secondary decoration-from-font"
           >
             {phonePrice}
@@ -59,7 +55,7 @@ export const Card = (props: CardProps) => {
             flex justify-center items-center shrink-0 duration-300"
               onClick={handleClick}
             >
-              <FiHeart className="text-secondary-accent"/>
+              <FiHeart className="text-secondary-accent" />
             </button>
           ) : (
             <button
