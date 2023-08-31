@@ -22,14 +22,15 @@ const CartItem = () => {
 
   return (
     // !!! delete class border (was added for visualisation without background)
-    <div className="border max-w-3xl text-sm text-primary flex flex-wrap rounded-2xl p-4 gap-4 justify-between items-center sm:p-6 sm:gap-6 sm:flex-nowrap">
-      <div className="flex justify-between items-center gap-4 sm:gap-6 w-full md:w-auto">
+    // !!! if max-width 752px is not suitable in page layout, change this rule max-w-[752px]
+    <div className="border max-w-[752px] text-sm text-primary flex flex-wrap rounded-2xl p-4 gap-4 justify-between items-center tablet:p-6 tablet:gap-6 tablet:flex-nowrap">
+      <div className="flex justify-between items-center gap-4 tablet:gap-6 w-full tablet:w-auto">
         <button>
           <FiX className="text-icons w-4 h-4 hover:scale-150 ease-in duration-300" />
         </button>
 
         <img
-          className="w-[80px] h-[80px]"
+          className="w-20 h-20"
           src={require('../assets/images/iphone11.png')} // hardcoded for now
           alt="product demo"
         />
@@ -38,7 +39,7 @@ const CartItem = () => {
           Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)
         </p>
       </div>
-      <div className="flex justify-between items-center gap-4 sm:gap-6 w-full md:w-auto">
+      <div className="flex justify-between items-center gap-4 tablet:gap-6 w-full tablet:w-auto">
         <div className="flex gap-3 items-center">
           <span
             className={classNames(

@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
   content: ['./src/**/*.{html,tsx}'],
   theme: {
@@ -15,7 +17,21 @@ module.exports = {
       green: '#27AE60',
       red: '#EB5757',
     },
-    extend: {},
+    screens: {
+      tablet: '640px',
+      desktop: '1200px',
+    },
+    extend: {
+      fontFamily: {
+        sans: ['Mont', ...defaultTheme.fontFamily.sans],
+      },
+    },
+    container: {
+      center: true,
+    },
+    boxShadow: {
+      custom: '0px 3px 13px 0px rgba(23, 32, 49, 0.40)',
+    },
   },
   plugins: [],
 };

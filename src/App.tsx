@@ -1,5 +1,9 @@
+import CartItem from './components/CartItem';
+
 const App = () => {
-  return <div></div>;
+  return <div>
+    <CartItem />
+  </div>;
 };
 
 export default App;
