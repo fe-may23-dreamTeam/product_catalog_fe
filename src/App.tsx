@@ -1,11 +1,7 @@
 import NotFound from './pages/NotFound';
 
 const App = () => {
-  return (
-    <div>
-      <NotFound />
-    </div>
-  );
+  return <div></div>
 };
 
 export default App;
