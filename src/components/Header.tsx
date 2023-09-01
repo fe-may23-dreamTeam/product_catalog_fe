@@ -4,13 +4,12 @@ import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 import React from 'react';
 import { FiShoppingBag, FiMenu, FiHeart } from 'react-icons/fi';
-import { NavLinkType } from '../services/types/NavLinks';
 
 type Props = {
-links: NavLinkType[],
+  links: NavLinkType[];
 };
 
-export const Header: React.FC<Props> = ({ links }) => {
+export const Header: React.FC = () => {
   const getLinkClass = ({ isActive }: { isActive: boolean }) =>
     classNames(
       'uppercase text-secondary font-extrabold text-xs hover:text-primary relative active:text-primary focus:text-primary font-Mont',
@@ -26,12 +25,9 @@ export const Header: React.FC<Props> = ({ links }) => {
 
         <nav className="hidden tablet:flex">
           <ul className="flex tablet:space-x-8 desktop:space-x-16 tablet:px-4 desktop:px-6">
-            {links.map((link) => (
+            {navLinks.map((link) => (
               <li key={link.name}>
-                <NavLink
-                  className={getLinkClass}
-                  to={`${link.path}`}
-                >
+                <NavLink className={getLinkClass} to={`${link.path}`}>
                   {link.name}
                 </NavLink>
               </li>
