@@ -5,9 +5,12 @@ import { NavLink } from 'react-router-dom';
 import React from 'react';
 import { FiShoppingBag, FiMenu, FiHeart } from 'react-icons/fi';
 
-type Props = {
-  links: NavLinkType[];
-};
+const navLinks = [
+  { name: 'Home', path: '/' },
+  { name: 'Phones', path: 'phones' },
+  { name: 'Tablets', path: 'tablets' },
+  { name: 'Accessories', path: 'accessories' },
+];
 
 export const Header: React.FC = () => {
   const getLinkClass = ({ isActive }: { isActive: boolean }) =>
@@ -40,7 +43,6 @@ export const Header: React.FC = () => {
         <div className="border-l border-elements box-border">
           <a className="px-4 py-6 desktop:p-6 hidden tablet:flex" href="/#">
             <FiHeart />
-            {/* <img className="h-4 w-4" src={favourites} alt="Favoritires" /> */}
           </a>
         </div>
         <div className="border-l border-elements box-border mx-0">
@@ -49,11 +51,9 @@ export const Header: React.FC = () => {
             href="/#"
           >
             <FiShoppingBag />
-            {/* <img className="h-4 w-4" src={FiShoppingBag} alt="Cart" /> */}
           </a>
           <a className="px-4 py-6 flex tablet:hidden" href="/#">
             <FiMenu />
-            {/* <img className="h-4 w-4 tablet:hidden" src={FiMenu} alt="Menu" /> */}
           </a>
         </div>
       </div>

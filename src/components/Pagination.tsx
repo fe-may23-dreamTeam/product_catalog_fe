@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
-import { FC } from 'react';
 import classNames from 'classnames';
+import { FC } from 'react';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 type Callback = (page: number) => number;
 
@@ -61,14 +62,13 @@ const Pagination: FC<Props> = ({
             {
               '!text-icons': currentPage === 1,
               '!border-icons': currentPage === 1,
-              'cursor-not-allowed': currentPage === 1,
             },
           )}
           href="#prev"
           aria-disabled={currentPage === 1}
           onClick={moveToPreviousPage}
         >
-          {'<'}
+          <FiChevronLeft />
         </a>
 
         <ul className="flex gap-x-2">
@@ -124,14 +124,13 @@ const Pagination: FC<Props> = ({
             {
               '!text-icons': currentPage === totalPages,
               '!border-icons': currentPage === totalPages,
-              'cursor-not-allowed': currentPage === totalPages,
             },
           )}
           href="#next"
           aria-disabled={currentPage === totalPages}
           onClick={moveToNextPage}
         >
-          {'>'}
+          <FiChevronRight />
         </a>
       </div>
     </div>

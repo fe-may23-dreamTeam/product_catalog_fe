@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import App from './App';
+import NotFound from './pages/NotFound';
 
 export const Root = () => (
   <BrowserRouter>
@@ -16,7 +17,7 @@ export const Root = () => (
         <Route path="accessories">
           <Route path=":accessoryId?" element={<h1>Accessories Page</h1>} />
         </Route>
-        <Route path="*" element={<h1>Page not found</h1>} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   </BrowserRouter>
