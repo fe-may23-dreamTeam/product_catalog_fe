@@ -31,7 +31,7 @@ const App = () => {
   return (
     <div>
       {/* <Card phoneInfo={phoneInfo} /> */}
-      <ItemCard/>
+      <ItemCard />
     </div>
   );
 };
