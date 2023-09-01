@@ -25,12 +25,18 @@ module.exports = {
       fontFamily: {
         sans: ['Mont', ...defaultTheme.fontFamily.sans],
       },
+      boxShadow: {
+        custom: '0px 3px 13px 0px rgba(23, 32, 49, 0.40)',
+      },
+      gridTemplateColumns: {
+        '24': 'repeat(24, minmax(0, 1fr))',
+      },
+      gridColumn: {
+        'span-24': 'span 24 / span 24',
+      },
     },
     container: {
       center: true,
-    },
-    boxShadow: {
-      custom: '0px 3px 13px 0px rgba(23, 32, 49, 0.40)',
     },
   },
   plugins: [],
