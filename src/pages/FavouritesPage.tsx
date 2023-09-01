@@ -15,64 +15,16 @@ export const FavouritesPage: React.FC = () => {
       </header>
       <div className="grid grid-cols-1 gap-4 tablet:grid-cols-2 desktop:grid-cols-4">
         <Card
-          phoneInfo={{
-            phoneImage: require('../assets/images/iphone11.png'),
-            phoneTitle: 'Apple iPhone 14 Pro 128GB Silver (MQ023)',
-            phonePrice: '$899',
-            discountPrice: '$859',
-            phoneProperties: [
-              { name: 'Screen', value: '6.1” OLED' },
-              { name: 'Capacity', value: '128 GB' },
-              { name: 'RAM', value: '6 GB' },
-            ],
-            isAddedToCart: false,
-            isFavorite: false,
-          }}
+          product={{}}
         />
         <Card
-          phoneInfo={{
-            phoneImage: require('../assets/images/iphone11.png'),
-            phoneTitle: 'Apple iPhone 14 Pro 128GB Silver (MQ023)',
-            phonePrice: '$899',
-            discountPrice: '$859',
-            phoneProperties: [
-              { name: 'Screen', value: '6.1” OLED' },
-              { name: 'Capacity', value: '128 GB' },
-              { name: 'RAM', value: '6 GB' },
-            ],
-            isAddedToCart: false,
-            isFavorite: false,
-          }}
+          product={{}}
         />
         <Card
-          phoneInfo={{
-            phoneImage: require('../assets/images/iphone11.png'),
-            phoneTitle: 'Apple iPhone 14 Pro 128GB Silver (MQ023)',
-            phonePrice: '$899',
-            discountPrice: '$859',
-            phoneProperties: [
-              { name: 'Screen', value: '6.1” OLED' },
-              { name: 'Capacity', value: '128 GB' },
-              { name: 'RAM', value: '6 GB' },
-            ],
-            isAddedToCart: false,
-            isFavorite: false,
-          }}
+          product={{}}
         />
         <Card
-          phoneInfo={{
-            phoneImage: require('../assets/images/iphone11.png'),
-            phoneTitle: 'Apple iPhone 14 Pro 128GB Silver (MQ023)',
-            phonePrice: '$899',
-            discountPrice: '$859',
-            phoneProperties: [
-              { name: 'Screen', value: '6.1” OLED' },
-              { name: 'Capacity', value: '128 GB' },
-              { name: 'RAM', value: '6 GB' },
-            ],
-            isAddedToCart: false,
-            isFavorite: false,
-          }}
+          product={{}}
         />
       </div>
     </main>
