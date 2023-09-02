@@ -1,9 +1,17 @@
-import BurgerMenu from './pages/BurgerMenu';
+import { Outlet } from 'react-router';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
 
 const App = () => {
   return (
     <div>
-      <BurgerMenu />
+      <Header />
+
+      <div className="min-h-[75vh] p-4">
+        <Outlet />
+      </div>
+
+      <Footer />
     </div>
   );
 };
