@@ -11,6 +11,7 @@
   },
   "plugins": ["@typescript-eslint", "react"],
   "rules": {
+    "operator-linebreak": "off",
     "max-len": "off"
   }
 }
