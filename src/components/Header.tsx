@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 /* eslint-disable max-len */
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiHeart, FiMenu, FiShoppingBag, FiX } from 'react-icons/fi';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import logo from '../assets/images/logo.svg';
 import BurgerMenu from '../pages/BurgerMenu';
 
@@ -15,6 +15,7 @@ const navLinks = [
 ];
 
 export const Header: React.FC = () => {
+  const { pathname } = useLocation();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const handleOpenMenu = () => setMenuIsOpen((prev) => !prev);
@@ -24,6 +25,10 @@ export const Header: React.FC = () => {
       'uppercase text-secondary font-extrabold text-xs hover:text-primary relative active:text-primary focus:text-primary font-Mont',
       { 'text-primary pb-6 border-b-4 border-primary': isActive },
     );
+
+  useEffect(() => {
+    setMenuIsOpen(false);
+  }, [pathname]);
 
   return (
     <header className="sticky bg-white z-50 top-0 h-12 tablet:h-16 border-b border-elements pl-4 desktop:pl-6 flex justify-between items-center">
@@ -64,6 +69,7 @@ export const Header: React.FC = () => {
               id="nav__toggle"
               className="hidden peer/nav z-50"
               onChange={handleOpenMenu}
+              checked={menuIsOpen}
             />
             <label htmlFor="nav__toggle">
               {menuIsOpen ? <FiX /> : <FiMenu />}
