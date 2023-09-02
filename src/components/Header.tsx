@@ -1,9 +1,11 @@
+/* eslint-disable no-console */
 /* eslint-disable max-len */
-import logo from '../assets/images/logo.png';
 import classNames from 'classnames';
+import React, { useState } from 'react';
+import { FiHeart, FiMenu, FiShoppingBag, FiX } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
-import React from 'react';
-import { FiShoppingBag, FiMenu, FiHeart } from 'react-icons/fi';
+import logo from '../assets/images/logo.svg';
+import BurgerMenu from '../pages/BurgerMenu';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -13,6 +15,10 @@ const navLinks = [
 ];
 
 export const Header: React.FC = () => {
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+
+  const handleOpenMenu = () => setMenuIsOpen((prev) => !prev);
+
   const getLinkClass = ({ isActive }: { isActive: boolean }) =>
     classNames(
       'uppercase text-secondary font-extrabold text-xs hover:text-primary relative active:text-primary focus:text-primary font-Mont',
@@ -20,11 +26,11 @@ export const Header: React.FC = () => {
     );
 
   return (
-    <header className="h-16 border-b border-elements pl-4 desktop:pl-6 flex justify-between items-center relative">
+    <header className="sticky bg-white z-50 top-0 h-12 tablet:h-16 border-b border-elements pl-4 desktop:pl-6 flex justify-between items-center">
       <div className="flex justify-start gap-6">
-        <a href="/">
-          <img className="flex" src={logo} alt="" />
-        </a>
+        <NavLink to="/" className="flex">
+          <img src={logo} className="object-cover" alt="Nice gadgets" />
+        </NavLink>
 
         <nav className="hidden tablet:flex">
           <ul className="flex tablet:space-x-8 desktop:space-x-16 tablet:px-4 desktop:px-6">
@@ -52,11 +58,21 @@ export const Header: React.FC = () => {
           >
             <FiShoppingBag />
           </a>
-          <a className="px-4 py-6 flex tablet:hidden" href="/#">
-            <FiMenu />
-          </a>
+          <span className="flex p-4 tablet:hidden">
+            <input
+              type="checkbox"
+              id="nav__toggle"
+              className="hidden peer/nav z-50"
+              onChange={handleOpenMenu}
+            />
+            <label htmlFor="nav__toggle">
+              {menuIsOpen ? <FiX /> : <FiMenu />}
+            </label>
+            <BurgerMenu />
+          </span>
         </div>
       </div>
+      <BurgerMenu />
     </header>
   );
 };
