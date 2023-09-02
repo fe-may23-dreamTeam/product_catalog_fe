@@ -21,9 +21,8 @@ const CartItem = () => {
   };
 
   return (
-    // !!! delete class border (was added for visualisation without background)
     // !!! if max-width 752px is not suitable in page layout, change this rule max-w-[752px]
-    <div className="border max-w-[752px] text-sm text-primary flex flex-wrap rounded-2xl p-4 gap-4 justify-between items-center tablet:p-6 tablet:gap-6 tablet:flex-nowrap">
+    <div className="border bg-white border-elements max-w-[752px] text-sm text-primary flex flex-wrap rounded-2xl p-4 gap-4 justify-between items-center tablet:p-6 tablet:gap-6 tablet:flex-nowrap">
       <div className="flex justify-between items-center gap-4 tablet:gap-6 w-full tablet:w-auto">
         <button>
           <FiX className="text-icons w-4 h-4 hover:scale-150 ease-in duration-300" />
@@ -60,7 +59,6 @@ const CartItem = () => {
               {
                 '!text-icons': itemCount === minItems,
                 '!border-icons': itemCount === minItems,
-                '!cursor-not-allowed': itemCount === minItems,
               },
             )}
             onClick={decreaseCount}
@@ -89,7 +87,6 @@ const CartItem = () => {
               {
                 '!text-icons': itemCount === maxItems,
                 '!border-icons': itemCount === maxItems,
-                '!cursor-not-allowed': itemCount === maxItems,
               },
             )}
             onClick={increaseCount}

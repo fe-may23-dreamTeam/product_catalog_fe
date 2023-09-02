@@ -1,19 +1,14 @@
-import { ReactNode } from 'react';
 import classNames from 'classnames';
+import { ButtonProps } from '../types/Button';
 
-type Props = {
-  children: ReactNode;
-  md?: boolean;
-  sm?: boolean;
-};
-
-export const Button = (props: Props) => {
-  const { children, md, sm = true } = props;
-
+export const Button = ({ children, sm = true, md, ...rest }: ButtonProps) => {
   const className = classNames(
-    `text-white bg-accent hover:shadow-custom duration-300
-    font-bold font-sans rounded-lg text-sm
-    dark:bg-blue-600 dark:hover:bg-blue-700 border border-accent w-full`,
+    [
+      rest.className,
+      'text-white bg-accent hover:shadow-custom duration-300',
+      'font-bold font-sans rounded-lg text-sm ',
+      'dark:bg-blue-600 dark:hover:bg-blue-700 border border-accent w-full',
+    ],
     {
       'px-5 py-2.5': sm,
       'py-[13px]': md,
@@ -21,7 +16,7 @@ export const Button = (props: Props) => {
   );
 
   return (
-    <button type="button" className={className}>
+    <button {...rest} className={className}>
       {children}
     </button>
   );

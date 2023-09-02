@@ -9,7 +9,7 @@ const ColorSelector: React.FC<ColorSelectorProps> = ({ color, onClick }) => {
   const circleSize = 32;
 
   return (
-    <div
+    <button
       className="flex"
       onClick={onClick}
       style={{
@@ -46,7 +46,7 @@ const ColorSelector: React.FC<ColorSelectorProps> = ({ color, onClick }) => {
           stroke="#0F0F11"
         />
       </svg>
-    </div>
+    </button>
   );
 };
 
