@@ -33,7 +33,7 @@ export const ItemCard = () => {
         <h1 className="font-extrabold text-4xl text-primary leading-tight mb-6 col-span-4 tablet:col-span-12 desktop:col-span-24 col-start-1">
           Welcome to Nice Gadgets store!
         </h1>
-        <div className='grid'>
+        <div className="grid">
           <div className="mt-4 space-x-2 col-span-4 desktop:col-start-3 desktop:col-span-9">
             <div className="flex-col flex desktop:flex-row desktop:h-[442px] desktop:w-[442px] w-[228px] h-[228px]">
               <img
@@ -141,35 +141,35 @@ export const ItemCard = () => {
           </div>
 
           <div className="grid-cols-4 col-span-4 tablet:col-span-12 tablet:grid-cols-12 desktop:col-start-13 desktop:col-span-7 mt-8 grid desktop:grid-cols-2 gap-2">
-            <div className='col-span-4 tablet:col-span-12'>
-            <p className="text-left text-xs font-semibold text-secondary">
-              Screen
-            </p>
-            <p className="text-right text-xs font-bold text-primary">
-              6.5” OLED
-            </p>
+            <div className="col-span-4 tablet:col-span-12">
+              <p className="text-left text-xs font-semibold text-secondary">
+                Screen
+              </p>
+              <p className="text-right text-xs font-bold text-primary">
+                6.5” OLED
+              </p>
             </div>
-            <div className='col-span-4 tablet:col-span-12'>
-            <p className="text-left text-xs font-semibold text-secondary">
-              Resolution
-            </p>
-            <p className="text-right text-xs font-bold text-primary">
-              2688x1242
-            </p>
+            <div className="col-span-4 tablet:col-span-12">
+              <p className="text-left text-xs font-semibold text-secondary">
+                Resolution
+              </p>
+              <p className="text-right text-xs font-bold text-primary">
+                2688x1242
+              </p>
             </div>
-            <div className='col-span-4 tablet:col-span-12'>
-            <p className="text-left text-xs font-semibold text-secondary">
-              Processor{' '}
-            </p>
-            <p className="text-right text-xs font-bold text-primary">
-              Apple A12 Bionic
-            </p>
+            <div className="col-span-4 tablet:col-span-12">
+              <p className="text-left text-xs font-semibold text-secondary">
+                Processor{' '}
+              </p>
+              <p className="text-right text-xs font-bold text-primary">
+                Apple A12 Bionic
+              </p>
             </div>
-            <div className='col-span-4 tablet:col-span-12'>
-            <p className="text-left text-xs font-semibold text-secondary">
-              RAM
-            </p>
-            <p className="text-right text-xs font-bold text-primary">3 GB</p>
+            <div className="col-span-4 tablet:col-span-12">
+              <p className="text-left text-xs font-semibold text-secondary">
+                RAM
+              </p>
+              <p className="text-right text-xs font-bold text-primary">3 GB</p>
             </div>
           </div>
         </div>
@@ -222,63 +222,69 @@ export const ItemCard = () => {
           <Line width="col-span-4 w-auto tablet:col-start-7 tablet:col-span-5 tablet:w-auto desktop:col-start-12 desktop:col-span-7 desktop:w-[320px] mt-6" />
 
           <div className="grid-cols-4 col-span-4 tablet:grid-cols-12 tablet:col-span-12 desktop:col-start-13 desktop:col-span-7 mt-[25px] grid desktop:grid-cols-2 gap-2">
-            <div className='col-span-4 tablet:col-span-12'>
-            <p className="text-left text-secondary font-medium text-sm">
-              Screen
-            </p>
-            <p className="text-right text-primary font-semibold text-sm">
-              6.5” OLED
-            </p>
+            <div className="col-span-4 tablet:col-span-12">
+              <p className="text-left text-secondary font-medium text-sm">
+                Screen
+              </p>
+              <p className="text-right text-primary font-semibold text-sm">
+                6.5” OLED
+              </p>
             </div>
-            <div className='col-span-4 tablet:col-span-12'>
-            <p className="text-left text-secondary font-medium text-sm">
-              Resolution
-            </p>
-            <p className="text-right text-primary font-semibold text-sm">
-              2688x1242
-            </p>
+            <div className="col-span-4 tablet:col-span-12">
+              <p className="text-left text-secondary font-medium text-sm">
+                Resolution
+              </p>
+              <p className="text-right text-primary font-semibold text-sm">
+                2688x1242
+              </p>
             </div>
-            <div className='col-span-4 tablet:col-span-12'>
-            <p className="text-left text-secondary font-medium text-sm">
-              Processor{' '}
-            </p>
-            <p className="text-right text-primary font-semibold text-sm">
-              Apple A12 Bionic
-            </p>
+            <div className="col-span-4 tablet:col-span-12">
+              <p className="text-left text-secondary font-medium text-sm">
+                Processor{' '}
+              </p>
+              <p className="text-right text-primary font-semibold text-sm">
+                Apple A12 Bionic
+              </p>
             </div>
-            <div className='col-span-4 tablet:col-span-12'>
-            <p className="text-left text-secondary font-medium text-sm">RAM</p>
-            <p className="text-right text-primary font-semibold text-sm">
-              3 GB
-            </p>
+            <div className="col-span-4 tablet:col-span-12">
+              <p className="text-left text-secondary font-medium text-sm">
+                RAM
+              </p>
+              <p className="text-right text-primary font-semibold text-sm">
+                3 GB
+              </p>
             </div>
-            <div className='col-span-4 tablet:col-span-12'>
-            <p className="text-left text-secondary font-medium text-sm">
-              Built in memory
-            </p>
-            <p className="text-right text-primary font-semibold text-sm">
-              64 GB
-            </p>
+            <div className="col-span-4 tablet:col-span-12">
+              <p className="text-left text-secondary font-medium text-sm">
+                Built in memory
+              </p>
+              <p className="text-right text-primary font-semibold text-sm">
+                64 GB
+              </p>
             </div>
-            <div className='col-span-4 tablet:col-span-12'>
-            <p className="text-left text-secondary font-medium text-sm">
-              Camera
-            </p>
-            <p className="text-right text-primary font-semibold text-sm">
-              12 Mp + 12 Mp + 12 Mp (Triple)
-            </p>
+            <div className="col-span-4 tablet:col-span-12">
+              <p className="text-left text-secondary font-medium text-sm">
+                Camera
+              </p>
+              <p className="text-right text-primary font-semibold text-sm">
+                12 Mp + 12 Mp + 12 Mp (Triple)
+              </p>
             </div>
-            <div className='col-span-4 tablet:col-span-12'>
-            <p className="text-left text-secondary font-medium text-sm">Zoom</p>
-            <p className="text-right text-primary font-semibold text-sm">
-              Optical, 2x
-            </p>
+            <div className="col-span-4 tablet:col-span-12">
+              <p className="text-left text-secondary font-medium text-sm">
+                Zoom
+              </p>
+              <p className="text-right text-primary font-semibold text-sm">
+                Optical, 2x
+              </p>
             </div>
-            <div className='col-span-4 tablet:col-span-12'>
-            <p className="text-left text-secondary font-medium text-sm">Cell</p>
-            <p className="text-right text-primary font-semibold text-sm">
-              GSM, LTE, UMTS
-            </p>
+            <div className="col-span-4 tablet:col-span-12">
+              <p className="text-left text-secondary font-medium text-sm">
+                Cell
+              </p>
+              <p className="text-right text-primary font-semibold text-sm">
+                GSM, LTE, UMTS
+              </p>
             </div>
           </div>
         </div>
