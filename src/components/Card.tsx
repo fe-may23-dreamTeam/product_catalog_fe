@@ -1,32 +1,19 @@
-/* eslint-disable max-len */
-/* eslint-disable no-unused-vars */
-import { Button } from './Button';
-import { ProductProperties } from './ProductProperties';
-import { PhoneInfo } from '../App';
+import classNames from 'classnames';
 import { useState } from 'react';
 import { FiHeart } from 'react-icons/fi';
+import { Button } from './Button';
+import { ProductProperties } from './ProductProperties';
 
-type CardProps = {
-  phoneInfo: PhoneInfo;
+type Props = {
+  product: any;
 };
 
-export const Card = (props: CardProps) => {
-  const { phoneInfo } = props;
+export const Card = (props: Props) => {
   const [favorite, setFavorite] = useState(false);
 
   const handleClick = () => {
     setFavorite(!favorite);
   };
-
-  const {
-    phoneImage,
-    phoneTitle,
-    phonePrice,
-    discountPrice,
-    phoneProperties,
-    isAddedToCart,
-    isFavorite,
-  } = phoneInfo;
 
   return (
     <section
@@ -34,40 +21,36 @@ export const Card = (props: CardProps) => {
     border-secondary bg-white"
     >
       <div className="grid auto-rows-auto gap-y-2 object-cover">
-        <img className="mx-auto min-h-[230px]" src={phoneImage} alt="phone-image" />
-        <h3 className="text-sm font-semibold mt-4">{phoneTitle}</h3>
+        <img className="mx-auto" src="" alt="phone-image" />
+        <h3 className="text-sm font-semibold mt-4">TITLE</h3>
         <div className="flex gap-2">
-          <h3 className="text-xl font-extrabold leading-8">{discountPrice}</h3>
+          <h3 className="text-xl font-extrabold leading-8">899</h3>
           <h3
             className="text-xl font-semibold leading-8 line-through
           text-secondary decoration-from-font"
           >
-            {phonePrice}
+            1000
           </h3>
         </div>
         <span className="border border-secondary border-t w-full" />
-        <ProductProperties properties={phoneProperties} />
+        <ProductProperties properties={[]} />
         <div className="flex justify-between gap-x-[8px]">
           <Button>Add to cart</Button>
-          {favorite ? (
-            <button
-              className="w-10 h-10 rounded-full border border-icons
-            hover:border-primary hover:scale-110
-            flex justify-center items-center shrink-0 duration-300"
-              onClick={handleClick}
-            >
-              <FiHeart className="text-secondary-accent" />
-            </button>
-          ) : (
-            <button
-              className="w-[40px] h-[40px] rounded-full border border-icons
-            hover:border-primary hover:scale-110
-            flex justify-center items-center shrink-0 duration-300"
-              onClick={handleClick}
-            >
-              <FiHeart />
-            </button>
-          )}
+          <button
+            className={classNames([
+              'w-10 h-10',
+              'rounded-full border border-icons',
+              'hover:border-primary hover:scale-105',
+              'flex justify-center items-center shrink-0 duration-300',
+            ])}
+            onClick={handleClick}
+          >
+            <FiHeart
+              className={classNames({
+                'text-secondary-accent': favorite,
+              })}
+            />
+          </button>
         </div>
       </div>
     </section>
