@@ -21,7 +21,6 @@ module.exports = {
         icons: '#B4BDC3',
         elements: '#E2E6E9',
         'hover-bg': '#FAFBFC',
-        white: '#FFFFFF',
         green: '#27AE60',
         red: '#EB5757',
       },

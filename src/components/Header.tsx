@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable max-len */
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import { FiHeart, FiMenu, FiShoppingBag, FiX } from 'react-icons/fi';
@@ -22,8 +20,8 @@ export const Header: React.FC = () => {
 
   const getLinkClass = ({ isActive }: { isActive: boolean }) =>
     classNames(
-      'uppercase text-secondary font-extrabold text-xs hover:text-primary relative active:text-primary focus:text-primary font-Mont',
-      { 'text-primary pb-6 border-b-4 border-primary': isActive },
+      'uppercase text-secondary duration-150 hover:border-b-4 hover:border-primary pb-6 font-extrabold text-xs hover:text-primary relative active:text-primary focus:text-primary font-Mont',
+      { 'text-primary border-b-4 border-primary': isActive },
     );
 
   useEffect(() => {
@@ -52,13 +50,16 @@ export const Header: React.FC = () => {
 
       <div className="flex items-center justify-end">
         <div className="border-l border-elements box-border">
-          <a className="px-4 py-6 desktop:p-6 hidden tablet:flex" href="/#">
+          <a
+            className="hover:shadow-lg duration-200 px-4 py-6 desktop:p-6 hidden tablet:flex"
+            href="/#"
+          >
             <FiHeart />
           </a>
         </div>
         <div className="border-l border-elements box-border mx-0">
           <a
-            className="px-4 py-6 desktop:p-6 hidden tablet:flex justify-end"
+            className="hover:shadow-lg duration-200 px-4 py-6 desktop:p-6 hidden tablet:flex justify-end"
             href="/#"
           >
             <FiShoppingBag />
