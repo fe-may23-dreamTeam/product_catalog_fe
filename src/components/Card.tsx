@@ -1,7 +1,12 @@
 import classNames from 'classnames';
 import { useState } from 'react';
 import { FiHeart } from 'react-icons/fi';
-import { addItemToCart, useAppDispatch } from '../redux';
+import {
+  addItemToCart,
+  useAppDispatch,
+  toggleFavourite,
+  useAppSelector,
+} from '../redux';
 import { Button } from './Button';
 import { ProductProperties } from './ProductProperties';
 import { IProduct } from '../types/Product';
@@ -11,8 +16,13 @@ type Props = {
 };
 
 export const Card = ({ product }: Props) => {
-  const [favorite, setFavorite] = useState(false);
+  const { favouriteItems } = useAppSelector((state) => state.favourites);
   const dispatch = useAppDispatch();
+  const [favorite, setFavorite] = useState(false);
+
+  const isFavourite = (id: string) =>
+    favouriteItems.some((item) => item._id === id);
+
   const productProps = [
     {
       name: 'Screen',
@@ -28,7 +38,8 @@ export const Card = ({ product }: Props) => {
     },
   ];
 
-  const handleAddToFav = () => {
+  const handleToggleFav = (currentProduct: IProduct) => {
+    dispatch(toggleFavourite(currentProduct));
     setFavorite(!favorite);
   };
 
@@ -68,11 +79,11 @@ export const Card = ({ product }: Props) => {
               'active:scale-95',
               'flex justify-center items-center shrink-0 duration-300',
             ])}
-            onClick={handleAddToFav}
+            onClick={() => handleToggleFav(product)}
           >
             <FiHeart
               className={classNames({
-                'text-secondary-accent': favorite,
+                'text-secondary-accent': isFavourite(product._id),
               })}
             />
           </button>
