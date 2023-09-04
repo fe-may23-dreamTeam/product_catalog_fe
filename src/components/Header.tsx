@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import logo from '../assets/images/logo.png';
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
