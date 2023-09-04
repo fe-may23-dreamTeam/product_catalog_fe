@@ -1,7 +1,12 @@
 import classNames from 'classnames';
 import { useState } from 'react';
 import { FiHeart } from 'react-icons/fi';
-import { addItemToCart, useAppDispatch, toggleFavourite } from '../redux';
+import {
+  addItemToCart,
+  useAppDispatch,
+  toggleFavourite,
+  useAppSelector,
+} from '../redux';
 import { Button } from './Button';
 import { ProductProperties } from './ProductProperties';
 import { IProduct } from '../types/Product';
@@ -11,8 +16,12 @@ type Props = {
 };
 
 export const Card = ({ product }: Props) => {
+  const { favouriteItems } = useAppSelector((state) => state.favourites);
   const dispatch = useAppDispatch();
   const [favorite, setFavorite] = useState(false);
+
+  const isFavourite = (id: string) =>
+    favouriteItems.some((item) => item._id === id);
 
   const productProps = [
     {
@@ -74,7 +83,7 @@ export const Card = ({ product }: Props) => {
           >
             <FiHeart
               className={classNames({
-                'text-secondary-accent': hasProductId(product._id),
+                'text-secondary-accent': isFavourite(product._id),
               })}
             />
           </button>
