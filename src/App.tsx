@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { useInitCart } from './hooks/useLocalStorage';
+import { useInitialCart } from './hooks/useInitialCart';
 
 const App = () => {
-  useInitCart();
+  useInitialCart();
 
   return (
     <div>
