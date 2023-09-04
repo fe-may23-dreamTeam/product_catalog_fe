@@ -13,7 +13,6 @@ type Props = {
 export const Card = ({ product }: Props) => {
   const [favorite, setFavorite] = useState(false);
   const dispatch = useAppDispatch();
-  const { product } = props;
   const productProps = [
     {
       name: 'Screen',
