@@ -10,5 +10,8 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint", "react"],
-  "rules": {}
+  "rules": {
+    "operator-linebreak": "off",
+    "max-len": "off"
+  }
 }
