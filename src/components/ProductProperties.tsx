@@ -1,5 +1,5 @@
 type Props = {
-  properties: { name: string; value: string }[];
+  properties: { name: string; value: string | number }[];
 };
 
 export const ProductProperties = (props: Props) => {
