@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import { useState } from 'react';
 import { FiHeart } from 'react-icons/fi';
 import { addItemToCart, useAppDispatch } from '../redux';
-=======
 import { Button } from './Button';
 import { ProductProperties } from './ProductProperties';
 import { IProduct } from '../types/Product';
