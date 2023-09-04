@@ -1,12 +1,9 @@
-import HeaderForBurger from '../components/HeaderForBurger';
-import { FiShoppingBag, FiHeart } from 'react-icons/fi';
+import { FiHeart, FiShoppingBag } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
 
 const BurgerMenu = () => {
   return (
-    <div className="flex flex-col min-h-screen">
-      <HeaderForBurger />
-
+    <div className="fixed inset-0 top-12 z-50 bg-white -translate-x-full peer-checked/nav:-translate-x-0 duration-300 flex justify-between flex-col ">
       <main className="flex-grow mt-6">
         <NavLink
           to="/"

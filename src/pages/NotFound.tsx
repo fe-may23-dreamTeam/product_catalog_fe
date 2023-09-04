@@ -1,11 +1,9 @@
-import '../index.css';
-
 const NotFound = () => {
   return (
     <main className="grid min-h-full place-items-center bg-white px-6 py-24 tablet:py-32 desktop:px-8">
       <div className="text-center">
         <img
-          src={require('../assets/404-error.png')}
+          src={require('../assets/images/404-error.png')}
           alt="404-error-image"
           className="mx-auto w-[250px] mb-4 mt-[-100px]"
         />
