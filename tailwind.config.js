@@ -21,12 +21,12 @@ module.exports = {
         icons: '#B4BDC3',
         elements: '#E2E6E9',
         'hover-bg': '#FAFBFC',
-        white: '#FFFFFF',
         green: '#27AE60',
         red: '#EB5757',
       },
       boxShadow: {
         custom: '0px 3px 13px 0px rgba(23, 32, 49, 0.40)',
+        option: '0px 2px 15px 0px rgba(0, 0, 0, 0.05)',
       },
     },
     container: {

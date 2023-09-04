@@ -1,5 +1,3 @@
-import '../index.css';
-
 const NotFound = () => {
   return (
     <main className="grid min-h-full place-items-center bg-white px-6 py-24 tablet:py-32 desktop:px-8">
