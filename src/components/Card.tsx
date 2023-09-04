@@ -10,6 +10,7 @@ import {
 import { Button } from './Button';
 import { ProductProperties } from './ProductProperties';
 import { IProduct } from '../types/Product';
+import toast from 'react-hot-toast';
 
 type Props = {
   product: IProduct;
@@ -45,6 +46,7 @@ export const Card = ({ product }: Props) => {
 
   const handleAddToCart = () => {
     dispatch(addItemToCart({ id: product.id, count: 1 }));
+    toast.success('Successfully added to cart!');
   };
 
   return (
