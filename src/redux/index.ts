@@ -11,6 +11,7 @@ const store = configureStore({
 
 export { store };
 
+export * from './slices/favouritesSlice';
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = () => useDispatch<AppDispatch>();

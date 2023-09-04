@@ -5,7 +5,7 @@ import { Button } from './Button';
 import { ProductProperties } from './ProductProperties';
 import { IProduct } from '../types/Product';
 import { useAppDispatch, useAppSelector } from '../redux';
-import { addToFavourites, deleteFromFavourites } from '../redux/slices/favouritesSlice';
+import { toggleFavourite } from '../redux/slices/favouritesSlice';
 
 type Props = {
   product: IProduct;
@@ -36,11 +36,7 @@ export const Card = ({ product }: Props) => {
   }; // See if the product id is in the favoriteItems array
 
   const handleClick = (currentProduct: IProduct) => {
-    if (hasProductId(currentProduct._id)) {
-      dispatch(deleteFromFavourites(currentProduct));
-    } else {
-      dispatch(addToFavourites(currentProduct));
-    }
+    dispatch(toggleFavourite(currentProduct));
     setFavorite(!favorite);
   };
 

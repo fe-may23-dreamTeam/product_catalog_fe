@@ -35,7 +35,7 @@ export const FavouritesPage: React.FC = () => {
           FavouritesPage
         </h1>
         <p className="text-sm mb-8 tablet:mb-9 font-semibold leading-[21px] text-secondary">
-          5 items
+          {`${favouriteItems.length} items`}
         </p>
       </header>
       <div className="grid grid-cols-1 gap-4 tablet:grid-cols-2 desktop:grid-cols-4">
