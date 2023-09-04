@@ -1,26 +1,31 @@
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Card } from '../components/Card';
-import axios from 'axios';
-import { IProduct } from '../types/Product';
+// import axios from 'axios';
+// import { IProduct } from '../types/Product';
+import { useAppSelector } from '../redux';
 
 export const FavouritesPage: React.FC = () => {
   // #region rewrite to Redux
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const favouriteItems = useAppSelector(state => state.favourites.favouriteItems);
+
+  // eslint-disable-next-line no-console
+  // const [products, setProducts] = useState<IProduct[]>([]);
   // #endregion
 
   // #region rewrite to RTQ Query
-  useEffect(() => {
-    axios
-      .get('https://dreamteam.onrender.com/products', {
-        params: { page: 1, perPage: 8 },
-      })
-      .then((res) => {
-        setProducts(res.data.data);
-      })
-      .catch((e) => {
-        throw new Error(e);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get('https://dreamteam.onrender.com/products', {
+  //       params: { page: 1, perPage: 8 },
+  //     })
+  //     .then((res) => {
+  //       setProducts(res.data.data);
+  //     })
+  //     .catch((e) => {
+  //       throw new Error(e);
+  //     });
+  // }, []);
   // #endregion
 
   return (
@@ -34,7 +39,7 @@ export const FavouritesPage: React.FC = () => {
         </p>
       </header>
       <div className="grid grid-cols-1 gap-4 tablet:grid-cols-2 desktop:grid-cols-4">
-        {products.map((pr) => (
+        {favouriteItems.map((pr) => (
           <Card product={pr} key={pr._id} />
         ))}
       </div>

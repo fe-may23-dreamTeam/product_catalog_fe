@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { favouritesSlice } from './slices/favouritesSlice';
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    [favouritesSlice.name]: favouritesSlice.reducer,
+  },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(),
 });
 

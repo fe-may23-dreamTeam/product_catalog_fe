@@ -50,12 +50,12 @@ export const Header: React.FC = () => {
 
       <div className="flex items-center justify-end">
         <div className="border-l border-elements box-border">
-          <a
+          <NavLink
             className="hover:shadow-lg duration-200 px-4 py-6 desktop:p-6 hidden tablet:flex"
-            href="/#"
+            to="/favourites"
           >
             <FiHeart />
-          </a>
+          </NavLink>
         </div>
         <div className="border-l border-elements box-border mx-0">
           <a
