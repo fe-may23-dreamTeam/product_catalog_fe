@@ -58,12 +58,12 @@ export const Header: React.FC = () => {
           </NavLink>
         </div>
         <div className="border-l border-elements box-border mx-0">
-          <a
+          <NavLink
             className="hover:shadow-lg duration-200 px-4 py-6 desktop:p-6 hidden tablet:flex justify-end"
-            href="/#"
+            to="/cart"
           >
             <FiShoppingBag />
-          </a>
+          </NavLink>
           <span className="flex p-4 tablet:hidden">
             <input
               type="checkbox"

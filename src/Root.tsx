@@ -4,6 +4,7 @@ import CatalogPage from './pages/CatalogPage';
 import NotFound from './pages/NotFound';
 import ScrollToTop from './components/ScrollToTop';
 import { FavouritesPage } from './pages/FavouritesPage';
+import { CartPage } from './pages/CartPage';
 
 export const Root = () => (
   <BrowserRouter>
@@ -22,6 +23,7 @@ export const Root = () => (
           <Route path=":accessoryId?" element={<h1>Accessories Page</h1>} />
         </Route>
         <Route path='favourites' element={<FavouritesPage />} />
+        <Route path='cart' element={<CartPage /> } />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

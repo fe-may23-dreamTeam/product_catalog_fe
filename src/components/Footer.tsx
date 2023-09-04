@@ -11,7 +11,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="border-t border-elements h-48 tablet:h-16 desktop:px-38 box-border">
+    <footer className="border-t border-elements bg-white h-48 tablet:h-16 desktop:px-38 box-border">
       <div className="flex flex-col px-4 py-8 tablet:flex-row tablet:px-6 tablet:justify-around">
         <div className="flex flex-col tablet:flex-row tablet:space-x-32 tablet:justify-between tablet:items-center">
           <NavLink to="/">
