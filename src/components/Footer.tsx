@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import logo from '../assets/images/logo.png';
+import logo from '../assets/images/logo.svg';
 import { FiChevronUp } from 'react-icons/fi';
 
 export const Footer = () => {
