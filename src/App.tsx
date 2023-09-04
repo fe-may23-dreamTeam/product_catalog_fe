@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { useInitFavourites } from './hooks/useLocalStorage';
+import { useInitFavourites } from './hooks/useInitFavourites';
 
 const App = () => {
   useInitFavourites();

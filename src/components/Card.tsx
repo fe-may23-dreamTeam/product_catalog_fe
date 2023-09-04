@@ -33,7 +33,7 @@ export const Card = ({ product }: Props) => {
 
   const hasProductId = (productId: string) => {
     return favouriteItems.some(favouriteItem => favouriteItem._id === productId);
-  }; // See if the product id is in the favoriteItems array
+  };
 
   const handleClick = (currentProduct: IProduct) => {
     dispatch(toggleFavourite(currentProduct));
