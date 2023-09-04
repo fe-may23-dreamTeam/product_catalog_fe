@@ -1,4 +1,3 @@
-import logo from '../assets/images/logo.png';
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import { FiHeart, FiMenu, FiShoppingBag, FiX } from 'react-icons/fi';
