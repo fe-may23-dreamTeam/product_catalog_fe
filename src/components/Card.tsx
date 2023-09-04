@@ -1,9 +1,9 @@
-/* eslint-disable no-unused-vars */
 import classNames from 'classnames';
 import { Button } from './Button';
 import { ProductProperties } from './ProductProperties';
 import { useState } from 'react';
 import { FiHeart } from 'react-icons/fi';
+import { addItemToCart, useAppDispatch } from '../redux';
 
 type Props = {
   product: any;
@@ -11,9 +11,15 @@ type Props = {
 
 export const Card = (props: Props) => {
   const [favorite, setFavorite] = useState(false);
+  const dispatch = useAppDispatch();
+  const { product } = props;
 
-  const handleClick = () => {
+  const handleAddToFav = () => {
     setFavorite(!favorite);
+  };
+
+  const handleAddToCart = () => {
+    dispatch(addItemToCart({ id: product.id, count: 1 }));
   };
 
   return (
@@ -36,7 +42,7 @@ export const Card = (props: Props) => {
         <span className="border border-secondary border-t w-full" />
         <ProductProperties properties={[]} />
         <div className="flex justify-between gap-x-[8px]">
-          <Button>Add to cart</Button>
+          <Button onClick={handleAddToCart}>Add to cart</Button>
           <button
             className={classNames([
               'w-10 h-10',
@@ -44,7 +50,7 @@ export const Card = (props: Props) => {
               'hover:border-primary hover:scale-105',
               'flex justify-center items-center shrink-0 duration-300',
             ])}
-            onClick={handleClick}
+            onClick={handleAddToFav}
           >
             <FiHeart
               className={classNames({

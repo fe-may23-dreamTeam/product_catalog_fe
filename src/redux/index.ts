@@ -1,13 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { cartSlice } from './slices/cartSlice';
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    [cartSlice.name]: cartSlice.reducer,
+  },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(),
 });
 
 export { store };
 
+export * from './slices/cartSlice';
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
