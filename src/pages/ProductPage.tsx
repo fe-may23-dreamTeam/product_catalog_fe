@@ -3,7 +3,6 @@ import { FiArrowLeft, FiArrowRight, FiHeart } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
 import BreadCrumb from '../components/BreadCrumb';
 import { Button } from '../components/Button';
-import { Card } from '../components/Card';
 import ColorSelector from '../components/ColorSelector';
 import Line from '../components/Line';
 import MemoryButton from '../components/MemoryButton';
@@ -300,10 +299,6 @@ export const ProductPage = () => {
           </div>
 
           <article className="mt-8 mb-20 flex space-x-4 overflow-hidden">
-            <Card product={noop} />
-            <Card product={noop} />
-            <Card product={noop} />
-            <Card product={noop} />
           </article>
         </section>
       </main>

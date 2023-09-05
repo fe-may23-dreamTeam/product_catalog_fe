@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 
 type Button = {
   children: ReactNode;
+  outline?: boolean;
   [key: string]: any;
 };
 

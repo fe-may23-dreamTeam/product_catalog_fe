@@ -1,7 +1,7 @@
-/* eslint-disable max-len */
 import classNames from 'classnames';
 import { FC } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { SearchLink } from './SearchLink';
 
 type Callback = (page: number) => number;
 
@@ -10,12 +10,14 @@ type Props = {
   perPage: number;
   currentPage: number;
   onPageChange: (page: number | Callback) => void;
+  className?: string;
 };
 
 const Pagination: FC<Props> = ({
   total,
   perPage,
   currentPage,
+  className,
   onPageChange,
 }) => {
   const totalPages: number = Math.ceil(total / perPage);
@@ -23,13 +25,15 @@ const Pagination: FC<Props> = ({
     { length: totalPages },
     (_value, index) => index + 1,
   );
+  const nextPage = currentPage === totalPages ? currentPage : currentPage + 1;
+  const prevPage = currentPage === 1 ? currentPage : currentPage - 1;
 
   function moveToPreviousPage() {
     if (currentPage === 1) {
       return;
     }
 
-    onPageChange((prevPage) => prevPage - 1);
+    onPageChange((prev) => prev - 1);
   }
 
   function moveToNextPage() {
@@ -37,13 +41,15 @@ const Pagination: FC<Props> = ({
       return;
     }
 
-    onPageChange((prevPage) => prevPage + 1);
+    onPageChange((prev) => prev + 1);
   }
 
   return (
-    <div className="container flex justify-center mx-auto">
+    <div
+      className={classNames(className, 'container flex justify-center mx-auto')}
+    >
       <div className="flex gap-x-4">
-        <a
+        <SearchLink
           className={classNames(
             [
               'flex',
@@ -64,17 +70,20 @@ const Pagination: FC<Props> = ({
               '!border-icons': currentPage === 1,
             },
           )}
-          href="#prev"
+          params={{
+            page: prevPage.toString(),
+            perPage: perPage.toString(),
+          }}
           aria-disabled={currentPage === 1}
           onClick={moveToPreviousPage}
         >
           <FiChevronLeft />
-        </a>
+        </SearchLink>
 
         <ul className="flex gap-x-2">
           {pagesArray.map((pageNo: number) => (
             <li key={pageNo}>
-              <a
+              <SearchLink
                 className={classNames(
                   [
                     'flex',
@@ -96,16 +105,19 @@ const Pagination: FC<Props> = ({
                     '!text-white': currentPage === pageNo,
                   },
                 )}
-                href={`#${pageNo}`}
+                params={{
+                  page: pageNo.toString(),
+                  perPage: perPage.toString(),
+                }}
                 onClick={() => onPageChange(pageNo)}
               >
                 {pageNo}
-              </a>
+              </SearchLink>
             </li>
           ))}
         </ul>
 
-        <a
+        <SearchLink
           className={classNames(
             [
               'flex',
@@ -126,12 +138,12 @@ const Pagination: FC<Props> = ({
               '!border-icons': currentPage === totalPages,
             },
           )}
-          href="#next"
+          params={{ page: nextPage.toString(), perPage: perPage.toString() }}
           aria-disabled={currentPage === totalPages}
           onClick={moveToNextPage}
         >
           <FiChevronRight />
-        </a>
+        </SearchLink>
       </div>
     </div>
   );
