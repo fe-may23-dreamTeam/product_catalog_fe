@@ -2,6 +2,8 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Card } from '../components/Card';
 import { Dropdown } from '../components/Dropdown';
+import { ErrorMessage } from '../components/ErrorMessage';
+import { Loader } from '../components/Loader';
 import Pagination from '../components/Pagination';
 import { useGetProductsQuery } from '../redux/api/productApi';
 import { IProduct } from '../types/Product';
@@ -49,11 +51,11 @@ const CatalogPage: React.FC = () => {
   });
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   if (isError) {
-    return <p>Error loading products</p>;
+    return <ErrorMessage />;
   }
 
   const total = products ? products.totalProducts : 0;
