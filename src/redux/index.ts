@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { favouritesSlice } from './slices/favouritesSlice';
 import { cartSlice } from './slices/cartSlice';
-import { productApi } from './api/product';
+import { productApi } from './api/productApi';
 
 const store = configureStore({
   reducer: {

@@ -6,7 +6,14 @@ export const productApi = createApi({
   }),
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => `/products`,
+      query: ({ page, perPage, sortBy }) => ({
+        url: `/products`,
+        params: {
+          page,
+          perPage,
+          sortBy,
+        },
+      }),
     }),
   }),
 });

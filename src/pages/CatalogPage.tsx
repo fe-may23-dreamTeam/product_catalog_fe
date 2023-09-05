@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { Dropdown } from '../components/Dropdown';
 import { Card } from '../components/Card';
-// import axios from 'axios';
 import Pagination from '../components/Pagination';
 import { useSearchParams } from 'react-router-dom';
 import { IProduct } from '../types/Product';
-import { useGetProductsQuery } from '../redux/api/product';
+import { useGetProductsQuery } from '../redux/api/productApi';
 
 const sortOptions = [
   {
