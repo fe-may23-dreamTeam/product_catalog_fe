@@ -4,6 +4,8 @@ import { FiHeart, FiMenu, FiShoppingBag, FiX } from 'react-icons/fi';
 import { NavLink, useLocation } from 'react-router-dom';
 import logo from '../assets/images/logo.svg';
 import BurgerMenu from '../pages/BurgerMenu';
+import { useAppSelector } from '../redux';
+import { ItemCounter } from './ItemCounter';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -13,6 +15,8 @@ const navLinks = [
 ];
 
 export const Header: React.FC = () => {
+  const { favouriteItems } = useAppSelector((state) => state.favourites);
+  const { items } = useAppSelector((state) => state.cart);
   const { pathname } = useLocation();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
@@ -51,18 +55,20 @@ export const Header: React.FC = () => {
       <div className="flex items-center justify-end">
         <div className="border-l border-elements box-border">
           <NavLink
-            className="hover:shadow-lg duration-200 px-4 py-6 desktop:p-6 hidden tablet:flex"
+            className="relative hover:shadow-lg duration-200 px-4 py-6 desktop:p-6 hidden tablet:flex"
             to="/favourites"
           >
             <FiHeart />
+              <ItemCounter count={favouriteItems.length} />
           </NavLink>
         </div>
         <div className="border-l border-elements box-border mx-0">
           <NavLink
-            className="hover:shadow-lg duration-200 px-4 py-6 desktop:p-6 hidden tablet:flex justify-end"
+            className="relative hover:shadow-lg duration-200 px-4 py-6 desktop:p-6 hidden tablet:flex justify-end"
             to="/cart"
           >
             <FiShoppingBag />
+              <ItemCounter count={items.length} />
           </NavLink>
           <span className="flex p-4 tablet:hidden">
             <input
