@@ -29,27 +29,27 @@ const HomePage = () => {
           <SwiperSlide>
             <div className="mx-auto h-full tablet:w-5/6">
               <img
-              src={image}
-              alt="promo-images"
-              className="tablet:rounded-lg h-full w-full object-cover"
+                src={image}
+                alt="promo-images"
+                className="tablet:rounded-lg h-full w-full object-cover"
               />
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="mx-auto h-full tablet:w-5/6">
               <img
-              src={image}
-              alt="promo-images"
-              className="tablet:rounded-lg h-full w-full object-cover"
+                src={image}
+                alt="promo-images"
+                className="tablet:rounded-lg h-full w-full object-cover"
               />
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="mx-auto h-full tablet:w-5/6">
               <img
-              src={image}
-              alt="promo-images"
-              className="tablet:rounded-lg h-full w-full object-cover"
+                src={image}
+                alt="promo-images"
+                className="tablet:rounded-lg h-full w-full object-cover"
               />
             </div>
           </SwiperSlide>
