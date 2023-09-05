@@ -16,7 +16,7 @@ export const Root = () => (
           <Route path=":tabletId?" element={<h1>Tablets Page</h1>} />
         </Route>
         <Route path="accessories">
-          <Route path=":accessoryId?" element={<h1>Accessories Page</h1>} />
+          <Route path=":accessoryId?" element={<h1 >Accessories Page</h1>} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Route>
