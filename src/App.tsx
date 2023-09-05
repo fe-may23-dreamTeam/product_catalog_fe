@@ -10,7 +10,7 @@ const App = () => {
     <div>
       <Header />
 
-      <div className="min-h-[75vh] bg-hover-bg p-4">
+      <div className="min-h-[74vh] bg-hover-bg p-4">
         <Outlet />
       </div>
 

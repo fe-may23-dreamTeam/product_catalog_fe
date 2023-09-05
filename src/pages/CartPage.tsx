@@ -21,15 +21,15 @@ export const CartPage: React.FC = () => {
       </div>
 
       {cartItems.length ? (
-        <div className="flex flex-col desktop:flex-row justify-between desktop:items-start gap-4">
-          <div className="flex flex-col gap-4">
+        <div className="flex flex-col desktop:flex-row desktop:items-start gap-4">
+          <div className="flex flex-col gap-4 w-full">
             {cartItems.map((item) => (
               <CartItem key={item.id} item={item} />
             ))}
           </div>
 
           <div className="box-border flex flex-col mx-auto desktop:mx-0 items-center rounded-lg p-6 w-full border border-elements bg-hover-bg desktop:w-[368px]">
-            <h3 className="text-center text-primary text-[32px] font-extrabold leading-[41px]">
+            <h3 className="select-none text-center text-primary text-[32px] font-extrabold leading-[41px]">
               {`${totalCost}$`}
             </h3>
             <div className="text-center text-secondary text-sm font-semibold leading-[21px] mb-4">
