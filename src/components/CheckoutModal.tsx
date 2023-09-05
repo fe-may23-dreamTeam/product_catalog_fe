@@ -44,7 +44,7 @@ export const CheckoutModal: React.FC<Props> = ({ showModal, onCloseModal }) => {
             </div>
             <div className="flex justify-around p-6 rounded-b w-full max-w-xs m-auto">
               <Button
-              onClick={handlebackToHome}
+                onClick={handlebackToHome}
               >
                 Back to Home
               </Button>
