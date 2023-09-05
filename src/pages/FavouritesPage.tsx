@@ -1,27 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Card } from '../components/Card';
-import axios from 'axios';
-import { IProduct } from '../types/Product';
+import { useAppSelector } from '../redux';
 
 export const FavouritesPage: React.FC = () => {
-  // #region rewrite to Redux
-  const [products, setProducts] = useState<IProduct[]>([]);
-  // #endregion
-
-  // #region rewrite to RTQ Query
-  useEffect(() => {
-    axios
-      .get('https://dreamteam.onrender.com/products', {
-        params: { page: 1, perPage: 8 },
-      })
-      .then((res) => {
-        setProducts(res.data.data);
-      })
-      .catch((e) => {
-        throw new Error(e);
-      });
-  }, []);
-  // #endregion
+  const favouriteItems = useAppSelector(state => state.favourites.favouriteItems);
 
   return (
     <main className="container mx-auto flex flex-col items-center tablet:items-start px-4 pt-6 tablet:px-6 desktop:w-[1200px]">
@@ -30,11 +12,11 @@ export const FavouritesPage: React.FC = () => {
           FavouritesPage
         </h1>
         <p className="text-sm mb-8 tablet:mb-9 font-semibold leading-[21px] text-secondary">
-          5 items
+          {`${favouriteItems.length} items`}
         </p>
       </header>
       <div className="grid grid-cols-1 gap-4 tablet:grid-cols-2 desktop:grid-cols-4">
-        {products.map((pr) => (
+        {favouriteItems.map((pr) => (
           <Card product={pr} key={pr._id} />
         ))}
       </div>
