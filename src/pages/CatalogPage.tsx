@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Dropdown } from '../components/Dropdown';
-import { Card } from '../components/Card';
-import axios from 'axios';
-import Pagination from '../components/Pagination';
+import React from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { Card } from '../components/Card';
+import { Dropdown } from '../components/Dropdown';
+import Pagination from '../components/Pagination';
+import { useGetProductsQuery } from '../redux/api/productApi';
 import { IProduct } from '../types/Product';
 
 const sortOptions = [
@@ -38,34 +38,29 @@ const CatalogPage: React.FC = () => {
   const perPage = Number(searchParams.get('perPage')) || 8;
   const sortBy = searchParams.get('sortBy') || 'Newest';
 
-  // #region Will be replaced to Redux Store
-  const [total, setTotal] = useState<number>(0);
-  const [products, setProducts] = useState<IProduct[]>([]);
-  // #endregion
+  const {
+    data: products,
+    isLoading,
+    isError,
+  } = useGetProductsQuery({
+    perPage,
+    page: currentPage,
+    sortBy,
+  });
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <p>Error loading products</p>;
+  }
+
+  const total = products ? products.totalProducts : 0;
 
   const handlePageNumber = (pageNo: number) => {
     searchParams.set('page', pageNo.toString());
   };
-
-  // #region rewrite to RTQ Query
-  useEffect(() => {
-    axios
-      .get('https://dreamteam.onrender.com/products', {
-        params: {
-          perPage,
-          page: currentPage,
-          sortBy,
-        },
-      })
-      .then((res) => {
-        setTotal(res.data.totalProducts);
-        setProducts(res.data.data);
-      })
-      .catch((e) => {
-        throw new Error(e);
-      });
-  }, [currentPage, perPage, sortBy]);
-  // #endregion
 
   return (
     <main className="container mx-auto flex flex-col items-center tablet:items-start px-4 pt-6 tablet:px-6 desktop:w-[1200px]">
@@ -93,7 +88,7 @@ const CatalogPage: React.FC = () => {
         </div>
       </header>
       <div className="mb-10 grid grid-cols-1 gap-4 tablet:grid-cols-2 desktop:grid-cols-4">
-        {products.map((product) => (
+        {products.data.map((product: IProduct) => (
           <Card product={product} key={product._id} />
         ))}
       </div>
