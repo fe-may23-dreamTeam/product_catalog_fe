@@ -1,11 +1,17 @@
-/* eslint-disable max-len */
 import React from 'react';
 import { Button } from '../components/Button';
-
-const totalSum = '2657';
-const itemsAmount = '3';
+import CartItem from '../components/CartItem';
+import { getTotalProductsCost } from '../utils/getTotalCost';
+import { getTotalItemsCount } from '../utils/getTotalItemsCount';
+import { useAppSelector } from '../redux';
+import { NavLink } from 'react-router-dom';
 
 export const CartPage: React.FC = () => {
+  const { items: cartItems } = useAppSelector((state) => state.cart);
+
+  const totalCost = getTotalProductsCost(cartItems);
+  const totalItemsCount = getTotalItemsCount(cartItems);
+
   return (
     <main className="container mx-auto flex flex-col px-4 pt-6 tablet:px-6 desktop:w-[1200px] desktop:px-8">
       <div className="mb-8">
@@ -14,27 +20,33 @@ export const CartPage: React.FC = () => {
         </h1>
       </div>
 
-      <div className="flex flex-col desktop:flex-row justify-between desktop:items-start gap-4">
-        <div className="flex flex-col gap-4">
-          <div className="w-full desktop:w-[752px] mb-2 max-w-[752px] h-32 p-6 bg-white rounded-2xl border border-zinc-200 justify-center items-center gap-6 inline-flex"></div>
-          <div className="w-full desktop:w-[752px] mb-2 max-w-[752px] h-32 p-6 bg-white rounded-2xl border border-zinc-200 justify-center items-center gap-6 inline-flex"></div>
-          <div className="w-full desktop:w-[752px] mb-2 max-w-[752px] h-32 p-6 bg-white rounded-2xl border border-zinc-200 justify-center items-center gap-6 inline-flex"></div>
-          <div className="w-full desktop:w-[752px] mb-2 max-w-[752px] h-32 p-6 bg-white rounded-2xl border border-zinc-200 justify-center items-center gap-6 inline-flex"></div>
-          <div className="w-full desktop:w-[752px] mb-2 max-w-[752px] h-32 p-6 bg-white rounded-2xl border border-zinc-200 justify-center items-center gap-6 inline-flex"></div>
-          <div className="w-full desktop:w-[752px] mb-2 max-w-[752px] h-32 p-6 bg-white rounded-2xl border border-zinc-200 justify-center items-center gap-6 inline-flex"></div>
-        </div>
-
-        <div className="box-border flex flex-col mx-auto desktop:mx-0 items-center rounded-lg p-6 w-full border border-elements bg-hover-bg desktop:w-[368px]">
-          <h3 className="text-center text-primary text-[32px] font-extrabold leading-[41px]">
-            {`${totalSum}$`}
-          </h3>
-          <div className="text-center text-secondary text-sm font-semibold leading-[21px] mb-4">
-            {`Total for ${itemsAmount} items`}
+      {cartItems.length ? (
+        <div className="flex flex-col desktop:flex-row desktop:items-start gap-4">
+          <div className="flex flex-col gap-4 w-full">
+            {cartItems.map((item) => (
+              <CartItem key={item.id} item={item} />
+            ))}
           </div>
-          <span className="w-full h-[0px] border text-elements mb-4"></span>
-          <Button>Checkout</Button>
+
+          <div className="box-border flex flex-col mx-auto desktop:mx-0 items-center rounded-lg p-6 w-full border border-elements bg-hover-bg desktop:w-[368px]">
+            <h3 className="select-none text-center text-primary text-[32px] font-extrabold leading-[41px]">
+              {`${totalCost}$`}
+            </h3>
+            <div className="text-center text-secondary text-sm font-semibold leading-[21px] mb-4">
+              {`Total for ${totalItemsCount} items`}
+            </div>
+            <span className="w-full h-[0px] border text-elements mb-4"></span>
+            <Button>Checkout</Button>
+          </div>
         </div>
-      </div>
+      ) : (
+        <>
+          <h3 className="mb-2">Your cart is empty</h3>
+          <NavLink to="/phones" className="cursor-pointer font-bold w-fit">
+            Start shopping now!
+          </NavLink>
+        </>
+      )}
     </main>
   );
 };
