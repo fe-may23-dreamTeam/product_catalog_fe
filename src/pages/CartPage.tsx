@@ -15,7 +15,7 @@ export const CartPage: React.FC = () => {
       </div>
 
       <div className="flex flex-col desktop:flex-row justify-between desktop:items-start gap-4">
-        <div className='flex flex-col gap-4'>
+        <div className="flex flex-col gap-4">
           <div className="w-full desktop:w-[752px] mb-2 max-w-[752px] h-32 p-6 bg-white rounded-2xl border border-zinc-200 justify-center items-center gap-6 inline-flex"></div>
           <div className="w-full desktop:w-[752px] mb-2 max-w-[752px] h-32 p-6 bg-white rounded-2xl border border-zinc-200 justify-center items-center gap-6 inline-flex"></div>
           <div className="w-full desktop:w-[752px] mb-2 max-w-[752px] h-32 p-6 bg-white rounded-2xl border border-zinc-200 justify-center items-center gap-6 inline-flex"></div>

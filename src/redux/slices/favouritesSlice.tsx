@@ -27,13 +27,22 @@ export const favouritesSlice = createSlice({
         state.favouriteItems = state.favouriteItems.filter(
           (favouriteItem) => favouriteItem._id !== action.payload._id,
         );
-        localStorage.setItem('favourite-items', JSON.stringify(state.favouriteItems));
+
+        localStorage.setItem(
+          'favourite-items',
+          JSON.stringify(state.favouriteItems),
+        );
       } else {
         state.favouriteItems.push(action.payload);
-        localStorage.setItem('favourite-items', JSON.stringify(state.favouriteItems));
+
+        localStorage.setItem(
+          'favourite-items',
+          JSON.stringify(state.favouriteItems),
+        );
       }
     },
   },
 });
 
-export const { toggleFavourite, getInitialFavourites } = favouritesSlice.actions;
+export const { toggleFavourite, getInitialFavourites } =
+  favouritesSlice.actions;

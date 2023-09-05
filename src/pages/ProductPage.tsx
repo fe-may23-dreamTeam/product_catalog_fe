@@ -298,8 +298,7 @@ export const ProductPage = () => {
             </div>
           </div>
 
-          <article className="mt-8 mb-20 flex space-x-4 overflow-hidden">
-          </article>
+          <article className="mt-8 mb-20 flex space-x-4 overflow-hidden"></article>
         </section>
       </main>
     </>
