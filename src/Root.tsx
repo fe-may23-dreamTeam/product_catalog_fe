@@ -5,13 +5,14 @@ import NotFound from './pages/NotFound';
 import ScrollToTop from './components/ScrollToTop';
 import { FavouritesPage } from './pages/FavouritesPage';
 import { CartPage } from './pages/CartPage';
+import HomePage from './pages/HomePage';
 
 export const Root = () => (
   <BrowserRouter>
     <ScrollToTop />
     <Routes>
       <Route path="/" element={<App />}>
-        <Route index element={<h1>Home</h1>} />
+        <Route index element={<HomePage />} />
         <Route path="home" element={<Navigate to="/" replace />} />
         <Route path="phones" element={<CatalogPage />}>
           <Route path=":phoneId?" element={<h1>Phones Page</h1>} />

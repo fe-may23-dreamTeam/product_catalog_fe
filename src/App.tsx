@@ -12,7 +12,7 @@ const App = () => {
     <div>
       <Header />
 
-      <div className="min-h-[75vh] p-4">
+      <div className="min-h-[75vh]">
         <Outlet />
       </div>
 
