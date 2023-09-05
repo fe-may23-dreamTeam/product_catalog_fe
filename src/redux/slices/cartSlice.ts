@@ -1,12 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-type CartItem = {
-  id: string;
-  count: number;
-};
+import { ICartItem } from '../../types/CartItem';
 
 type InitialState = {
-  items: CartItem[];
+  items: ICartItem[];
 };
 
 const initialState: InitialState = {
@@ -20,7 +16,7 @@ export const cartSlice = createSlice({
     getInitialItems: (state) => {
       state.items = JSON.parse(
         localStorage.getItem('cart-items') || '[]',
-      ) as CartItem[];
+      ) as ICartItem[];
     },
     addItemToCart: (state, action) => {
       state.items.push(action.payload);
