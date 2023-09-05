@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { Dropdown } from '../components/Dropdown';
-import { Card } from '../components/Card';
-import Pagination from '../components/Pagination';
+import React from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { IProduct } from '../types/Product';
+import { Card } from '../components/Card';
+import { Dropdown } from '../components/Dropdown';
+import Pagination from '../components/Pagination';
 import { useGetProductsQuery } from '../redux/api/productApi';
+import { IProduct } from '../types/Product';
 
 const sortOptions = [
   {
@@ -47,9 +47,6 @@ const CatalogPage: React.FC = () => {
     page: currentPage,
     sortBy,
   });
-
-  useEffect(() => {
-  }, [currentPage, perPage, sortBy]);
 
   if (isLoading) {
     return <p>Loading...</p>;

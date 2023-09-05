@@ -1,12 +1,10 @@
 import { Outlet } from 'react-router';
-import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { useInitFavourites } from './hooks/useInitFavourites';
-import { useInitialCart } from './hooks/useInitialCart';
+import { Header } from './components/Header';
+import { useLocalStorage } from './hooks/useLocalStorage';
 
 const App = () => {
-  useInitFavourites();
-  useInitialCart();
+  useLocalStorage();
 
   return (
     <div>
