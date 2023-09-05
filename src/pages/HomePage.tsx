@@ -17,31 +17,44 @@ const HomePage = () => {
       >
         Welcome to Nice Gadgets store!
       </h1>
-      <Swiper
-      modules={[Pagination, Navigation]}
-      pagination={true}
-      navigation={true}
-      spaceBetween={80}
-      >
-        <SwiperSlide>
-          <img
-            src={image}
-            alt="promo-images"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src={image}
-            alt="promo-images"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src={image}
-            alt="promo-images"
-          />
-        </SwiperSlide>
-      </Swiper>
+      <div className="w-full tablet:w-4/5 mx-auto">
+        <Swiper
+          modules={[Pagination, Navigation]}
+          pagination={true}
+          navigation={true}
+          slidesPerView={1}
+          loop={true}
+          spaceBetween={30}
+        >
+          <SwiperSlide>
+            <div className="mx-auto h-full tablet:w-5/6">
+              <img
+              src={image}
+              alt="promo-images"
+              className="tablet:rounded-lg h-full w-full object-cover"
+              />
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="mx-auto h-full tablet:w-5/6">
+              <img
+              src={image}
+              alt="promo-images"
+              className="tablet:rounded-lg h-full w-full object-cover"
+              />
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="mx-auto h-full tablet:w-5/6">
+              <img
+              src={image}
+              alt="promo-images"
+              className="tablet:rounded-lg h-full w-full object-cover"
+              />
+            </div>
+          </SwiperSlide>
+        </Swiper>
+      </div>
     </main>
   );
 };

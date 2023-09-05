@@ -29,8 +29,8 @@ module.exports = {
         option: '0px 2px 15px 0px rgba(0, 0, 0, 0.05)',
       },
       gridTemplateColumns: {
-        '3': 'repeat(3, minmax(0, 10px))',
-        '4': 'repeat(4, minmax(60px, 1fr))',
+        3: 'repeat(3, minmax(0, 10px))',
+        4: 'repeat(4, minmax(60px, 1fr))',
       },
     },
     container: {
