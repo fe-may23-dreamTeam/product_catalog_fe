@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { useState } from 'react';
 import { FiHeart } from 'react-icons/fi';
+import { FaHeart } from 'react-icons/fa';
 import {
   addItemToCart,
   useAppDispatch,
@@ -11,6 +12,7 @@ import { Button } from './Button';
 import { ProductProperties } from './ProductProperties';
 import { IProduct } from '../types/Product';
 import toast from 'react-hot-toast';
+import { NavLink } from 'react-router-dom';
 
 type Props = {
   product: IProduct;
@@ -45,22 +47,37 @@ export const Card = ({ product }: Props) => {
   };
 
   const handleAddToCart = () => {
-    dispatch(addItemToCart({ id: product.id, count: 1 }));
+    const itemData = {
+      id: product._id,
+      name: product.name,
+      price: product.priceDiscount
+        ? product.priceDiscount
+        : product.priceRegular,
+      image: product.images[0],
+      count: 1,
+    };
+
+    dispatch(addItemToCart(itemData));
     toast.success('Successfully added to cart!');
   };
 
   return (
     <article
-      className="card box-border rounded-lg p-8 min-w-[272px] border max-h-[440px] tablet:max-h-[506px]
+      className="card box-border hover:shadow-card rounded-lg p-8 min-w-[272px] border max-h-[440px] tablet:max-h-[506px]
     border-secondary bg-white"
     >
       <div className="grid auto-rows-auto gap-y-2 object-cover">
-        <img
-          className="mx-auto max-h-[130px] tablet:max-h-[200px]"
-          src={product.images[0]}
-          alt={product.namespaceId}
-        />
-        <h3 className="text-sm font-semibold mt-4">{product.name}</h3>
+        <NavLink to={product._id}>
+          <img
+            className="mx-auto max-h-[130px] tablet:max-h-[200px]"
+            src={product.images[0]}
+            alt={product.namespaceId}
+          />
+        </NavLink>
+
+        <h3 className="text-sm font-semibold mt-4 line-clamp-1">
+          {product.name}
+        </h3>
         <div className="flex gap-2">
           <h3 className="text-xl font-extrabold leading-8 before:content-['$']">
             {product.priceDiscount}
@@ -83,11 +100,11 @@ export const Card = ({ product }: Props) => {
             ])}
             onClick={() => handleToggleFav(product)}
           >
-            <FiHeart
-              className={classNames({
-                'text-secondary-accent': isFavourite(product._id),
-              })}
-            />
+            {isFavourite(product._id) ? (
+              <FaHeart className="text-secondary-accent" />
+            ) : (
+              <FiHeart />
+            )}
           </button>
         </div>
       </div>

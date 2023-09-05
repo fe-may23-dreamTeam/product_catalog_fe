@@ -1,41 +1,49 @@
-import { useState } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import { FiMinus, FiPlus, FiX } from 'react-icons/fi';
 
-const CartItem = () => {
-  const [itemCount, setItemCount] = useState(1);
-  const maxItems = 5;
+import { removeFromCart, increaseItemCount, decreaseItemCount } from '../redux';
+import { ICartItem } from '../types/CartItem';
+
+type Props = {
+  item: ICartItem;
+};
+
+const CartItem: React.FC<Props> = ({ item }) => {
+  const { name: itemName, price, image, count, id } = item;
+
+  const maxItems = 99;
   const minItems = 1;
 
+  const dispatch = useDispatch();
+
   const increaseCount = () => {
-    if (itemCount < maxItems) {
-      setItemCount((prevCount) => prevCount + 1);
+    if (count < maxItems) {
+      dispatch(increaseItemCount(id));
     }
   };
 
   const decreaseCount = () => {
-    if (itemCount > minItems) {
-      setItemCount((prevCount) => prevCount - 1);
+    if (count > minItems) {
+      dispatch(decreaseItemCount(id));
     }
   };
 
   return (
-    // !!! if max-width 752px is not suitable in page layout, change this rule max-w-[752px]
     <div className="border bg-white border-elements max-w-[752px] text-sm text-primary flex flex-wrap rounded-2xl p-4 gap-4 justify-between items-center tablet:p-6 tablet:gap-6 tablet:flex-nowrap">
       <div className="flex justify-between items-center gap-4 tablet:gap-6 w-full tablet:w-auto">
-        <button>
+        <button onClick={() => dispatch(removeFromCart(id))}>
           <FiX className="text-icons w-4 h-4 hover:scale-150 ease-in duration-300" />
         </button>
 
         <img
-          className="w-20 h-20"
-          src={require('../assets/images/iphone11.png')} // hardcoded for now
+          className="w-20 h-20 object-contain"
+          src={image}
           alt="product demo"
         />
 
-        <p className="max-w-xs">
-          Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)
-        </p>
+        <p className="max-w-xs">{itemName}</p>
       </div>
       <div className="flex justify-between items-center gap-4 tablet:gap-6 w-full tablet:w-auto">
         <div className="flex gap-3 items-center">
@@ -56,8 +64,8 @@ const CartItem = () => {
                 'focus:border-primary',
               ],
               {
-                '!text-icons': itemCount === minItems,
-                '!border-icons': itemCount === minItems,
+                '!text-icons': count === minItems,
+                '!border-icons': count === minItems,
               },
             )}
             onClick={decreaseCount}
@@ -65,7 +73,7 @@ const CartItem = () => {
             <FiMinus />
           </span>
 
-          <span>{itemCount}</span>
+          <span className="select-none inline-block">{count}</span>
 
           <span
             className={classNames(
@@ -84,8 +92,8 @@ const CartItem = () => {
                 'focus:border-primary',
               ],
               {
-                '!text-icons': itemCount === maxItems,
-                '!border-icons': itemCount === maxItems,
+                '!text-icons': count === maxItems,
+                '!border-icons': count === maxItems,
               },
             )}
             onClick={increaseCount}
@@ -93,7 +101,9 @@ const CartItem = () => {
             <FiPlus />
           </span>
         </div>
-        <p className="text-primary font-extrabold text-[22px]">$1099</p>
+        <p className="text-primary font-extrabold text-[22px] select-none">
+          ${price}
+        </p>
       </div>
     </div>
   );

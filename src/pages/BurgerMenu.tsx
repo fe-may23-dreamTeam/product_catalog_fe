@@ -1,7 +1,12 @@
 import { FiHeart, FiShoppingBag } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
+import { useAppSelector } from '../redux';
+import { ItemCounter } from '../components/ItemCounter';
 
 const BurgerMenu = () => {
+  const { favouriteItems } = useAppSelector((state) => state.favourites);
+  const { items } = useAppSelector((state) => state.cart);
+
   return (
     <div className="fixed inset-0 top-12 z-50 bg-white -translate-x-full peer-checked/nav:-translate-x-0 duration-300 flex justify-between flex-col ">
       <main className="flex-grow mt-6">
@@ -37,6 +42,7 @@ const BurgerMenu = () => {
           className="w-1/2 h-16 border border-elements flex items-center justify-center relative group transition-opacity duration-300"
         >
           <FiHeart />
+          <ItemCounter count={favouriteItems.length} />
           <span className="absolute w-full h-0.5 bg-primary bottom-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
         </NavLink>
         <NavLink
@@ -44,6 +50,7 @@ const BurgerMenu = () => {
           className="w-1/2 h-16 border border-elements flex items-center justify-center relative group transition-opacity duration-300"
         >
           <FiShoppingBag />
+          <ItemCounter count={items.length} />
           <span className="absolute w-full h-0.5 bg-primary bottom-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
         </NavLink>
       </footer>

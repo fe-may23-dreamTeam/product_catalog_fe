@@ -10,7 +10,8 @@ const store = configureStore({
     [favouritesSlice.name]: favouritesSlice.reducer,
     [cartSlice.name]: cartSlice.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(productApi.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(productApi.middleware),
 });
 
 export { store };

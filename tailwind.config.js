@@ -27,6 +27,7 @@ module.exports = {
       boxShadow: {
         custom: '0px 3px 13px 0px rgba(23, 32, 49, 0.40)',
         option: '0px 2px 15px 0px rgba(0, 0, 0, 0.05)',
+        card: '0 2px 16px 0 rgba(0, 0, 0, 0.1)',
       },
       gridTemplateColumns: {
         24: 'repeat(24, minmax(0, 1fr))',

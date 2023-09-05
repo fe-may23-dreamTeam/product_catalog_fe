@@ -1,8 +1,10 @@
-export const getTotalProductsCost = (product: any[]) => {
-  const totalAmount = product.reduce((total, item) => {
-    const price = item.priceDiscount ? item.priceDiscount : item.priceRegular;
+import { ICartItem } from '../types/CartItem';
 
-    return total + price; // Check if you need to multiply the price by the number of items in the database.
+export const getTotalProductsCost = (product: ICartItem[]) => {
+  const totalAmount = product.reduce((total, item) => {
+    const itemsPrice = item.price * item.count;
+
+    return total + itemsPrice;
   }, 0);
 
   return totalAmount;
