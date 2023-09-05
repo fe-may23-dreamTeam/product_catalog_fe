@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import App from './App';
 import CatalogPage from './pages/CatalogPage';
 import NotFound from './pages/NotFound';
@@ -14,7 +14,8 @@ export const Root = () => (
       <Route path="/" element={<App />}>
         <Route index element={<h1>Home</h1>} />
         <Route path="home" element={<Navigate to="/" replace />} />
-        <Route path="phones" element={<CatalogPage />}>
+        <Route path="phones" element={<Outlet />}>
+          <Route index element={<CatalogPage />}/>
           <Route path=":phoneId?" element={<ProductPage />} />
         </Route>
         <Route path="tablets">
