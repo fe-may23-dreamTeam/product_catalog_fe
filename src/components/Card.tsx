@@ -11,6 +11,7 @@ import {
 import { Button } from './Button';
 import { ProductProperties } from './ProductProperties';
 import { IProduct } from '../types/Product';
+import toast from 'react-hot-toast';
 import { NavLink } from 'react-router-dom';
 
 type Props = {
@@ -58,6 +59,7 @@ export const Card = ({ product, isFetching }: Props) => {
     };
 
     dispatch(addItemToCart(itemData));
+    toast.success('Successfully added to cart!');
   };
 
   return (
