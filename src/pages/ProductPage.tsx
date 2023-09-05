@@ -21,20 +21,23 @@ export const ProductPage = () => {
     <>
       <main className="desktop:container mx-2 grid grid-cols-4 desktop:grid-cols-24 tablet:grid-cols-12 desktop:mx-auto gap-4">
         <BreadCrumb />
-        <NavLink to='..' className="mt-6 col-span-4 tablet:col-span-12 desktop:col-start-1 desktop:col-span-12 text-xs">
+        <NavLink
+          to=".."
+          className="mt-6 col-span-4 tablet:col-span-12 desktop:col-start-1 desktop:col-span-12 text-xs"
+        >
           Back
         </NavLink>
         <h1 className="font-extrabold text-4xl text-primary leading-tight mb-6 col-span-4 tablet:col-span-12 desktop:col-span-24 col-start-1">
           Welcome to Nice Gadgets store!
         </h1>
-        <section className='col-span-4 gap-12 tablet:col-span-12 desktop:col-span-24 grid grid-cols-4 desktop:grid-cols-24 tablet:grid-cols-12 '>
+        <section className="col-span-4 gap-12 tablet:col-span-12 desktop:col-span-24 grid grid-cols-4 desktop:grid-cols-24 tablet:grid-cols-12 ">
           <div className="grid grid-cols-4 tablet:grid-cols-7 desktop:grid-cols-12 col-span-4 tablet:col-span-7 desktop:col-span-12 gap-4">
-            <div className='col-span-4 tablet:col-start-2 desktop:col-start-3 tablet:col-span-6 desktop:col-span-10'>
+            <div className="col-span-4 tablet:col-start-2 desktop:col-start-3 tablet:col-span-6 desktop:col-span-10">
               <img
-                  src={require('../assets/images/iphone11.png')}
-                  alt="banner"
-                  className="w-full object-contain"
-                />
+                src={require('../assets/images/iphone11.png')}
+                alt="banner"
+                className="w-full object-contain"
+              />
             </div>
             <div className="flex flex-row tablet:row-start-1 tablet:flex-col col-span-4 tablet:col-span-1 desktop:col-span-2 mx-auto gap-2">
               <img
@@ -88,14 +91,16 @@ export const ProductPage = () => {
             <Line width="col-span-4 w-auto tablet:col-start-7 tablet:col-span-5 tablet:w-auto desktop:col-start-12 desktop:col-span-7 desktop:w-[320px] mt-6" />
 
             <div className="flex mt-8">
-              <h1 className="mr-2 font-extrabold text-4xl text-primary">$799</h1>
+              <h1 className="mr-2 font-extrabold text-4xl text-primary">
+                $799
+              </h1>
               <h3 className="text-2xl text-secondary font-medium ml-2 flex items-center">
                 <span className="line-through mr-2">$1199</span>
               </h3>
             </div>
 
             <div className="flex gap-2 desktop:w-[55%] mt-4">
-                <Button md>Add to cart</Button>
+              <Button md>Add to cart</Button>
               <div>
                 {favorite ? (
                   <button
@@ -148,7 +153,9 @@ export const ProductPage = () => {
                 <p className="text-left text-xs font-semibold text-secondary">
                   RAM
                 </p>
-                <p className="text-right text-xs font-bold text-primary">3 GB</p>
+                <p className="text-right text-xs font-bold text-primary">
+                  3 GB
+                </p>
               </div>
             </div>
           </div>
@@ -156,7 +163,9 @@ export const ProductPage = () => {
 
         <section className="flex flex-col col-span-4 tablet:col-span-12 desktop:col-span-24 desktop:flex-row gap-12">
           <div className="desktop:w-1/2">
-            <h2 className="mt-16 font-extrabold text-2xl text-primary">About</h2>
+            <h2 className="mt-16 font-extrabold text-2xl text-primary">
+              About
+            </h2>
 
             <Line width="col-span-4 w-auto tablet:col-start-7 tablet:col-span-5 tablet:w-auto desktop:col-start-12 desktop:col-span-7 desktop:w-[320px] mt-6" />
 
@@ -187,11 +196,11 @@ export const ProductPage = () => {
             </h3>
             <p className="mt-4 text-secondary font-medium text-sm">
               iPhone 11 Pro lets you capture videos that are beautifully true to
-              life, with greater detail and smoother motion. Epic processing power
-              means it can shoot 4K video with extended dynamic range and
-              cinematic video stabilization — all at 60 fps. You get more creative
-              control, too, with four times more scene and powerful new editing
-              tools to play with.
+              life, with greater detail and smoother motion. Epic processing
+              power means it can shoot 4K video with extended dynamic range and
+              cinematic video stabilization — all at 60 fps. You get more
+              creative control, too, with four times more scene and powerful new
+              editing tools to play with.
             </p>
           </div>
 
@@ -271,8 +280,8 @@ export const ProductPage = () => {
           </div>
         </section>
 
-        <section className='col-span-4 tablet:col-span-12 desktop:col-span-24 mt-16 '>
-          <div className='flex justify-between'>
+        <section className="col-span-4 tablet:col-span-12 desktop:col-span-24 mt-16 ">
+          <div className="flex justify-between">
             <h2 className="font-extrabold text-2xl desktop:text-4xl text-primary">
               You may also like
             </h2>
