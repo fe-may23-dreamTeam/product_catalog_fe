@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 import { Button } from '../components/Button';
 import CartItem from '../components/CartItem';
@@ -24,7 +23,7 @@ export const CartPage: React.FC = () => {
         <div className="flex flex-col gap-4">
           {cartItems.map((item) => (
             <CartItem key={item.id} item={item} />
-          ))}        
+          ))}
         </div>
 
         <div className="box-border flex flex-col mx-auto desktop:mx-0 items-center rounded-lg p-6 w-full border border-elements bg-hover-bg desktop:w-[368px]">
