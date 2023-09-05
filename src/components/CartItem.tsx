@@ -13,7 +13,7 @@ type Props = {
 const CartItem: React.FC<Props> = ({ item }) => {
   const { name: itemName, price, image, count, id } = item;
 
-  const maxItems = 5;
+  const maxItems = 99;
   const minItems = 1;
 
   const dispatch = useDispatch();

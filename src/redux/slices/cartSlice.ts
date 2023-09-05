@@ -19,8 +19,10 @@ export const cartSlice = createSlice({
       ) as ICartItem[];
     },
     addItemToCart: (state, action) => {
-      state.items.push(action.payload);
-      localStorage.setItem('cart-items', JSON.stringify(state.items));
+      if (!state.items.find((item) => item.id === action.payload.id)) {
+        state.items.push(action.payload);
+        localStorage.setItem('cart-items', JSON.stringify(state.items));
+      }
     },
     removeFromCart: (state, action) => {
       state.items = state.items.filter(({ id }) => id !== action.payload);

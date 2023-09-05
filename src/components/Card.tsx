@@ -33,17 +33,17 @@ export const Card = ({ product }: Props) => {
   };
 
   const handleAddToCart = () => {
-    dispatch(
-      addItemToCart({
-        id: product._id,
-        name: product.name,
-        price: product.priceDiscount
-          ? product.priceDiscount
-          : product.priceRegular,
-        image: product.images[0],
-        count: 1,
-      }),
-    );
+    const itemData = {
+      id: product._id,
+      name: product.name,
+      price: product.priceDiscount
+        ? product.priceDiscount
+        : product.priceRegular,
+      image: product.images[0],
+      count: 1,
+    };
+
+    dispatch(addItemToCart(itemData));
   };
 
   return (

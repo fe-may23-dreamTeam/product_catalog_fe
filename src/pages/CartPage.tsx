@@ -1,14 +1,13 @@
 /* eslint-disable max-len */
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux';
 import { Button } from '../components/Button';
 import CartItem from '../components/CartItem';
 import { getTotalProductsCost } from '../utils/getTotalCost';
 import { getTotalItemsCount } from '../utils/getTotalItemsCount';
+import { useAppSelector } from '../redux';
 
 export const CartPage: React.FC = () => {
-  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const { items: cartItems } = useAppSelector((state) => state.cart);
 
   const totalCost = getTotalProductsCost(cartItems);
   const totalItemsCount = getTotalItemsCount(cartItems);
