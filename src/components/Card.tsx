@@ -21,6 +21,7 @@ type Props = {
 
 export const Card = ({ product, isFetching }: Props) => {
   const { favouriteItems } = useAppSelector((state) => state.favourites);
+  const { items } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
   const [favorite, setFavorite] = useState(false);
 
@@ -48,6 +49,12 @@ export const Card = ({ product, isFetching }: Props) => {
   };
 
   const handleAddToCart = () => {
+    if (items.some(({ id }) => id === product._id)) {
+      toast.error('This product already in cart');
+
+      return;
+    }
+
     const itemData = {
       id: product._id,
       name: product.name,

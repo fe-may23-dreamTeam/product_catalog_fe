@@ -16,7 +16,7 @@ import { Toaster } from 'react-hot-toast';
 
 export const Root = () => (
   <BrowserRouter>
-  <Toaster />
+    <Toaster />
     <ScrollToTop />
     <Routes>
       <Route path="/" element={<App />}>
