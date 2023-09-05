@@ -59,7 +59,7 @@ export const Header: React.FC = () => {
             to="/favourites"
           >
             <FiHeart />
-              <ItemCounter count={favouriteItems.length} />
+            <ItemCounter count={favouriteItems.length} />
           </NavLink>
         </div>
         <div className="border-l border-elements box-border mx-0">
@@ -68,7 +68,7 @@ export const Header: React.FC = () => {
             to="/cart"
           >
             <FiShoppingBag />
-              <ItemCounter count={items.length} />
+            <ItemCounter count={items.length} />
           </NavLink>
           <span className="flex p-4 tablet:hidden">
             <input

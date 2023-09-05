@@ -32,33 +32,14 @@ export const ProductPage = () => {
         <section className="col-span-4 gap-12 tablet:col-span-12 desktop:col-span-24 grid grid-cols-4 desktop:grid-cols-24 tablet:grid-cols-12 ">
           <div className="grid grid-cols-4 tablet:grid-cols-7 desktop:grid-cols-12 col-span-4 tablet:col-span-7 desktop:col-span-12 gap-4">
             <div className="col-span-4 tablet:col-start-2 desktop:col-start-3 tablet:col-span-6 desktop:col-span-10">
-              <img
-                  src=""
-                  alt="banner"
-                  className="w-full object-contain"
-                />
+              <img src="" alt="banner" className="w-full object-contain" />
             </div>
             <div className="flex flex-row tablet:row-start-1 tablet:flex-col col-span-4 tablet:col-span-1 desktop:col-span-2 mx-auto gap-2">
-              <img
-                src=""
-                alt="banner"
-              />
-              <img
-                src=""
-                alt="banner"
-              />
-              <img
-                src=""
-                alt="banner"
-              />
-              <img
-                src=""
-                alt="banner"
-              />
-              <img
-                src=""
-                alt="banner"
-              />
+              <img src="" alt="banner" />
+              <img src="" alt="banner" />
+              <img src="" alt="banner" />
+              <img src="" alt="banner" />
+              <img src="" alt="banner" />
             </div>
           </div>
 
