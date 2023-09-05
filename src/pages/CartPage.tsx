@@ -1,19 +1,39 @@
-import React from 'react';
+import classNames from 'classnames';
+import React, { useState } from 'react';
 import { Button } from '../components/Button';
 import CartItem from '../components/CartItem';
 import { getTotalProductsCost } from '../utils/getTotalCost';
 import { getTotalItemsCount } from '../utils/getTotalItemsCount';
 import { useAppSelector } from '../redux';
 import { NavLink } from 'react-router-dom';
+import { CheckoutModal } from '../components/CheckoutModal';
 
 export const CartPage: React.FC = () => {
   const { items: cartItems } = useAppSelector((state) => state.cart);
+  const [showModal, setShowModal] = useState<boolean>(false);
+
+  const handlePaymentSuccess = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   const totalCost = getTotalProductsCost(cartItems);
   const totalItemsCount = getTotalItemsCount(cartItems);
 
   return (
-    <main className="container mx-auto flex flex-col px-4 pt-6 tablet:px-6 desktop:w-[1200px] desktop:px-8">
+     <>
+      {showModal && (
+        <CheckoutModal showModal={showModal} onCloseModal={handleCloseModal} />
+      )}
+      <main
+        className={classNames(
+          'container mx-auto flex flex-col px-4 pt-6 tablet:px-6 desktop:w-[1200px] desktop:px-8',
+          { 'blur pointer-events-none': showModal },
+        )}
+      >
       <div className="mb-8">
         <h1 className="mb-2 text-[32px] font-extrabold leading-[41px] tracking-[0.32px] tablet:mt-10 tablet:text-5xl">
           Cart
@@ -36,7 +56,7 @@ export const CartPage: React.FC = () => {
               {`Total for ${totalItemsCount} items`}
             </div>
             <span className="w-full h-[0px] border text-elements mb-4"></span>
-            <Button>Checkout</Button>
+            <Button onClick={handlePaymentSuccess}>Checkout</Button>
           </div>
         </div>
       ) : (
@@ -48,5 +68,6 @@ export const CartPage: React.FC = () => {
         </>
       )}
     </main>
+   </>
   );
 };
