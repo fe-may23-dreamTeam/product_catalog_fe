@@ -16,6 +16,7 @@ export const productApi = createApi({
         },
       }),
     }),
+
     getProductById: builder.query({
       query: (productId) => `/products/${productId}`,
     }),
