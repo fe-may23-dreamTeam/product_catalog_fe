@@ -7,12 +7,11 @@ import { getTotalItemsCount } from '../utils/getTotalItemsCount';
 import { useAppSelector } from '../redux';
 import { NavLink } from 'react-router-dom';
 import { CheckoutModal } from '../components/CheckoutModal';
-  
 
 export const CartPage: React.FC = () => {
   const { items: cartItems } = useAppSelector((state) => state.cart);
   const [showModal, setShowModal] = useState<boolean>(false);
-  
+
   const handlePaymentSuccess = () => {
     setShowModal(true);
   };
