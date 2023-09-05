@@ -15,9 +15,10 @@ import { NavLink } from 'react-router-dom';
 
 type Props = {
   product: IProduct;
+  isFetching?: boolean;
 };
 
-export const Card = ({ product }: Props) => {
+export const Card = ({ product, isFetching }: Props) => {
   const { favouriteItems } = useAppSelector((state) => state.favourites);
   const dispatch = useAppDispatch();
   const [favorite, setFavorite] = useState(false);
@@ -61,9 +62,19 @@ export const Card = ({ product }: Props) => {
 
   return (
     <article
-      className="card box-border hover:shadow-card rounded-lg p-8 min-w-[272px] border max-h-[440px] tablet:max-h-[506px]
-    border-secondary bg-white"
+      className={classNames([
+        'card box-border p-8 relative',
+        'border border-secondary rounded-lg',
+        'min-w-[272px]  max-h-[440px]',
+        'bg-white',
+        'hover:shadow-card tablet:max-h-[506px]',
+      ])}
     >
+      <div
+        className={classNames('absolute inset-0 opacity-50 -z-10', {
+          'bg-secondary !z-10': isFetching,
+        })}
+      />
       <div className="grid auto-rows-auto gap-y-2 object-cover">
         <NavLink to={product._id}>
           <img
