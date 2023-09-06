@@ -4,4 +4,5 @@ export interface ICartItem {
   price: number;
   image: string;
   count: number;
+  category: string;
 }

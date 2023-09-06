@@ -5,13 +5,14 @@ import { FiMinus, FiPlus, FiX } from 'react-icons/fi';
 
 import { removeFromCart, increaseItemCount, decreaseItemCount } from '../redux';
 import { ICartItem } from '../types/CartItem';
+import { NavLink } from 'react-router-dom';
 
 type Props = {
   item: ICartItem;
 };
 
 const CartItem: React.FC<Props> = ({ item }) => {
-  const { name: itemName, price, image, count, id } = item;
+  const { name: itemName, price, image, count, id, category } = item;
 
   const maxItems = 99;
   const minItems = 1;
@@ -43,7 +44,9 @@ const CartItem: React.FC<Props> = ({ item }) => {
           alt="product demo"
         />
 
-        <p className="max-w-xs">{itemName}</p>
+        <NavLink to={`/${category}/${id}`} className="max-w-xs">
+          {itemName}
+        </NavLink>
       </div>
       <div className="flex justify-between items-center gap-4 tablet:gap-6 w-full tablet:w-auto">
         <div className="flex gap-3 items-center">

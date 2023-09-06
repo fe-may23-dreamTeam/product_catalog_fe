@@ -63,6 +63,7 @@ export const Card = ({ product, isFetching }: Props) => {
         : product.priceRegular,
       image: product.images[0],
       count: 1,
+      category: product.category.name,
     };
 
     dispatch(addItemToCart(itemData));
@@ -85,7 +86,7 @@ export const Card = ({ product, isFetching }: Props) => {
         })}
       />
       <div className="grid auto-rows-auto gap-y-2 object-cover">
-        <NavLink to={product._id}>
+        <NavLink to={`/${product.category.name}/${product._id}`}>
           <img
             className="mx-auto max-h-[130px] tablet:max-h-[200px]"
             src={product.images[0]}
