@@ -11,11 +11,14 @@ const CategoryCard = ({ type, image }: Props) => {
   const { data } = useGetProductsByCategoryQuery(normalizedType);
 
   return (
-    <NavLink to={normalizedType} className="col-span-4 desktop:col-span-8 hover:scale-105 duration-300">
+    <NavLink
+      to={normalizedType}
+      className="col-span-4 desktop:col-span-8 hover:scale-105 duration-300"
+    >
       <img
         src={image}
         alt="phone-category"
-        className="w-full border-0 box-border rounded-lg"
+        className="w-full h-4/5 border-0 box-border rounded-lg"
       />
       <p className="font-mont font-bold text-[22px] mt-[24px] text-primary">
         {type}
