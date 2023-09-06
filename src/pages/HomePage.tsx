@@ -59,7 +59,7 @@ const HomePage = () => {
         </Swiper>
       </div>
 
-      <section className="mt-[57px] tablet:mt-[64px] desktop:mt-[80px]">
+      <section className="mt-[57px] tablet:mt-[64px] desktop:mt-[80px] desktop:max-w-[1136px] desktop:mx-auto">
         <h2 className="font-mont font-extrabold text-[22px] tablet:text-[32px] text-primary mx-[16px] tablet:mx-[24px] desktop:mx-[32px]">
           Shop by category
         </h2>
