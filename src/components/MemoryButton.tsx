@@ -2,13 +2,11 @@ import React from 'react';
 
 interface MemoryButtonProps {
   label: string;
-  onClick: () => void;
   isActive: boolean;
 }
 
 const MemoryButton: React.FC<MemoryButtonProps> = ({
   label,
-  onClick,
   isActive,
 }) => {
   return (
@@ -18,7 +16,6 @@ const MemoryButton: React.FC<MemoryButtonProps> = ({
           ? 'bg-primary text-white border-none'
           : 'bg-white text-primary border-icons'
       }`}
-      onClick={onClick}
     >
       <span className="mx-2 mt-7 mb-4">{label}</span>
     </button>
