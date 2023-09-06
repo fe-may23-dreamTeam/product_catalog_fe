@@ -47,7 +47,7 @@
 }
 
 .swiper-wrapper {
-  height: 350px !important;
+  height: 320px !important;
 }
 
 .swiper-slide {
@@ -69,6 +69,10 @@
 }
 
 @media (width >= 640px) {
+  .swiper-wrapper {
+    height: 300px !important;
+  }
+
   .swiper-slide {
     width: 100% !important;
   }
@@ -106,5 +110,11 @@
     border-radius: 48px !important;
     border: 1px solid #89939a !important;
     cursor: pointer !important;
+  }
+}
+
+@media (width >= 1200px) {
+  .swiper-wrapper {
+    height: 432px !important;
   }
 }
