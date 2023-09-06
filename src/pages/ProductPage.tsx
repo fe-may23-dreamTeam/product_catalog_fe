@@ -8,14 +8,26 @@ import Line from '../components/Line';
 import MemoryButton from '../components/MemoryButton';
 import { useGetProductByIdQuery } from '../redux/api/productApi';
 import { IDescription } from '../types/Description';
+import {
+  addItemToCart,
+  toggleFavourite,
+  useAppDispatch,
+  useAppSelector,
+} from '../redux';
+import { toast } from 'react-hot-toast';
+import { FaHeart } from 'react-icons/fa';
 
 const noop = () => {};
 
 export const ProductPage = () => {
   const [favorite, setFavorite] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
+
+  const { favouriteItems } = useAppSelector((state) => state.favourites);
   const { phoneId } = useParams();
+  const { items } = useAppSelector((state) => state.cart);
   const { data, isError, isLoading } = useGetProductByIdQuery(phoneId!);
+  const dispatch = useAppDispatch();
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -36,12 +48,35 @@ export const ProductPage = () => {
     Cell: data?.cell?.join(', '),
   };
 
-  const handleClick = () => {
+  const handleChangeImage = (index: number) => {
+    setCurrentImage(index);
+  };
+
+  const isFavourite = (id: string) =>
+    favouriteItems.some((item) => item._id === id);
+
+  const handleToggleFav = () => {
+    dispatch(toggleFavourite(data));
     setFavorite(!favorite);
   };
 
-  const handleChangeImage = (index: number) => {
-    setCurrentImage(index);
+  const handleAddToCart = () => {
+    if (items.some(({ id }) => id === data?._id)) {
+      toast.error('This product already in cart');
+
+      return;
+    }
+
+    const itemData = {
+      id: data?._id,
+      name: data?.name,
+      price: data?.priceDiscount ? data?.priceDiscount : data?.priceRegular,
+      image: data?.images[0],
+      count: 1,
+    };
+
+    dispatch(addItemToCart(itemData));
+    toast.success('Successfully added to cart!');
   };
 
   return (
@@ -97,7 +132,7 @@ export const ProductPage = () => {
               <ColorSelector color="#F0F0F0" onClick={noop} />
             </div>
 
-            <Line width="col-span-4 w-auto tablet:col-start-7 tablet:col-span-5 tablet:w-auto desktop:col-start-12 desktop:col-span-7 desktop:w-[320px] mt-6" />
+            <Line width="col-span-4 w-auto tablet:col-start-7 tablet:col-span-5 tablet:w-auto desktop:col-start-12 desktop:col-span-7 desktop:w-auto mt-6" />
 
             <div className="mt-6 col-span-4 tablet:col-start-7 tablet:col-span-5 desktop:col-start-12 desktop:col-span-7">
               <p className="text-xs text-secondary">Select capacity</p>
@@ -119,27 +154,22 @@ export const ProductPage = () => {
             </div>
 
             <div className="flex gap-2 desktop:w-[55%] mt-4">
-              <Button md>Add to cart</Button>
+              <Button md onClick={handleAddToCart}>
+                Add to cart
+              </Button>
               <div>
-                {favorite ? (
-                  <button
-                    className="w-12 h-12 rounded-full border border-icons
-                    hover:border-primary hover:scale-110
-                    flex justify-center items-center shrink-0 duration-300"
-                    onClick={handleClick}
-                  >
-                    <FiHeart className="text-secondary-accent" />
-                  </button>
-                ) : (
-                  <button
-                    className="w-12 h-12 rounded-full border border-icons
-                    hover:border-primary hover:scale-110
-                    flex justify-center items-center shrink-0 duration-300"
-                    onClick={handleClick}
-                  >
+                <button
+                  className="w-12 h-12 rounded-full border border-icons
+                  hover:border-primary hover:scale-110
+                  flex justify-center items-center shrink-0 duration-300"
+                  onClick={handleToggleFav}
+                >
+                  {data && isFavourite(data._id) ? (
+                    <FaHeart className="text-secondary-accent" />
+                  ) : (
                     <FiHeart />
-                  </button>
-                )}
+                  )}
+                </button>
               </div>
             </div>
 
