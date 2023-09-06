@@ -9,8 +9,7 @@ const App = () => {
   return (
     <div>
       <Header />
-
-      <div className="min-h-[74vh] bg-hover-bg p-4">
+      <div className="min-h-[74vh] bg-hover-bg">
         <Outlet />
       </div>
 
