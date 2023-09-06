@@ -7,6 +7,7 @@ import Pagination from '../components/Pagination';
 import { useGetProductsQuery } from '../redux/api/productApi';
 import { IProduct } from '../types/Product';
 import { Card } from '../components/Card';
+import BreadCrumb from '../components/BreadCrumb';
 
 const sortOptions = [
   {
@@ -58,9 +59,11 @@ const CatalogPage: React.FC = () => {
   };
 
   return (
-    <main className="relative container mx-auto flex flex-col items-center tablet:items-start px-4 pt-6 tablet:px-6 desktop:w-[1200px]">
+    <main className="relative container mx-auto flex flex-col items-center tablet:items-start px-4 tablet:px-6 desktop:w-[1200px]">
       <ErrorMessage isError={isError}>
         <Loader isLoading={isLoading}>
+          <BreadCrumb />
+
           <header>
             <h1 className="mb-2 text-[32px] font-extrabold leading-[41px] tracking-[0.32px] tablet:mt-10 tablet:text-5xl">
               Mobile phones

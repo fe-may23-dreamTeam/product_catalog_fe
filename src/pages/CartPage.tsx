@@ -1,14 +1,17 @@
 import classNames from 'classnames';
 import React, { useState } from 'react';
+import { FiChevronLeft } from 'react-icons/fi';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Button } from '../components/Button';
 import CartItem from '../components/CartItem';
+import { CheckoutModal } from '../components/CheckoutModal';
+import { clearCart, useAppDispatch, useAppSelector } from '../redux';
 import { getTotalProductsCost } from '../utils/getTotalCost';
 import { getTotalItemsCount } from '../utils/getTotalItemsCount';
-import { clearCart, useAppDispatch, useAppSelector } from '../redux';
-import { NavLink } from 'react-router-dom';
-import { CheckoutModal } from '../components/CheckoutModal';
 
 export const CartPage: React.FC = () => {
+  const navigate = useNavigate();
+
   const { items: cartItems } = useAppSelector((state) => state.cart);
   const [showModal, setShowModal] = useState<boolean>(false);
   const dispatch = useAppDispatch();
@@ -38,6 +41,13 @@ export const CartPage: React.FC = () => {
           { 'blur pointer-events-none': showModal },
         )}
       >
+        <span
+          onClick={() => navigate(-1)}
+          className="select-none cursor-pointer flex items-center gap-1"
+        >
+          <FiChevronLeft />
+          Back
+        </span>
         <div className="mb-8">
           <h1 className="mb-2 text-[32px] font-extrabold leading-[41px] tracking-[0.32px] tablet:mt-10 tablet:text-5xl">
             Cart
