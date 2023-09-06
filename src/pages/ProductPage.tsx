@@ -92,7 +92,10 @@ export const ProductPage = () => {
               to=".."
               className="mt-6 col-span-4 tablet:col-span-12 desktop:col-start-1 desktop:col-span-12 text-xs"
             >
-             <span><FiChevronLeft className="inline mr-1"/>Back</span>
+              <span>
+                <FiChevronLeft className="inline mr-1" />
+                Back
+              </span>
             </NavLink>
             <h1 className="font-extrabold text-4xl text-primary leading-tight mb-6 col-span-4 tablet:col-span-12 desktop:col-span-24 col-start-1">
               {data?.name}
@@ -256,7 +259,7 @@ export const ProductPage = () => {
               </div>
             </section>
 
-           <Recommended productId={data?.category._id as string} />
+            <Recommended productId={data?.category._id as string} />
           </Loader>
         </ErrorMessage>
       </main>

@@ -41,11 +41,7 @@ export const Recommended: React.FC<Props> = ({ productId }) => {
       <article className="mt-8 mb-20 flex space-x-4 overflow-hidden">
         <ErrorMessage isError={isError}>
           {recommendedproducts.map((product: IProduct) => (
-              <Card
-                isFetching={isFetching}
-                product={product}
-                key={product._id}
-              />
+            <Card isFetching={isFetching} product={product} key={product._id} />
           ))}
         </ErrorMessage>
       </article>
