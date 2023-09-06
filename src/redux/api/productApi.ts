@@ -22,6 +22,16 @@ export const productApi = createApi({
       query: (productId) => `/products/${productId}`,
     }),
 
+    getProductByParams: builder.query<IProduct, any>({
+      query: ({ id, capacity, color }) => ({
+        url: `products/${id}`,
+        params: {
+          color,
+          capacity,
+        },
+      }),
+    }),
+
     getProductsByCategory: builder.query({
       query: (type) => ({
         url: `/products`,
@@ -36,5 +46,6 @@ export const productApi = createApi({
 export const {
   useGetProductsQuery,
   useGetProductByIdQuery,
+  useLazyGetProductByParamsQuery,
   useGetProductsByCategoryQuery,
 } = productApi;

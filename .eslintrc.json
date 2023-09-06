@@ -12,6 +12,7 @@
   "plugins": ["@typescript-eslint", "react"],
   "rules": {
     "operator-linebreak": "off",
-    "max-len": "off"
+    "max-len": "off",
+    "space-before-function-paren": "off"
   }
 }
