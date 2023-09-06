@@ -1,9 +1,17 @@
+/* eslint-disable indent */
 import React from 'react';
 import { FiChevronRight, FiHome } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
 import useBreadcrumbs from 'use-react-router-breadcrumbs';
 
-const BreadCrumb = () => {
+type Props = {
+  links?: {
+    label: string;
+    url: string;
+  }[];
+};
+
+const BreadCrumb = ({ links }: Props) => {
   const breadcrumbs = useBreadcrumbs();
 
   return (
@@ -11,14 +19,23 @@ const BreadCrumb = () => {
       <NavLink to="/">
         <FiHome />
       </NavLink>
-      {breadcrumbs.splice(1).map(({ match, breadcrumb }) => (
-        <React.Fragment key={match.pathname}>
-          <FiChevronRight className="ml-2" />
-          <NavLink to={match.pathname} className="ml-2 text-xs">
-            {breadcrumb}
-          </NavLink>
-        </React.Fragment>
-      ))}
+      {links
+        ? links.map((link) => (
+            <React.Fragment key={link.label}>
+              <FiChevronRight className="ml-2" />
+              <NavLink to={link.url} className="ml-2 text-xs">
+                {link.label}
+              </NavLink>
+            </React.Fragment>
+          ))
+        : breadcrumbs.splice(1).map(({ match, breadcrumb }) => (
+            <React.Fragment key={match.pathname}>
+              <FiChevronRight className="ml-2" />
+              <NavLink to={match.pathname} className="ml-2 text-xs">
+                {breadcrumb}
+              </NavLink>
+            </React.Fragment>
+          ))}
     </div>
   );
 };

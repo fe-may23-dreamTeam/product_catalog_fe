@@ -14,7 +14,17 @@ const noop = () => {};
 export const ProductPage = () => {
   const [favorite, setFavorite] = useState(false);
   const { phoneId } = useParams();
-  const { data, isError, isLoading } = useGetProductByIdQuery(phoneId);
+  const { data, isError, isLoading } = useGetProductByIdQuery(phoneId!);
+  const links = [
+    {
+      label: 'Phone',
+      url: '/phones',
+    },
+    {
+      label: data?.name!,
+      url: `/phones/${data?._id!}`,
+    },
+  ];
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -25,14 +35,14 @@ export const ProductPage = () => {
   }
 
   const characteristicsData = {
-    Screen: data.screen,
-    Resolution: data.resolution,
-    Processor: data.processor,
-    RAM: data.ram,
-    'Built in memory': data.capacity,
-    Camera: data.camera,
-    Zoom: data.zoom,
-    Cell: data.cell.join(', '),
+    Screen: data?.screen,
+    Resolution: data?.resolution,
+    Processor: data?.processor,
+    RAM: data?.ram,
+    'Built in memory': data?.capacity,
+    Camera: data?.camera,
+    Zoom: data?.zoom,
+    Cell: data?.cell?.join(', '),
   };
 
   const handleClick = () => {
@@ -42,7 +52,7 @@ export const ProductPage = () => {
   return (
     <>
       <main className="desktop:container mx-2 grid grid-cols-4 desktop:grid-cols-24 tablet:grid-cols-12 desktop:mx-auto gap-4">
-        <BreadCrumb />
+        <BreadCrumb links={links} />
         <NavLink
           to=".."
           className="mt-6 col-span-4 tablet:col-span-12 desktop:col-start-1 desktop:col-span-12 text-xs"

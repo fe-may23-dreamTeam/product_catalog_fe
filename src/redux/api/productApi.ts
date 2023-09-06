@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { IProduct } from '../../types/Product';
 
 export const productApi = createApi({
   reducerPath: 'products',
@@ -17,7 +18,7 @@ export const productApi = createApi({
       }),
     }),
 
-    getProductById: builder.query({
+    getProductById: builder.query<IProduct, string>({
       query: (productId) => `/products/${productId}`,
     }),
   }),
