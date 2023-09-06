@@ -11,9 +11,9 @@ const HomePage = () => {
   return (
     <main>
       <h1
-        className="my-[24px] mx-[16px] max-w-[288px] font-mont font-extrabold text-[32px] line-clamp-2
-    tablet:line-clamp-none tablet:max-w-full tablet:text-[48px] tablet:my-[32px] tablet:mx-[24px]
-    desktop:max-w-[1136px] desktop:my-[56px] desktop:mx-[32px]"
+        className="py-[24px] mx-[16px] max-w-[288px] font-mont font-extrabold text-[32px] line-clamp-2
+    tablet:line-clamp-none tablet:max-w-full tablet:text-[48px] tablet:py-[32px] tablet:mx-[24px]
+    desktop:max-w-[1136px] desktop:py-[56px] desktop:mx-[32px]"
       >
         Welcome to Nice Gadgets store!
       </h1>
