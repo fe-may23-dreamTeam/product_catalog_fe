@@ -7,9 +7,11 @@ import ScrollToTop from './components/ScrollToTop';
 import { FavouritesPage } from './pages/FavouritesPage';
 import { CartPage } from './pages/CartPage';
 import HomePage from './pages/HomePage';
+import { Toaster } from 'react-hot-toast';
 
 export const Root = () => (
   <BrowserRouter>
+  <Toaster />
     <ScrollToTop />
     <Routes>
       <Route path="/" element={<App />}>
