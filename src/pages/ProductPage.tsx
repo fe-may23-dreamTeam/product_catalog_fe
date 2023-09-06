@@ -28,6 +28,16 @@ export const ProductPage = () => {
   const { items } = useAppSelector((state) => state.cart);
   const { data, isError, isFetching } = useGetProductByIdQuery(phoneId!);
   const dispatch = useAppDispatch();
+  const links = [
+    {
+      label: 'Phone',
+      url: '/phones',
+    },
+    {
+      label: data?.name!,
+      url: `/phones/${data?._id!}`,
+    },
+  ];
 
   const characteristicsData = {
     Screen: data?.screen,
@@ -76,7 +86,7 @@ export const ProductPage = () => {
       <main className="desktop:container mx-2 grid grid-cols-4 desktop:grid-cols-24 tablet:grid-cols-12 desktop:mx-auto gap-4">
         <ErrorMessage isError={isError}>
           <Loader isLoading={isFetching}>
-            <BreadCrumb />
+            <BreadCrumb links={links} />
             <NavLink
               to=".."
               className="mt-6 col-span-4 tablet:col-span-12 desktop:col-start-1 desktop:col-span-12 text-xs"

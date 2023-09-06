@@ -9,6 +9,7 @@ const App = () => {
   return (
     <div>
       <Header />
+
       <div className="min-h-[74vh] bg-hover-bg">
         <Outlet />
       </div>
