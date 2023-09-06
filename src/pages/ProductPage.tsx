@@ -13,8 +13,9 @@ const noop = () => {};
 
 export const ProductPage = () => {
   const [favorite, setFavorite] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
   const { phoneId } = useParams();
-  const { data, isError, isLoading } = useGetProductByIdQuery(phoneId);
+  const { data, isError, isLoading } = useGetProductByIdQuery(phoneId!);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -25,18 +26,22 @@ export const ProductPage = () => {
   }
 
   const characteristicsData = {
-    Screen: data.screen,
-    Resolution: data.resolution,
-    Processor: data.processor,
-    RAM: data.ram,
-    'Built in memory': data.capacity,
-    Camera: data.camera,
-    Zoom: data.zoom,
-    Cell: data.cell.join(', '),
+    Screen: data?.screen,
+    Resolution: data?.resolution,
+    Processor: data?.processor,
+    RAM: data?.ram,
+    'Built in memory': data?.capacity,
+    Camera: data?.camera,
+    Zoom: data?.zoom,
+    Cell: data?.cell?.join(', '),
   };
 
   const handleClick = () => {
     setFavorite(!favorite);
+  };
+
+  const handleChangeImage = (index: number) => {
+    setCurrentImage(index);
   };
 
   return (
@@ -54,15 +59,31 @@ export const ProductPage = () => {
         </h1>
         <section className="col-span-4 gap-12 tablet:col-span-12 desktop:col-span-24 grid grid-cols-4 desktop:grid-cols-24 tablet:grid-cols-12 ">
           <div className="grid grid-cols-4 tablet:grid-cols-7 desktop:grid-cols-12 col-span-4 tablet:col-span-7 desktop:col-span-12 gap-4">
-            <div className="col-span-4 tablet:col-start-2 desktop:col-start-3 tablet:col-span-6 desktop:col-span-10">
-              <img src="" alt="banner" className="w-full object-contain" />
+            <div className="col-span-4 tablet:col-start-2 desktop:col-start-3 tablet:col-span-6 desktop:col-span-10 max-h-[288px] tablet:max-h-[360px] desktop:max-h-[464px]">
+              <img
+                src={data?.images[currentImage]}
+                alt="banner"
+                className="mx-auto h-full object-contain"
+              />
             </div>
-            <div className="flex flex-row tablet:row-start-1 tablet:flex-col col-span-4 tablet:col-span-1 desktop:col-span-2 mx-auto gap-2">
-              <img src="" alt="banner" />
-              <img src="" alt="banner" />
-              <img src="" alt="banner" />
-              <img src="" alt="banner" />
-              <img src="" alt="banner" />
+            <div className="flex flex-row tablet:row-start-1 tablet:flex-col col-span-4 tablet:col-span-1 desktop:col-span-2 mx-auto gap-2 max-h-[50px] tablet:max-h-[35px] desktop:max-h-20 rounded">
+              {data?.images.map((image, index) => (
+                <div
+                  key={index}
+                  className={`h-full object-contain border-[2px] rounded ${
+                    index === currentImage
+                      ? 'border-primary'
+                      : 'border-secondary'
+                  } cursor-pointer`}
+                  onClick={() => handleChangeImage(index)}
+                >
+                  <img
+                    src={image}
+                    alt={`Image ${index}`}
+                    className="h-full w-full object-center object-contain p-1 tablet:p-[3px] desktop:p-2"
+                  />
+                </div>
+              ))}
             </div>
           </div>
 
