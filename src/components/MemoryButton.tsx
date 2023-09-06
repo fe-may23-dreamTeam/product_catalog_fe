@@ -1,23 +1,42 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLazyGetProductByParamsQuery } from '../redux/api/productApi';
+import { useNavigate, useParams } from 'react-router';
+import classNames from 'classnames';
 
 interface MemoryButtonProps {
-  label: string;
+  capacity: string;
   isActive: boolean;
 }
 
-const MemoryButton: React.FC<MemoryButtonProps> = ({
-  label,
-  isActive,
-}) => {
+const MemoryButton: React.FC<MemoryButtonProps> = ({ capacity, isActive }) => {
+  const { phoneId } = useParams();
+  const navigate = useNavigate();
+  const [trigger, { data }] = useLazyGetProductByParamsQuery();
+
+  const handleChangeCapacity = () => {
+    trigger({
+      id: phoneId,
+      capacity,
+    });
+  };
+
+  useEffect(() => {
+    if (data) {
+      navigate(`/phones/${data?._id}`);
+    }
+  }, [data]);
+
   return (
     <button
-      className={`h-8 mr-2 mt-2 flex-shrink-0 rounded-md  border-secondary border-solid border focus:outline-none ${
-        isActive
-          ? 'bg-primary text-white border-none'
-          : 'bg-white text-primary border-icons'
-      }`}
+      className={classNames(
+        'border-icons border rounded-md text-primary mr-2 p-2',
+        {
+          'bg-primary text-white': isActive,
+        },
+      )}
+      onClick={handleChangeCapacity}
     >
-      <span className="mx-2 mt-7 mb-4">{label}</span>
+      {capacity}
     </button>
   );
 };

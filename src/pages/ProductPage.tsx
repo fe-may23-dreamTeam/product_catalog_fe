@@ -26,7 +26,7 @@ export const ProductPage = () => {
   const { favouriteItems } = useAppSelector((state) => state.favourites);
   const { phoneId } = useParams();
   const { items } = useAppSelector((state) => state.cart);
-  const { data, isError, isLoading } = useGetProductByIdQuery(phoneId!);
+  const { data, isError, isFetching } = useGetProductByIdQuery(phoneId!);
   const dispatch = useAppDispatch();
 
   const characteristicsData = {
@@ -75,7 +75,7 @@ export const ProductPage = () => {
     <>
       <main className="desktop:container mx-2 grid grid-cols-4 desktop:grid-cols-24 tablet:grid-cols-12 desktop:mx-auto gap-4">
         <ErrorMessage isError={isError}>
-          <Loader isLoading={isLoading}>
+          <Loader isLoading={isFetching}>
             <BreadCrumb />
             <NavLink
               to=".."
@@ -120,35 +120,28 @@ export const ProductPage = () => {
                 <p className="text-xs text-secondary">Available colors</p>
 
                 <div className="flex space-x-2 mt-2">
-                  {data?.colorsAvailable ? (
-                    data.colorsAvailable.map((color, index) => (
-                      <ColorSelector
-                        key={index}
-                        color={color}
-                        isActive={data.color === color}
-                      />
-                    ))
-                  ) : (
-                    <p>No colors available</p>
-                  )}
+                  {data?.colorsAvailable.map((color) => (
+                    <ColorSelector
+                      key={color}
+                      color={color}
+                      isActive={data.color === color}
+                    />
+                  ))}
                 </div>
 
                 <Line width="col-span-4 w-auto tablet:col-start-7 tablet:col-span-5 tablet:w-auto desktop:col-start-12 desktop:col-span-7 desktop:w-auto mt-6" />
 
                 <div className="mt-6 col-span-4 tablet:col-start-7 tablet:col-span-5 desktop:col-start-12 desktop:col-span-7">
-                  <p className="text-xs text-secondary">Select capacity</p>
+                  <p className="text-xs text-secondary mb-2">Select capacity</p>
 
-                  {data?.capacityAvailable ? (
-                    data.capacityAvailable.map((capacity, index) => (
+                  {data?.capacityAvailable &&
+                    data?.capacityAvailable.map((capacity) => (
                       <MemoryButton
-                        key={index}
-                        label={capacity}
+                        key={capacity}
+                        capacity={capacity}
                         isActive={data.capacity === capacity}
                       />
-                    ))
-                  ) : (
-                    <p>No capacities available</p>
-                  )}
+                    ))}
                 </div>
 
                 <div className="flex mt-8">
@@ -171,7 +164,7 @@ export const ProductPage = () => {
                       flex justify-center items-center shrink-0 duration-300"
                       onClick={handleToggleFav}
                     >
-                      {data && isFavourite(data._id) ? (
+                      {isFavourite(data?._id!) ? (
                         <FaHeart className="text-secondary-accent" />
                       ) : (
                         <FiHeart />
