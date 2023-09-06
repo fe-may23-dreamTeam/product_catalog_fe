@@ -40,6 +40,10 @@ export const productApi = createApi({
         },
       }),
     }),
+
+    getRecommendedProduct: builder.query({
+      query: (productId) => `/products/${productId}/recommended`,
+    }),
   }),
 });
 
@@ -48,4 +52,5 @@ export const {
   useGetProductByIdQuery,
   useLazyGetProductByParamsQuery,
   useGetProductsByCategoryQuery,
+  useGetRecommendedProductQuery,
 } = productApi;

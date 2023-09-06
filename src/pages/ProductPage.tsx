@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { FaHeart } from 'react-icons/fa';
-import { FiArrowLeft, FiArrowRight, FiHeart } from 'react-icons/fi';
+import { FiHeart, FiChevronLeft } from 'react-icons/fi';
 import { NavLink, useParams } from 'react-router-dom';
 import BreadCrumb from '../components/BreadCrumb';
 import { Button } from '../components/Button';
@@ -10,6 +10,7 @@ import { ErrorMessage } from '../components/ErrorMessage';
 import Line from '../components/Line';
 import { Loader } from '../components/Loader';
 import MemoryButton from '../components/MemoryButton';
+import { Recommended } from '../components/Recommended';
 import {
   addItemToCart,
   toggleFavourite,
@@ -91,10 +92,10 @@ export const ProductPage = () => {
               to=".."
               className="mt-6 col-span-4 tablet:col-span-12 desktop:col-start-1 desktop:col-span-12 text-xs"
             >
-              Back
+             <span><FiChevronLeft className="inline mr-1"/>Back</span>
             </NavLink>
             <h1 className="font-extrabold text-4xl text-primary leading-tight mb-6 col-span-4 tablet:col-span-12 desktop:col-span-24 col-start-1">
-              Welcome to Nice Gadgets store!
+              {data?.name}
             </h1>
             <section className="col-span-4 gap-12 tablet:col-span-12 desktop:col-span-24 grid grid-cols-4 desktop:grid-cols-24 tablet:grid-cols-12 ">
               <div className="grid grid-cols-4 tablet:grid-cols-7 desktop:grid-cols-12 col-span-4 tablet:col-span-7 desktop:col-span-12 gap-4">
@@ -255,27 +256,7 @@ export const ProductPage = () => {
               </div>
             </section>
 
-            <section className="col-span-4 tablet:col-span-12 desktop:col-span-24 mt-16 ">
-              <div className="flex justify-between">
-                <h2 className="font-extrabold text-2xl desktop:text-4xl text-primary">
-                  You may also like
-                </h2>
-                <div className="flex">
-                  <div className="text-right mr-4 w-8 h-8 rounded-full border border-icons relative">
-                    <div className="absolute inset-0 flex justify-center items-center">
-                      <FiArrowLeft />
-                    </div>
-                  </div>
-                  <div className="text-right w-8 h-8 rounded-full border border-icons relative">
-                    <div className="absolute inset-0 flex justify-center items-center">
-                      <FiArrowRight />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <article className="mt-8 mb-20 flex space-x-4 overflow-hidden"></article>
-            </section>
+           <Recommended productId={data?.category._id as string} />
           </Loader>
         </ErrorMessage>
       </main>
