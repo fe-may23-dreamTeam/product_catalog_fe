@@ -8,13 +8,26 @@ import Line from '../components/Line';
 import MemoryButton from '../components/MemoryButton';
 import { useGetProductByIdQuery } from '../redux/api/productApi';
 import { IDescription } from '../types/Description';
+import {
+  addItemToCart,
+  toggleFavourite,
+  useAppDispatch,
+  useAppSelector,
+} from '../redux';
+import { toast } from 'react-hot-toast';
+import { FaHeart } from 'react-icons/fa';
 
 const noop = () => {};
 
 export const ProductPage = () => {
   const [favorite, setFavorite] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
+
+  const { favouriteItems } = useAppSelector((state) => state.favourites);
   const { phoneId } = useParams();
-  const { data, isError, isLoading } = useGetProductByIdQuery(phoneId);
+  const { items } = useAppSelector((state) => state.cart);
+  const { data, isError, isLoading } = useGetProductByIdQuery(phoneId!);
+  const dispatch = useAppDispatch();
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -25,18 +38,45 @@ export const ProductPage = () => {
   }
 
   const characteristicsData = {
-    Screen: data.screen,
-    Resolution: data.resolution,
-    Processor: data.processor,
-    RAM: data.ram,
-    'Built in memory': data.capacity,
-    Camera: data.camera,
-    Zoom: data.zoom,
-    Cell: data.cell.join(', '),
+    Screen: data?.screen,
+    Resolution: data?.resolution,
+    Processor: data?.processor,
+    RAM: data?.ram,
+    'Built in memory': data?.capacity,
+    Camera: data?.camera,
+    Zoom: data?.zoom,
+    Cell: data?.cell?.join(', '),
   };
 
-  const handleClick = () => {
+  const handleChangeImage = (index: number) => {
+    setCurrentImage(index);
+  };
+
+  const isFavourite = (id: string) =>
+    favouriteItems.some((item) => item._id === id);
+
+  const handleToggleFav = () => {
+    dispatch(toggleFavourite(data));
     setFavorite(!favorite);
+  };
+
+  const handleAddToCart = () => {
+    if (items.some(({ id }) => id === data?._id)) {
+      toast.error('This product already in cart');
+
+      return;
+    }
+
+    const itemData = {
+      id: data?._id,
+      name: data?.name,
+      price: data?.priceDiscount ? data?.priceDiscount : data?.priceRegular,
+      image: data?.images[0],
+      count: 1,
+    };
+
+    dispatch(addItemToCart(itemData));
+    toast.success('Successfully added to cart!');
   };
 
   return (
@@ -54,15 +94,31 @@ export const ProductPage = () => {
         </h1>
         <section className="col-span-4 gap-12 tablet:col-span-12 desktop:col-span-24 grid grid-cols-4 desktop:grid-cols-24 tablet:grid-cols-12 ">
           <div className="grid grid-cols-4 tablet:grid-cols-7 desktop:grid-cols-12 col-span-4 tablet:col-span-7 desktop:col-span-12 gap-4">
-            <div className="col-span-4 tablet:col-start-2 desktop:col-start-3 tablet:col-span-6 desktop:col-span-10">
-              <img src="" alt="banner" className="w-full object-contain" />
+            <div className="col-span-4 tablet:col-start-2 desktop:col-start-3 tablet:col-span-6 desktop:col-span-10 max-h-[288px] tablet:max-h-[360px] desktop:max-h-[464px]">
+              <img
+                src={data?.images[currentImage]}
+                alt="banner"
+                className="mx-auto h-full object-contain"
+              />
             </div>
-            <div className="flex flex-row tablet:row-start-1 tablet:flex-col col-span-4 tablet:col-span-1 desktop:col-span-2 mx-auto gap-2">
-              <img src="" alt="banner" />
-              <img src="" alt="banner" />
-              <img src="" alt="banner" />
-              <img src="" alt="banner" />
-              <img src="" alt="banner" />
+            <div className="flex flex-row tablet:row-start-1 tablet:flex-col col-span-4 tablet:col-span-1 desktop:col-span-2 mx-auto gap-2 max-h-[50px] tablet:max-h-[35px] desktop:max-h-20 rounded">
+              {data?.images.map((image, index) => (
+                <div
+                  key={index}
+                  className={`h-full object-contain border-[2px] rounded ${
+                    index === currentImage
+                      ? 'border-primary'
+                      : 'border-secondary'
+                  } cursor-pointer`}
+                  onClick={() => handleChangeImage(index)}
+                >
+                  <img
+                    src={image}
+                    alt={`Image ${index}`}
+                    className="h-full w-full object-center object-contain p-1 tablet:p-[3px] desktop:p-2"
+                  />
+                </div>
+              ))}
             </div>
           </div>
 
@@ -76,7 +132,7 @@ export const ProductPage = () => {
               <ColorSelector color="#F0F0F0" onClick={noop} />
             </div>
 
-            <Line width="col-span-4 w-auto tablet:col-start-7 tablet:col-span-5 tablet:w-auto desktop:col-start-12 desktop:col-span-7 desktop:w-[320px] mt-6" />
+            <Line width="col-span-4 w-auto tablet:col-start-7 tablet:col-span-5 tablet:w-auto desktop:col-start-12 desktop:col-span-7 desktop:w-auto mt-6" />
 
             <div className="mt-6 col-span-4 tablet:col-start-7 tablet:col-span-5 desktop:col-start-12 desktop:col-span-7">
               <p className="text-xs text-secondary">Select capacity</p>
@@ -98,27 +154,22 @@ export const ProductPage = () => {
             </div>
 
             <div className="flex gap-2 desktop:w-[55%] mt-4">
-              <Button md>Add to cart</Button>
+              <Button md onClick={handleAddToCart}>
+                Add to cart
+              </Button>
               <div>
-                {favorite ? (
-                  <button
-                    className="w-12 h-12 rounded-full border border-icons
-                    hover:border-primary hover:scale-110
-                    flex justify-center items-center shrink-0 duration-300"
-                    onClick={handleClick}
-                  >
-                    <FiHeart className="text-secondary-accent" />
-                  </button>
-                ) : (
-                  <button
-                    className="w-12 h-12 rounded-full border border-icons
-                    hover:border-primary hover:scale-110
-                    flex justify-center items-center shrink-0 duration-300"
-                    onClick={handleClick}
-                  >
+                <button
+                  className="w-12 h-12 rounded-full border border-icons
+                  hover:border-primary hover:scale-110
+                  flex justify-center items-center shrink-0 duration-300"
+                  onClick={handleToggleFav}
+                >
+                  {data && isFavourite(data._id) ? (
+                    <FaHeart className="text-secondary-accent" />
+                  ) : (
                     <FiHeart />
-                  </button>
-                )}
+                  )}
+                </button>
               </div>
             </div>
 
