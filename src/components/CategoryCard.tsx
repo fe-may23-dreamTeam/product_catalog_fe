@@ -21,7 +21,7 @@ const CategoryCard = ({ type, image }: Props) => {
         {type}
       </p>
       <p className="font-mont font-semibold text-[14px] text-secondary">
-        {data?.length} models
+        {data?.totalProducts} models
       </p>
     </NavLink>
   );
