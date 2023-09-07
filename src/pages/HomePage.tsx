@@ -4,6 +4,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CategoryCard from '../components/CategoryCard';
+import { HotPrices } from '../components/HotPrices';
 import { NewProducts } from '../components/NewProducts';
 
 const HomePage = () => {
@@ -72,6 +73,9 @@ const HomePage = () => {
           <CategoryCard type={'Accessories'} image={accessoriesoneImage} />
         </div>
       </section>
+
+      <HotPrices />
+
     </main>
   );
 };

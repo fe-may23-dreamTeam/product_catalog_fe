@@ -48,6 +48,10 @@ export const productApi = createApi({
     getNewProducts: builder.query({
       query: () => `/products/new`,
     }),
+
+    getProductsWithDiscount: builder.query({
+      query: () => 'products/discount',
+    }),
   }),
 });
 
@@ -58,4 +62,5 @@ export const {
   useGetProductsByCategoryQuery,
   useGetRecommendedProductsQuery,
   useGetNewProductsQuery,
+  useGetProductsWithDiscountQuery,
 } = productApi;
