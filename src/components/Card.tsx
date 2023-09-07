@@ -88,9 +88,12 @@ export const Card = ({ product, isFetching }: Props) => {
         })}
       />
       <div className="grid auto-rows-auto gap-y-2 object-cover">
-        <NavLink to={`/${product.category.name}/${product._id}`}>
+        <NavLink
+          to={`/${product.category.name}/${product._id}`}
+          className="max-h-[130px] tablet:max-h-[200px]"
+        >
           <img
-            className="mx-auto max-h-[130px] tablet:max-h-[200px]"
+            className="mx-auto object-contain h-full tablet:aspect-square"
             src={product.images[0]}
             alt={product.namespaceId}
           />

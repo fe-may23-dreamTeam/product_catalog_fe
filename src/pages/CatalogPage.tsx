@@ -67,7 +67,7 @@ const CatalogPage: React.FC = () => {
   };
 
   return (
-    <main className="relative container mx-auto flex flex-col items-center tablet:items-start px-4 tablet:px-6 desktop:w-[1200px]">
+    <main className="relative container mx-auto flex flex-col items-center tablet:items-start p-4 tablet:px-6 desktop:w-[1200px]">
       <ErrorMessage isError={isError}>
         <Loader isLoading={isFetching}>
           <BreadCrumb />
@@ -100,15 +100,21 @@ const CatalogPage: React.FC = () => {
           )}
 
           <div className="mb-10 relative grid grid-cols-1 gap-4 tablet:grid-cols-2 desktop:grid-cols-4">
-            {products?.data.map((product: IProduct) => (
-              <Card
-                isFetching={isFetching}
-                product={product}
-                key={product._id}
-              />
-            ))}
+            {products?.data.length > 0 ? (
+              products?.data.map((product: IProduct) => (
+                <Card
+                  isFetching={isFetching}
+                  product={product}
+                  key={product._id}
+                />
+              ))
+            ) : (
+              <p className="col-span-4 tablet:col-span-12 desktop:col-span-24">
+                Sorry, we ran out of these products
+              </p>
+            )}
           </div>
-          {products?.data.length > perPage && (
+          {products?.totalProducts > perPage && (
             <Pagination
               className="mb-20"
               total={total}

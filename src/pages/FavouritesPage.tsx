@@ -3,11 +3,11 @@ import { Card } from '../components/Card';
 import { useAppSelector } from '../redux';
 import BreadCrumb from '../components/BreadCrumb';
 
-export const FavouritesPage: React.FC = () => {
+const FavouritesPage = () => {
   const { favouriteItems } = useAppSelector((state) => state.favourites);
 
   return (
-    <main className="container mx-auto flex flex-col items-center tablet:items-start px-4 pb-6 tablet:px-6 desktop:w-[1200px]">
+    <main className="container mx-auto flex flex-col items-center tablet:items-start p-4 pb-6 tablet:px-6 desktop:w-[1200px]">
       <BreadCrumb />
 
       <header>
@@ -32,3 +32,5 @@ export const FavouritesPage: React.FC = () => {
     </main>
   );
 };
+
+export default FavouritesPage;

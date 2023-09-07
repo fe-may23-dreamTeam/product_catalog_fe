@@ -20,7 +20,7 @@ const HomePage = () => {
       >
         Welcome to Nice Gadgets store!
       </h1>
-      <div className="w-full tablet:w-4/5 mx-auto">
+      <div className="select-none w-full tablet:w-4/5 mx-auto">
         <Swiper
           modules={[Pagination, Navigation]}
           pagination={true}

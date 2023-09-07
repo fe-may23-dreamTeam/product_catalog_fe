@@ -1,4 +1,4 @@
-const NotFound = () => {
+const NotFoundPage = () => {
   return (
     <main className="grid min-h-full place-items-center bg-white px-6 py-24 tablet:py-32 desktop:px-8">
       <div className="text-center">
@@ -31,4 +31,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default NotFoundPage;

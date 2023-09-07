@@ -20,7 +20,7 @@ import {
 import { useGetProductByIdQuery } from '../redux/api/productApi';
 import { IDescription } from '../types/Description';
 
-export const ProductPage = () => {
+const ProductPage = () => {
   const [favorite, setFavorite] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
 
@@ -264,11 +264,14 @@ export const ProductPage = () => {
                 </div>
               </div>
             </section>
-
-            <Carousel title={'Recommended'} type={'recommended'} />
+            <section className="col-span-4 tablet:col-span-12 desktop:col-span-24">
+              <Carousel title={'Recommended'} type={'recommended'} />
+            </section>
           </Loader>
         </ErrorMessage>
       </main>
     </>
   );
 };
+
+export default ProductPage;
