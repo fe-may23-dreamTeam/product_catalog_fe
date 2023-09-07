@@ -18,7 +18,7 @@ export const HotPrices = () => {
       <section className="col-span-4 tablet:col-span-12 desktop:col-span-24 mt-16">
         <div className="flex justify-between">
           <h2 className="font-extrabold text-2xl desktop:text-4xl text-primary">
-            Brand new models
+            Hot prices
           </h2>
           <div className="flex">
             <div className="text-right mr-4 w-8 h-8 rounded-full border border-icons relative">
