@@ -25,9 +25,9 @@ export const ProductPage = () => {
   const [currentImage, setCurrentImage] = useState(0);
 
   const { favouriteItems } = useAppSelector((state) => state.favourites);
-  const { productId } = useParams();
+  const { phoneId } = useParams();
   const { items } = useAppSelector((state) => state.cart);
-  const { data, isError, isFetching } = useGetProductByIdQuery(productId!);
+  const { data, isError, isFetching } = useGetProductByIdQuery(phoneId!);
   const dispatch = useAppDispatch();
   const links = [
     {

@@ -53,12 +53,12 @@ type Props = {
 };
 
 export const Carousel: React.FC<Props> = ({ title, type }) => {
-  const { productId } = useParams();
+  const { phoneId } = useParams();
   const {
     data: products,
     isError,
     isFetching,
-  } = useGetProductByTypeQuery({ type, productId });
+  } = useGetProductByTypeQuery({ type, phoneId });
 
   return (
     <div className="Carousel relative mx-auto desktop:max-w-[1152px] pt-16 mt-[150px] desktop:pb-20 tablet:pb-16">

@@ -25,7 +25,7 @@ export const Root = () => (
         <Route path="home" element={<Navigate to="/" replace />} />
         <Route path="phones" element={<Outlet />}>
           <Route index element={<CatalogPage />} />
-          <Route path=":productId?" element={<ProductPage />} />
+          <Route path=":phoneId?" element={<ProductPage />} />
         </Route>
         <Route path="tablets">
           <Route path=":tabletId?" element={<CatalogPage />} />
