@@ -57,6 +57,8 @@ export const ProductPage = () => {
   const isFavourite = (id: string) =>
     favouriteItems.some((item) => item._id === id);
 
+  const isAddedToCart = items.some((item) => item.id === phoneId);
+
   const handleToggleFav = () => {
     dispatch(toggleFavourite(data));
     setFavorite(!favorite);
@@ -164,8 +166,12 @@ export const ProductPage = () => {
                 </div>
 
                 <div className="flex gap-2 desktop:w-[55%] mt-4">
-                  <Button md onClick={handleAddToCart}>
-                    Add to cart
+                  <Button
+                    md
+                    onClick={handleAddToCart}
+                    outline={!!isAddedToCart}
+                  >
+                    {isAddedToCart ? 'Added to cart' : 'Add to cart'}
                   </Button>
                   <div>
                     <button
