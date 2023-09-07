@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { FC } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { v4 as uuidv4 } from 'uuid';
 import { SearchLink } from './SearchLink';
 
 type Callback = (page: number) => number;
@@ -21,10 +22,29 @@ const Pagination: FC<Props> = ({
   onPageChange,
 }) => {
   const totalPages: number = Math.ceil(total / perPage);
-  const pagesArray = Array.from(
-    { length: totalPages },
-    (_value, index) => index + 1,
-  );
+
+  let pagesArray: (number | string)[] = [];
+
+  if (totalPages > 5) {
+    switch (currentPage) {
+      case 1:
+        pagesArray = [1, 2, 3, '...', totalPages];
+        break;
+
+      case totalPages:
+        pagesArray = [1, '...', totalPages - 2, totalPages - 1, totalPages];
+        break;
+
+      default:
+        pagesArray = [1, '...', currentPage, '...', totalPages];
+    }
+  } else {
+    pagesArray = Array.from(
+      { length: totalPages },
+      (_value, index) => index + 1,
+    );
+  }
+
   const nextPage = currentPage === totalPages ? currentPage : currentPage + 1;
   const prevPage = currentPage === 1 ? currentPage : currentPage - 1;
 
@@ -81,40 +101,46 @@ const Pagination: FC<Props> = ({
         </SearchLink>
 
         <ul className="flex gap-x-2">
-          {pagesArray.map((pageNo: number) => (
-            <li key={pageNo}>
-              <SearchLink
-                className={classNames(
-                  [
-                    'flex',
-                    'items-center',
-                    'justify-center',
-                    'text-primary',
-                    'border',
-                    'border-elements',
-                    'rounded-full',
-                    'text-sm',
-                    'h-8',
-                    'w-8',
-                    'hover:border-primary',
-                    'focus:text-white',
-                    'focus:bg-primary',
-                  ],
-                  {
-                    'bg-primary': currentPage === pageNo,
-                    '!text-white': currentPage === pageNo,
-                  },
-                )}
-                params={{
-                  page: pageNo.toString(),
-                  perPage: perPage.toString(),
-                }}
-                onClick={() => onPageChange(pageNo)}
-              >
-                {pageNo}
-              </SearchLink>
-            </li>
-          ))}
+          {pagesArray.map((pageNo: number | string) => {
+            if (typeof pageNo === 'string') {
+              return <li>{pageNo}</li>;
+            }
+
+            return (
+              <li key={uuidv4()}>
+                <SearchLink
+                  className={classNames(
+                    [
+                      'flex',
+                      'items-center',
+                      'justify-center',
+                      'text-primary',
+                      'border',
+                      'border-elements',
+                      'rounded-full',
+                      'text-sm',
+                      'h-8',
+                      'w-8',
+                      'hover:border-primary',
+                      'focus:text-white',
+                      'focus:bg-primary',
+                    ],
+                    {
+                      'bg-primary': currentPage === pageNo,
+                      '!text-white': currentPage === pageNo,
+                    },
+                  )}
+                  params={{
+                    page: pageNo.toString(),
+                    perPage: perPage.toString(),
+                  }}
+                  onClick={() => onPageChange(pageNo)}
+                >
+                  {pageNo}
+                </SearchLink>
+              </li>
+            );
+          })}
         </ul>
 
         <SearchLink
