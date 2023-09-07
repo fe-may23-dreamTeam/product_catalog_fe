@@ -1,7 +1,7 @@
 import { FiHeart, FiShoppingBag } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
-import { useAppSelector } from '../redux';
 import { ItemCounter } from '../components/ItemCounter';
+import { useAppSelector } from '../redux';
 
 const BurgerMenu = () => {
   const { favouriteItems } = useAppSelector((state) => state.favourites);

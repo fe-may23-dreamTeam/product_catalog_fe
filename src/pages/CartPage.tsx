@@ -10,11 +10,13 @@ import { getTotalProductsCost } from '../utils/getTotalCost';
 import { getTotalItemsCount } from '../utils/getTotalItemsCount';
 
 const CartPage = () => {
-  const navigate = useNavigate();
-
   const { items: cartItems } = useAppSelector((state) => state.cart);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  const totalCost = getTotalProductsCost(cartItems);
+  const totalItemsCount = getTotalItemsCount(cartItems);
 
   const handlePaymentSuccess = () => {
     localStorage.removeItem('cart-items');
@@ -26,9 +28,6 @@ const CartPage = () => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
-  const totalCost = getTotalProductsCost(cartItems);
-  const totalItemsCount = getTotalItemsCount(cartItems);
 
   return (
     <>
