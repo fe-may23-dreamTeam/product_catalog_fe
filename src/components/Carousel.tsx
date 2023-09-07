@@ -48,8 +48,8 @@ function SamplePrevArrow(props: any) {
 }
 
 type Props = {
-  title: string;
-  type: 'discount' | 'new' | 'recommended';
+  title: string,
+  type: 'discount' | 'new' | 'recommended',
 };
 
 export const Carousel: React.FC<Props> = ({ title, type }) => {
