@@ -28,6 +28,8 @@ export const Card = ({ product, isFetching }: Props) => {
   const isFavourite = (id: string) =>
     favouriteItems.some((item) => item._id === id);
 
+  const isAddedToCart = items.some((item) => item.id === product._id);
+
   const productProps = [
     {
       name: 'Screen',
@@ -108,7 +110,9 @@ export const Card = ({ product, isFetching }: Props) => {
         <span className="border border-secondary border-t w-full" />
         <ProductProperties properties={productProps} />
         <div className="flex justify-between gap-x-[8px]">
-          <Button onClick={handleAddToCart}>Add to cart</Button>
+          <Button onClick={handleAddToCart} outline={!!isAddedToCart}>
+            {isAddedToCart ? 'Added to cart' : 'Add to cart'}
+          </Button>
           <button
             className={classNames([
               'w-10 h-10',

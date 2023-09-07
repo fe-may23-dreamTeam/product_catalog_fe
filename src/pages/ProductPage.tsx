@@ -25,9 +25,9 @@ export const ProductPage = () => {
   const [currentImage, setCurrentImage] = useState(0);
 
   const { favouriteItems } = useAppSelector((state) => state.favourites);
-  const { phoneId } = useParams();
+  const { productId } = useParams();
   const { items } = useAppSelector((state) => state.cart);
-  const { data, isError, isFetching } = useGetProductByIdQuery(phoneId!);
+  const { data, isError, isFetching } = useGetProductByIdQuery(productId!);
   const dispatch = useAppDispatch();
   const links = [
     {
@@ -57,6 +57,8 @@ export const ProductPage = () => {
 
   const isFavourite = (id: string) =>
     favouriteItems.some((item) => item._id === id);
+
+  const isAddedToCart = items.some((item) => item.id === productId);
 
   const handleToggleFav = () => {
     dispatch(toggleFavourite(data));
@@ -168,8 +170,12 @@ export const ProductPage = () => {
                 </div>
 
                 <div className="flex gap-2 desktop:w-[55%] mt-4">
-                  <Button md onClick={handleAddToCart}>
-                    Add to cart
+                  <Button
+                    md
+                    onClick={handleAddToCart}
+                    outline={!!isAddedToCart}
+                  >
+                    {isAddedToCart ? 'Added to cart' : 'Add to cart'}
                   </Button>
                   <div>
                     <button

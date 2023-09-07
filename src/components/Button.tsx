@@ -17,7 +17,7 @@ export const Button = ({
       'active:scale-95',
     ],
     {
-      '!text-accent bg-white border border-elements': outline,
+      '!text-accent !bg-white border border-elements': outline,
       'px-5 py-2.5': sm,
       'py-[13px]': md,
     },

@@ -8,12 +8,13 @@ export const productApi = createApi({
   }),
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: ({ page, perPage, sortBy }) => ({
+      query: ({ page, perPage, sortBy, type }) => ({
         url: `/products`,
         params: {
           page,
           perPage,
           sortBy,
+          type,
         },
       }),
     }),
