@@ -103,7 +103,7 @@ const Pagination: FC<Props> = ({
         <ul className="flex gap-x-2">
           {pagesArray.map((pageNo: number | string) => {
             if (typeof pageNo === 'string') {
-              return <li>{pageNo}</li>;
+              return <li key={uuidv4()}>{pageNo}</li>;
             }
 
             return (
