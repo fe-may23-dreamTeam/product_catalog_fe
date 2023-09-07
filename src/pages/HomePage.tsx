@@ -4,6 +4,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CategoryCard from '../components/CategoryCard';
+import { NewProducts } from '../components/NewProducts';
 
 const HomePage = () => {
   const image = require('../assets/images/mobile-promo.png');
@@ -58,6 +59,8 @@ const HomePage = () => {
           </SwiperSlide>
         </Swiper>
       </div>
+
+      <NewProducts />
 
       <section className="mt-[57px] tablet:mt-[64px] desktop:mt-[80px] desktop:max-w-[1136px] desktop:mx-auto">
         <h2 className="font-mont font-extrabold text-[22px] tablet:text-[32px] text-primary mx-[16px] tablet:mx-[24px] desktop:mx-[32px]">

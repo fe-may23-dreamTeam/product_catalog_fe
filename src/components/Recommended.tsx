@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { useGetRecommendedProductQuery } from '../redux/api/productApi';
+import { useGetRecommendedProductsQuery } from '../redux/api/productApi';
 import { IProduct } from '../types/Product';
 import { Card } from './Card';
 import { ErrorMessage } from './ErrorMessage';
@@ -14,7 +14,7 @@ export const Recommended: React.FC<Props> = ({ productId }) => {
     data: products,
     isError,
     isFetching,
-  } = useGetRecommendedProductQuery(productId);
+  } = useGetRecommendedProductsQuery(productId);
 
   const recommendedproducts = products || [];
 

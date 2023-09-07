@@ -50,7 +50,7 @@ export const Card = ({ product, isFetching }: Props) => {
 
   const handleAddToCart = () => {
     if (items.some(({ id }) => id === product._id)) {
-      toast.error('This product already in cart');
+      toast.error('This product is already in your cart');
 
       return;
     }
@@ -67,7 +67,7 @@ export const Card = ({ product, isFetching }: Props) => {
     };
 
     dispatch(addItemToCart(itemData));
-    toast.success('Successfully added to cart!');
+    toast.success('Successfully added to your cart!');
   };
 
   return (
