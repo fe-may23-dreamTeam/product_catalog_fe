@@ -9,7 +9,7 @@ import { clearCart, useAppDispatch, useAppSelector } from '../redux';
 import { getTotalProductsCost } from '../utils/getTotalCost';
 import { getTotalItemsCount } from '../utils/getTotalItemsCount';
 
-export const CartPage: React.FC = () => {
+const CartPage = () => {
   const navigate = useNavigate();
 
   const { items: cartItems } = useAppSelector((state) => state.cart);
@@ -85,3 +85,5 @@ export const CartPage: React.FC = () => {
     </>
   );
 };
+
+export default CartPage;

@@ -52,7 +52,7 @@ export const Card = ({ product, isFetching }: Props) => {
 
   const handleAddToCart = () => {
     if (items.some(({ id }) => id === product._id)) {
-      toast.error('This product already in cart');
+      toast.error('This product is already in your cart');
 
       return;
     }
@@ -69,7 +69,7 @@ export const Card = ({ product, isFetching }: Props) => {
     };
 
     dispatch(addItemToCart(itemData));
-    toast.success('Successfully added to cart!');
+    toast.success('Successfully added to your cart!');
   };
 
   return (
@@ -88,9 +88,12 @@ export const Card = ({ product, isFetching }: Props) => {
         })}
       />
       <div className="grid auto-rows-auto gap-y-2 object-cover">
-        <NavLink to={`/${product.category.name}/${product._id}`}>
+        <NavLink
+          to={`/${product.category.name}/${product._id}`}
+          className="max-h-[130px] tablet:max-h-[200px]"
+        >
           <img
-            className="mx-auto max-h-[130px] tablet:max-h-[200px]"
+            className="mx-auto object-contain h-full tablet:aspect-square"
             src={product.images[0]}
             alt={product.namespaceId}
           />

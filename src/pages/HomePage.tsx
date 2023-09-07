@@ -3,6 +3,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Carousel } from '../components/Carousel';
 import CategoryCard from '../components/CategoryCard';
 
 const HomePage = () => {
@@ -19,7 +20,7 @@ const HomePage = () => {
       >
         Welcome to Nice Gadgets store!
       </h1>
-      <div className="w-full tablet:w-4/5 mx-auto">
+      <div className="select-none w-full tablet:w-4/5 mx-auto">
         <Swiper
           modules={[Pagination, Navigation]}
           pagination={true}
@@ -58,6 +59,8 @@ const HomePage = () => {
         </Swiper>
       </div>
 
+      <Carousel title={'Brand new models'} type={'new'} />
+
       <section className="mt-[57px] tablet:mt-[64px] desktop:mt-[80px] desktop:max-w-[1136px] desktop:mx-auto">
         <h2 className="font-mont font-extrabold text-[22px] tablet:text-[32px] text-primary mx-[16px] tablet:mx-[24px] desktop:mx-[32px]">
           Shop by category
@@ -68,6 +71,7 @@ const HomePage = () => {
           <CategoryCard type={'Accessories'} image={accessoriesoneImage} />
         </div>
       </section>
+      <Carousel title={'Hot prices'} type={'discount'} />
     </main>
   );
 };

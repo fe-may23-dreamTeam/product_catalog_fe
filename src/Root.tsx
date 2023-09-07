@@ -7,11 +7,11 @@ import {
 } from 'react-router-dom';
 import App from './App';
 import CatalogPage from './pages/CatalogPage';
-import NotFound from './pages/NotFound';
-import { ProductPage } from './pages/ProductPage';
+import NotFoundPage from './pages/NotFoundPage';
+import ProductPage from './pages/ProductPage';
 import ScrollToTop from './components/ScrollToTop';
-import { FavouritesPage } from './pages/FavouritesPage';
-import { CartPage } from './pages/CartPage';
+import FavouritesPage from './pages/FavouritesPage';
+import CartPage from './pages/CartPage';
 import HomePage from './pages/HomePage';
 import { Toaster } from 'react-hot-toast';
 
@@ -37,7 +37,7 @@ export const Root = () => (
         </Route>
         <Route path="favourites" element={<FavouritesPage />} />
         <Route path="cart" element={<CartPage />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   </BrowserRouter>
