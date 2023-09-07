@@ -11,14 +11,14 @@ interface ColorSelectorProps {
 }
 
 const ColorSelector: React.FC<ColorSelectorProps> = ({ color, isActive }) => {
-  const { phoneId } = useParams();
+  const { productId } = useParams();
   const [trigger, { data, isLoading, isUninitialized }] =
     useLazyGetProductByParamsQuery();
   const navigate = useNavigate();
 
   const handleChangeColor = () => {
     trigger({
-      id: phoneId,
+      id: productId,
       color,
     });
   };
