@@ -54,7 +54,11 @@ type Props = {
 
 export const Carousel: React.FC<Props> = ({ title, type }) => {
   const { productId } = useParams();
-  const { data: products, isError, isFetching } = useGetProductByTypeQuery({ type, productId });
+  const {
+    data: products,
+    isError,
+    isFetching,
+  } = useGetProductByTypeQuery({ type, productId });
 
   return (
     <div className="Carousel relative mx-auto desktop:max-w-[1152px] pt-16 mt-[150px] desktop:pb-20 tablet:pb-16">
@@ -64,15 +68,16 @@ export const Carousel: React.FC<Props> = ({ title, type }) => {
             {title}
           </h2>
           <Slider {...settings} className="space-x-4">
-            {products && products.map((product: IProduct) => (
-              <div key={product._id} className="max-w-[272px]">
-                <Card
-                  isFetching={isFetching}
-                  product={product}
-                  key={product._id}
-                />
-              </div>
-            ))}
+            {products &&
+              products.map((product: IProduct) => (
+                <div key={product._id} className="max-w-[272px]">
+                  <Card
+                    isFetching={isFetching}
+                    product={product}
+                    key={product._id}
+                  />
+                </div>
+              ))}
           </Slider>
         </Loader>
       </ErrorMessage>
