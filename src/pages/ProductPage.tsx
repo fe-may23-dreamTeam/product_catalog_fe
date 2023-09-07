@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { FaHeart } from 'react-icons/fa';
 import { FiChevronLeft, FiHeart } from 'react-icons/fi';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useLocation, useParams } from 'react-router-dom';
 import BreadCrumb from '../components/BreadCrumb';
 import { Button } from '../components/Button';
 import { Carousel } from '../components/Carousel';
@@ -21,25 +21,18 @@ import { useGetProductByIdQuery } from '../redux/api/productApi';
 import { IDescription } from '../types/Description';
 
 const ProductPage = () => {
+  const { productId } = useParams();
+  const { pathname } = useLocation();
   const [favorite, setFavorite] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
-
   const { favouriteItems } = useAppSelector((state) => state.favourites);
-  const { productId } = useParams();
   const { items } = useAppSelector((state) => state.cart);
-  const { data, isError, isFetching } = useGetProductByIdQuery(productId!);
   const dispatch = useAppDispatch();
-  const links = [
-    {
-      label: 'Phone',
-      url: '/phones',
-    },
-    {
-      label: data?.name!,
-      url: `/phones/${data?._id!}`,
-    },
-  ];
+  const { data, isError, isFetching } = useGetProductByIdQuery(productId!);
 
+  const route = pathname.split('/')[1];
+  const isFavourite = favouriteItems.some((item) => item._id === data?._id);
+  const isAddedToCart = items.some((item) => item.id === productId);
   const characteristicsData = {
     Screen: data?.screen,
     Resolution: data?.resolution,
@@ -50,15 +43,27 @@ const ProductPage = () => {
     Zoom: data?.zoom,
     Cell: data?.cell?.join(', '),
   };
+  const itemData = {
+    id: data?._id,
+    name: data?.name,
+    price: data?.priceDiscount ? data?.priceDiscount : data?.priceRegular,
+    image: data?.images[0],
+    count: 1,
+  };
+  const links = [
+    {
+      label: route[0].toUpperCase() + route.slice(1),
+      url: `/${route}`,
+    },
+    {
+      label: data?.name!,
+      url: `/phones/${data?._id!}`,
+    },
+  ];
 
   const handleChangeImage = (index: number) => {
     setCurrentImage(index);
   };
-
-  const isFavourite = (id: string) =>
-    favouriteItems.some((item) => item._id === id);
-
-  const isAddedToCart = items.some((item) => item.id === productId);
 
   const handleToggleFav = () => {
     dispatch(toggleFavourite(data));
@@ -71,14 +76,6 @@ const ProductPage = () => {
 
       return;
     }
-
-    const itemData = {
-      id: data?._id,
-      name: data?.name,
-      price: data?.priceDiscount ? data?.priceDiscount : data?.priceRegular,
-      image: data?.images[0],
-      count: 1,
-    };
 
     dispatch(addItemToCart(itemData));
     toast.success('Successfully added to your cart!');
@@ -184,7 +181,7 @@ const ProductPage = () => {
                       flex justify-center items-center shrink-0 duration-300"
                       onClick={handleToggleFav}
                     >
-                      {isFavourite(data?._id!) ? (
+                      {isFavourite ? (
                         <FaHeart className="text-secondary-accent" />
                       ) : (
                         <FiHeart />

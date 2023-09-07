@@ -1,7 +1,6 @@
-import React from 'react';
+import BreadCrumb from '../components/BreadCrumb';
 import { Card } from '../components/Card';
 import { useAppSelector } from '../redux';
-import BreadCrumb from '../components/BreadCrumb';
 
 const FavouritesPage = () => {
   const { favouriteItems } = useAppSelector((state) => state.favourites);

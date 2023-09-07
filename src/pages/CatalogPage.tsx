@@ -1,14 +1,14 @@
 import React from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
+import BreadCrumb from '../components/BreadCrumb';
+import { Card } from '../components/Card';
 import { Dropdown } from '../components/Dropdown';
 import { ErrorMessage } from '../components/ErrorMessage';
 import { Loader } from '../components/Loader';
 import Pagination from '../components/Pagination';
 import { useGetProductsQuery } from '../redux/api/productApi';
-import { IProduct } from '../types/Product';
-import { Card } from '../components/Card';
-import BreadCrumb from '../components/BreadCrumb';
 import { CatalogTitle } from '../types/PageTitle';
+import { IProduct } from '../types/Product';
 
 const sortOptions = [
   {
@@ -48,7 +48,6 @@ const CatalogPage: React.FC = () => {
   const currentPage = Number(searchParams.get('page')) || 1;
   const perPage = Number(searchParams.get('perPage')) || 8;
   const sortBy = searchParams.get('sortBy') || 'Newest';
-
   const {
     data: products,
     isError,
