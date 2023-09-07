@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { FC } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { SearchLink } from './SearchLink';
+import { getPagesArray } from '../utils/getPagesArray';
 
 type Callback = (page: number) => number;
 
@@ -21,10 +22,7 @@ const Pagination: FC<Props> = ({
   onPageChange,
 }) => {
   const totalPages: number = Math.ceil(total / perPage);
-  const pagesArray = Array.from(
-    { length: totalPages },
-    (_value, index) => index + 1,
-  );
+  const pagesArray = getPagesArray(totalPages, currentPage);
   const nextPage = currentPage === totalPages ? currentPage : currentPage + 1;
   const prevPage = currentPage === 1 ? currentPage : currentPage - 1;
 
@@ -81,40 +79,46 @@ const Pagination: FC<Props> = ({
         </SearchLink>
 
         <ul className="flex gap-x-2">
-          {pagesArray.map((pageNo: number) => (
-            <li key={pageNo}>
-              <SearchLink
-                className={classNames(
-                  [
-                    'flex',
-                    'items-center',
-                    'justify-center',
-                    'text-primary',
-                    'border',
-                    'border-elements',
-                    'rounded-full',
-                    'text-sm',
-                    'h-8',
-                    'w-8',
-                    'hover:border-primary',
-                    'focus:text-white',
-                    'focus:bg-primary',
-                  ],
-                  {
-                    'bg-primary': currentPage === pageNo,
-                    '!text-white': currentPage === pageNo,
-                  },
-                )}
-                params={{
-                  page: pageNo.toString(),
-                  perPage: perPage.toString(),
-                }}
-                onClick={() => onPageChange(pageNo)}
-              >
-                {pageNo}
-              </SearchLink>
-            </li>
-          ))}
+          {pagesArray.map((pageNo: number | string, i) => {
+            if (typeof pageNo === 'string') {
+              return <li key={`pageNo-${pageNo}-${i}`}>{pageNo}</li>;
+            }
+
+            return (
+              <li key={`pageNo-${pageNo}-${i}`}>
+                <SearchLink
+                  className={classNames(
+                    [
+                      'flex',
+                      'items-center',
+                      'justify-center',
+                      'text-primary',
+                      'border',
+                      'border-elements',
+                      'rounded-full',
+                      'text-sm',
+                      'h-8',
+                      'w-8',
+                      'hover:border-primary',
+                      'focus:text-white',
+                      'focus:bg-primary',
+                    ],
+                    {
+                      'bg-primary': currentPage === pageNo,
+                      '!text-white': currentPage === pageNo,
+                    },
+                  )}
+                  params={{
+                    page: pageNo.toString(),
+                    perPage: perPage.toString(),
+                  }}
+                  onClick={() => onPageChange(pageNo)}
+                >
+                  {pageNo}
+                </SearchLink>
+              </li>
+            );
+          })}
         </ul>
 
         <SearchLink
