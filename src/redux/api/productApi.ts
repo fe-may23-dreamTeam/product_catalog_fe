@@ -40,6 +40,24 @@ export const productApi = createApi({
         },
       }),
     }),
+
+    getProductByType: builder.query({
+      query: ({ type, id }) => {
+        switch (type) {
+          case 'new':
+            return '/products/new';
+
+          case 'recommended':
+            return `/products/${id}/recommended`;
+
+          case 'discount':
+            return '/products/discount';
+
+          default:
+            return '/products';
+        }
+      },
+    }),
   }),
 });
 
@@ -48,4 +66,5 @@ export const {
   useGetProductByIdQuery,
   useLazyGetProductByParamsQuery,
   useGetProductsByCategoryQuery,
+  useGetProductByTypeQuery,
 } = productApi;
