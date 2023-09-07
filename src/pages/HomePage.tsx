@@ -75,7 +75,6 @@ const HomePage = () => {
       </section>
 
       <HotPrices />
-
     </main>
   );
 };
