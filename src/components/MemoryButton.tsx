@@ -9,13 +9,13 @@ interface MemoryButtonProps {
 }
 
 const MemoryButton: React.FC<MemoryButtonProps> = ({ capacity, isActive }) => {
-  const { productId } = useParams();
+  const { phoneId } = useParams();
   const navigate = useNavigate();
   const [trigger, { data }] = useLazyGetProductByParamsQuery();
 
   const handleChangeCapacity = () => {
     trigger({
-      id: productId,
+      id: phoneId,
       capacity,
     });
   };
