@@ -61,26 +61,26 @@ export const Carousel: React.FC<Props> = ({ title, type }) => {
   } = useGetProductByTypeQuery({ type, phoneId });
 
   return (
-    <div className="Carousel relative mx-auto desktop:max-w-[1152px] pt-16 mt-[150px] desktop:pb-20 tablet:pb-16">
-      <ErrorMessage isError={isError}>
-        <Loader isLoading={isFetching}>
-          <h2 className="font-extrabold text-2xl desktop:text-4xl text-primary absolute left-0 top-0">
-            {title}
-          </h2>
-          <Slider {...settings} className="space-x-4">
-            {products &&
-              products.map((product: IProduct) => (
-                <div key={product._id} className="max-w-[272px]">
-                  <Card
-                    isFetching={isFetching}
-                    product={product}
-                    key={product._id}
-                  />
-                </div>
-              ))}
-          </Slider>
-        </Loader>
-      </ErrorMessage>
-    </div>
+      <div className="Carousel relative mx-auto desktop:max-w-[1152px] pt-16 my-16 desktop:my-20">
+        <ErrorMessage isError={isError}>
+          <Loader isLoading={isFetching}>
+            <h2 className="font-extrabold text-[22px] tablet:text-2xl desktop:text-4xl text-primary ml-4 absolute left-0 top-0">
+              {title}
+            </h2>
+            <Slider {...settings} className="space-x-4">
+              {products &&
+                products.map((product: IProduct) => (
+                  <div key={product._id} className="max-w-[272px]">
+                    <Card
+                      isFetching={isFetching}
+                      product={product}
+                      key={product._id}
+                    />
+                  </div>
+                ))}
+            </Slider>
+          </Loader>
+        </ErrorMessage>
+      </div>
   );
 };
