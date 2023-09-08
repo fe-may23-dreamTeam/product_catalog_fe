@@ -52,6 +52,7 @@ const CatalogPage: React.FC = () => {
     data: products,
     isError,
     isFetching,
+    isLoading,
   } = useGetProductsQuery({
     perPage,
     page: currentPage,
@@ -68,7 +69,7 @@ const CatalogPage: React.FC = () => {
   return (
     <main className="relative container mx-auto flex flex-col items-center tablet:items-start p-4 tablet:px-6 desktop:w-[1200px]">
       <ErrorMessage isError={isError}>
-        <Loader isLoading={isFetching}>
+        <Loader isLoading={isLoading}>
           <BreadCrumb />
 
           <header>
