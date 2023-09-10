@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { FC } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { Navigate } from 'react-router-dom';
 import { SearchLink } from './SearchLink';
 import { getPagesArray } from '../utils/getPagesArray';
 
@@ -22,6 +23,11 @@ const Pagination: FC<Props> = ({
   onPageChange,
 }) => {
   const totalPages: number = Math.ceil(total / perPage);
+
+  if (currentPage > totalPages) {
+    return <Navigate to="/404" replace />;
+  }
+
   const pagesArray = getPagesArray(totalPages, currentPage);
   const nextPage = currentPage === totalPages ? currentPage : currentPage + 1;
   const prevPage = currentPage === 1 ? currentPage : currentPage - 1;
