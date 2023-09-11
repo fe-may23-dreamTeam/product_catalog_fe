@@ -64,7 +64,7 @@ export const Carousel: React.FC<Props> = ({ title, type }) => {
     <div className="Carousel relative mx-auto desktop:max-w-[1152px] py-16 mt-14 desktop:py-20">
       <ErrorMessage isError={isError}>
         <Loader isLoading={isFetching}>
-          <h2 className="font-extrabold text-[22px] tablet:text-2xl desktop:text-4xl text-primary mx-4 absolute left-0 top-0">
+          <h2 className="font-extrabold text-2xl desktop:text-4xl text-primary absolute left-0 top-0 mx-4">
             {title}
           </h2>
           <Slider {...settings} className="space-x-4">

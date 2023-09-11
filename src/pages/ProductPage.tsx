@@ -19,6 +19,7 @@ import {
 } from '../redux';
 import { useGetProductByIdQuery } from '../redux/api/productApi';
 import { IDescription } from '../types/Description';
+import classNames from 'classnames';
 
 const ProductPage = () => {
   const { productId } = useParams();
@@ -28,7 +29,9 @@ const ProductPage = () => {
   const { favouriteItems } = useAppSelector((state) => state.favourites);
   const { items } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
-  const { data, isError, isFetching } = useGetProductByIdQuery(productId!);
+  const { data, isError, isLoading, isFetching } = useGetProductByIdQuery(
+    productId!,
+  );
 
   const route = pathname.split('/')[1];
   const isFavourite = favouriteItems.some((item) => item._id === data?._id);
@@ -83,9 +86,16 @@ const ProductPage = () => {
 
   return (
     <>
-      <main className="desktop:container mx-2 grid grid-cols-4 desktop:grid-cols-24 tablet:grid-cols-12 desktop:mx-auto gap-4 relative">
+      <main
+        className={classNames(
+          'desktop:container mx-2 grid grid-cols-4 desktop:grid-cols-24 tablet:grid-cols-12 desktop:mx-auto gap-4 relative',
+          {
+            'opacity-75 pointer-events-none': isFetching,
+          },
+        )}
+      >
         <ErrorMessage isError={isError}>
-          <Loader isLoading={isFetching}>
+          <Loader isLoading={isLoading}>
             <BreadCrumb links={links} />
             <NavLink
               to=".."
