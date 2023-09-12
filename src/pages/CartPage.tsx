@@ -35,7 +35,7 @@ const CartPage = () => {
       )}
       <main
         className={classNames(
-          'container mx-auto flex flex-col px-4 py-6 tablet:px-6 desktop:w-[1200px] desktop:px-8',
+          'container mx-auto flex flex-col p-4 pb-6 tablet:px-6 desktop:w-[1200px]',
           { 'blur pointer-events-none': showModal },
         )}
       >
