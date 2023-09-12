@@ -34,12 +34,12 @@ export const Footer = () => {
               </li>
 
               <li>
-                <a
+                <NavLink
                   className="duration-150 select-none uppercase text-secondary font-extrabold text-xs hover:text-primary active:text-primary focus:text-primary font-Mont"
-                  href="#"
+                  to="/contacts"
                 >
                   Contacts
-                </a>
+                </NavLink>
               </li>
 
               <li>
