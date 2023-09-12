@@ -59,19 +59,23 @@ const Pagination: FC<Props> = ({
               'flex',
               'items-center',
               'justify-center',
-              'text-primary',
+              'text-primary-light',
+              'dark:text-primary-dark',
               'border',
-              'border-icons',
+              'border-icons-light',
+              'dark:border-white-dark',
               'rounded-full',
               'text-sm',
               'h-8',
               'w-8',
-              'hover:border-primary',
-              'focus:border-primary',
+              'hover:border-primary-light',
+              'dark:hover:border-primary-dark',
+              'focus:border-primary-light',
+              'dark:focus:border-primary-dark',
             ],
             {
-              '!text-icons': currentPage === 1,
-              '!border-icons': currentPage === 1,
+              'dark:!text-icons-dark !text-icons-light': currentPage === 1,
+              'dark:!border-icons-dark !border-icons-light': currentPage === 1,
             },
           )}
           params={{
@@ -87,7 +91,14 @@ const Pagination: FC<Props> = ({
         <ul className="flex gap-x-2">
           {pagesArray.map((pageNo: number | string, i) => {
             if (typeof pageNo === 'string') {
-              return <li key={`pageNo-${pageNo}-${i}`}>{pageNo}</li>;
+              return (
+                <li
+                  className="dark:text-primary-dark"
+                  key={`pageNo-${pageNo}-${i}`}
+                >
+                  {pageNo}
+                </li>
+              );
             }
 
             return (
@@ -98,20 +109,30 @@ const Pagination: FC<Props> = ({
                       'flex',
                       'items-center',
                       'justify-center',
-                      'text-primary',
+                      'text-primary-light',
+                      'dark:text-primary-dark',
                       'border',
-                      'border-elements',
+                      'dark:border-gray-surface',
+                      'dark:bg-gray-surface',
+                      'dark:hover:bg-elements-dark',
                       'rounded-full',
                       'text-sm',
                       'h-8',
                       'w-8',
-                      'hover:border-primary',
-                      'focus:text-white',
-                      'focus:bg-primary',
+                      'hover:border-primary-light',
+                      'dark:hover:border-elements-dark',
+                      'focus:text-white-light',
+                      'dark:focus:text-white-dark',
+                      'focus:bg-primary-light',
+                      'dark:focus:bg-primary-dark',
                     ],
                     {
-                      'bg-primary': currentPage === pageNo,
-                      '!text-white': currentPage === pageNo,
+                      '!bg-primary-light dark:!bg-accent-dark':
+                        currentPage === pageNo,
+                      '!text-white-light dark:!text-white-light':
+                        currentPage === pageNo,
+                      'dark:!border-accent-dark dark:hover:scale-105':
+                        currentPage === pageNo,
                     },
                   )}
                   params={{
@@ -133,19 +154,25 @@ const Pagination: FC<Props> = ({
               'flex',
               'items-center',
               'justify-center',
-              'text-primary',
+              'text-primary-light',
+              'dark:text-primary-dark',
               'border',
-              'border-icons',
+              'border-icons-light',
+              'dark:border-white-dark',
               'rounded-full',
               'text-sm',
               'h-8',
               'w-8',
-              'hover:border-primary',
-              'focus:border-primary',
+              'hover:border-primary-light',
+              'dark:hover:border-primary-dark',
+              'focus:border-primary-light',
+              'dark:focus:border-primary-dark',
             ],
             {
-              '!text-icons': currentPage === totalPages,
-              '!border-icons': currentPage === totalPages,
+              'dark:!text-icons-dark !text-icons-light':
+                currentPage === totalPages,
+              'dark:!border-icons-dark !border-icons-light':
+                currentPage === totalPages,
             },
           )}
           params={{ page: nextPage.toString(), perPage: perPage.toString() }}

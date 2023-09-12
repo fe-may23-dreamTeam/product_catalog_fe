@@ -62,6 +62,8 @@ const CatalogPage: React.FC = () => {
 
   const total = products ? products.totalProducts : 0;
 
+  const modelCounter = total === 1 ? `${total} model` : `${total} models`;
+
   const handlePageNumber = (pageNo: number) => {
     searchParams.set('page', pageNo.toString());
   };
@@ -73,18 +75,18 @@ const CatalogPage: React.FC = () => {
           <BreadCrumb />
 
           <header>
-            <h1 className="mb-2 text-[32px] font-extrabold leading-[41px] tracking-[0.32px] tablet:mt-10 tablet:text-5xl">
+            <h1 className="mb-2 text-[32px] font-extrabold leading-[41px] tracking-[0.32px] tablet:mt-10 tablet:text-5xl dark:text-primary-dark">
               {title[pathname as keyof CatalogTitle]}
             </h1>
 
-            <p className="text-sm font-semibold leading-[21px] text-secondary mb-8">
-              {total} models
+            <p className="text-sm font-semibold leading-[21px] text-secondary-light dark:text-secondary-dark mb-8">
+              {modelCounter}
             </p>
           </header>
           {products?.data.length > 0 && (
             <div className="flex gap-4 mb-6">
               <Dropdown
-                className="w-[136px] tablet:w-[187px]"
+                className="w-[136px] tablet:w-[187px] dark:bg-white-dark dark:text-secondary-dark dark:border-none"
                 label="Sort By"
                 query="sortBy"
                 options={sortOptions}
@@ -92,7 +94,7 @@ const CatalogPage: React.FC = () => {
 
               <Dropdown
                 query="perPage"
-                className="w-[136px]"
+                className="w-[136px] dark:bg-white-dark dark:text-secondary-dark dark:border-none"
                 label="Items on page"
                 options={perPageOptions}
               />
@@ -109,7 +111,7 @@ const CatalogPage: React.FC = () => {
                 />
               ))
             ) : (
-              <p className="col-span-4 tablet:col-span-12 desktop:col-span-24">
+              <p className="col-span-4 tablet:col-span-12 desktop:col-span-24 dark:text-primary-dark">
                 Sorry, we ran out of these products
               </p>
             )}

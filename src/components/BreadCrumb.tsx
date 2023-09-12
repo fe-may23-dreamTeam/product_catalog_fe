@@ -15,7 +15,7 @@ const BreadCrumb = ({ links }: Props) => {
   const breadcrumbs = useBreadcrumbs();
 
   return (
-    <div className="flex items-center justify-self-start mb-6 col-span-4 tablet:col-span-12 desktop:col-span-24 mt-6">
+    <div className="flex items-center justify-self-start mb-6 col-span-4 tablet:col-span-12 desktop:col-span-24 mt-6 dark:text-primary-dark">
       <NavLink to="/">
         <FiHome />
       </NavLink>
@@ -23,7 +23,10 @@ const BreadCrumb = ({ links }: Props) => {
         ? links.map((link) => (
             <React.Fragment key={link.label}>
               <FiChevronRight className="ml-2" />
-              <NavLink to={link.url} className="ml-2 text-xs">
+              <NavLink
+                to={link.url}
+                className="ml-2 text-xs dark:text-primary-dark"
+              >
                 {link.label}
               </NavLink>
             </React.Fragment>
@@ -31,7 +34,10 @@ const BreadCrumb = ({ links }: Props) => {
         : breadcrumbs.splice(1).map(({ match, breadcrumb }) => (
             <React.Fragment key={match.pathname}>
               <FiChevronRight className="ml-2" />
-              <NavLink to={match.pathname} className="ml-2 text-xs">
+              <NavLink
+                to={match.pathname}
+                className="ml-2 text-xs dark:text-primary-dark"
+              >
                 {breadcrumb}
               </NavLink>
             </React.Fragment>

@@ -31,8 +31,8 @@ const ColorSelector: React.FC<ColorSelectorProps> = ({ color, isActive }) => {
   return (
     <button
       className={classNames(
-        `flex border-[2px] border-secondary rounded-full h-8 w-8`,
-        { '!border-primary': isActive },
+        `flex border-[2px] border-secondary-light dark:border-secondary-dark rounded-full h-8 w-8`,
+        { '!border-primary-light dark:!border-primary-dark': isActive },
       )}
       style={{ backgroundColor: color }}
       onClick={handleChangeColor}

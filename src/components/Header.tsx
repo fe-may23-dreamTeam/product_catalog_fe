@@ -6,6 +6,7 @@ import logo from '../assets/images/logo.svg';
 import BurgerMenu from '../pages/BurgerMenu';
 import { useAppSelector } from '../redux';
 import { ItemCounter } from './ItemCounter';
+import ThemeToggle from './ThemeToggle';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -19,13 +20,17 @@ export const Header: React.FC = () => {
   const { items } = useAppSelector((state) => state.cart);
   const { pathname } = useLocation();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const iconColor = classNames('dark:text-primary-dark');
 
   const handleOpenMenu = () => setMenuIsOpen((prev) => !prev);
 
   const getLinkClass = ({ isActive }: { isActive: boolean }) =>
     classNames(
-      'uppercase text-secondary duration-150 hover:border-b-4 hover:border-primary pb-6 font-extrabold text-xs hover:text-primary relative active:text-primary focus:text-primary font-Mont',
-      { 'text-primary border-b-4 border-primary': isActive },
+      'uppercase text-secondary-light dark:text-secondary-dark duration-150 hover:border-b-4 hover:border-primary-light dark:hover:border-primary-dark pb-6 font-extrabold text-xs hover:text-primary-light dark:hover:text-primary-dark relative active:text-primary-light dark:active:text-primary-dark focus:text-primary-light dark:focus:text-primary-dark font-Mont',
+      {
+        'text-primary-light dark:text-primary-dark border-b-4 border-primary-light dark:border-primary-dark':
+          isActive,
+      },
     );
 
   useEffect(() => {
@@ -33,7 +38,7 @@ export const Header: React.FC = () => {
   }, [pathname]);
 
   return (
-    <header className="sticky bg-white z-50 top-0 h-12 tablet:h-16 border-b border-elements pl-4 desktop:pl-6 flex justify-between items-center">
+    <header className="sticky bg-white-light dark:bg-hover-bg-dark z-50 top-0 h-12 tablet:h-16 border-b border-elements-light dark:border-elements-dark pl-4 desktop:pl-6 flex justify-between items-center">
       <div className="flex justify-start gap-6">
         <NavLink to="/" className="flex">
           <img src={logo} className="object-cover" alt="Nice gadgets" />
@@ -53,21 +58,22 @@ export const Header: React.FC = () => {
       </div>
 
       <div className="flex items-center justify-end">
-        <div className="border-l border-elements box-border">
+        <ThemeToggle />
+        <div className="border-l border-elements-light dark:border-elements-dark box-border">
           <NavLink
-            className="relative hover:shadow-lg duration-200 px-4 py-6 desktop:p-6 hidden tablet:flex"
+            className="relative hover:shadow-lg dark:hover:shadow-custom-dark duration-200 px-4 py-6 desktop:p-6 hidden tablet:flex"
             to="/favourites"
           >
-            <FiHeart />
+            <FiHeart className={iconColor} />
             <ItemCounter count={favouriteItems.length} />
           </NavLink>
         </div>
-        <div className="border-l border-elements box-border mx-0">
+        <div className="border-l border-elements-light dark:border-elements-dark box-border mx-0">
           <NavLink
-            className="relative hover:shadow-lg duration-200 px-4 py-6 desktop:p-6 hidden tablet:flex justify-end"
+            className="relative hover:shadow-lg dark:hover:shadow-lg-dark duration-200 px-4 py-6 desktop:p-6 hidden tablet:flex justify-end"
             to="/cart"
           >
-            <FiShoppingBag />
+            <FiShoppingBag className={iconColor} />
             <ItemCounter count={items.length} />
           </NavLink>
           <span className="flex p-4 tablet:hidden">
@@ -79,7 +85,11 @@ export const Header: React.FC = () => {
               checked={menuIsOpen}
             />
             <label htmlFor="nav__toggle">
-              {menuIsOpen ? <FiX /> : <FiMenu />}
+              {menuIsOpen ? (
+                <FiX className={iconColor} />
+              ) : (
+                <FiMenu className={iconColor} />
+              )}
             </label>
             <BurgerMenu />
           </span>

@@ -32,10 +32,10 @@ const CartItem: React.FC<Props> = ({ item }) => {
   };
 
   return (
-    <div className="border bg-white border-elements max-w-[752px] text-sm text-primary flex flex-wrap rounded-2xl p-4 gap-4 justify-between items-center tablet:p-6 tablet:gap-6 tablet:flex-nowrap">
+    <div className="border bg-white-light dark:bg-gray-surface border-elements-light dark:border-elements-dark max-w-[752px] text-sm text-primary-light dark:text-primary-dark flex flex-wrap rounded-2xl p-4 gap-4 justify-between items-center tablet:p-6 tablet:gap-6 tablet:flex-nowrap">
       <div className="flex justify-between items-center gap-4 tablet:gap-6 w-full tablet:w-auto">
         <button onClick={() => dispatch(removeFromCart(id))}>
-          <FiX className="text-icons w-4 h-4 hover:scale-150 ease-in duration-300" />
+          <FiX className="text-icons-light dark:text-icons-dark w-4 h-4 hover:scale-150 ease-in duration-300" />
         </button>
 
         <img
@@ -56,19 +56,26 @@ const CartItem: React.FC<Props> = ({ item }) => {
                 'flex',
                 'items-center',
                 'justify-center',
-                'text-primary',
+                'text-primary-light',
+                'dark:text-primary-dark',
                 'border',
-                'border-icons',
+                'border-icons-light',
+                'dark:border-white-dark',
+                'dark:bg-white-dark',
+                'dark:hover:bg-icons-dark',
                 'rounded-full',
                 'h-8',
                 'w-8',
                 'cursor-pointer',
-                'hover:border-primary',
-                'focus:border-primary',
+                'hover:border-primary-light',
+                'focus:border-primary-light',
+                'dark:focus:border-primary-dark',
               ],
               {
-                '!text-icons': count === minItems,
-                '!border-icons': count === minItems,
+                '!text-icons-light dark:!text-icons-dark dark:!bg-gray-surface':
+                  count === minItems,
+                '!border-icons-light dark:!border-icons-dark':
+                  count === minItems,
               },
             )}
             onClick={decreaseCount}
@@ -84,27 +91,35 @@ const CartItem: React.FC<Props> = ({ item }) => {
                 'flex',
                 'items-center',
                 'justify-center',
-                'text-primary',
+                'text-primary-light',
+                'dark:text-primary-dark',
                 'border',
-                'border-icons',
+                'border-icons-light',
+                'dark:border-white-dark',
+                'dark:bg-white-dark',
+                'dark:bg-white-dark',
+                'dark:hover:bg-icons-dark',
                 'rounded-full',
                 'h-8',
                 'w-8',
                 'cursor-pointer',
-                'hover:border-primary',
-                'focus:border-primary',
+                'hover:border-primary-light',
+                'focus:border-primary-light',
+                'dark:focus:border-primary-dark',
               ],
               {
-                '!text-icons': count === maxItems,
-                '!border-icons': count === maxItems,
+                '!text-icons-light dark:!text-icons-dark dark:!bg-gray-surface':
+                  count === maxItems,
+                '!border-icons-light hover:!border-icons-light':
+                  count === maxItems,
               },
             )}
             onClick={increaseCount}
           >
-            <FiPlus />
+            <FiPlus className="dark:text-primary-dark" />
           </span>
         </div>
-        <p className="text-primary font-extrabold text-[22px] select-none">
+        <p className="text-primary-light dark:text-primary-dark font-extrabold text-[22px] select-none">
           ${price}
         </p>
       </div>
