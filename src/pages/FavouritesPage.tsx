@@ -10,13 +10,13 @@ const FavouritesPage = () => {
       <BreadCrumb />
 
       <header>
-        <h1 className="mb-2 text-[32px] font-extrabold leading-[41px] tracking-[0.32px] tablet:mt-10 tablet:text-5xl">
+        <h1 className="mb-2 text-[32px] font-extrabold leading-[41px] tracking-[0.32px] tablet:mt-10 tablet:text-5xl dark:text-primary-dark">
           Favourites
         </h1>
       </header>
       {favouriteItems.length ? (
         <>
-          <p className="text-sm mb-8 tablet:mb-9 font-semibold leading-[21px] text-secondary">
+          <p className="text-sm mb-8 tablet:mb-9 font-semibold leading-[21px] text-secondary dark:text-secondary-dark">
             {`${favouriteItems.length} items`}
           </p>
           <div className="grid grid-cols-1 gap-4 tablet:grid-cols-2 desktop:grid-cols-4">

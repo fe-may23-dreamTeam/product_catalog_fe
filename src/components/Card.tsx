@@ -76,15 +76,17 @@ export const Card = ({ product, isFetching }: Props) => {
     <article
       className={classNames([
         'card box-border p-8 relative',
-        'border border-secondary rounded-lg',
+        'border border-secondary-light dark:border-none rounded-lg',
         'min-w-[272px]  max-h-[440px]',
-        'bg-white',
-        'hover:shadow-card tablet:max-h-[506px]',
+        'bg-white-light',
+        'dark:bg-gray-surface',
+        'dark:bg-surface',
+        'hover:shadow-card dark:hover:shadow-card-dark tablet:max-h-[506px]',
       ])}
     >
       <div
         className={classNames('absolute inset-0 opacity-50 -z-10', {
-          'bg-secondary !z-10': isFetching,
+          'bg-secondary-light dark:bg-secondary-dark !z-10': isFetching,
         })}
       />
       <div className="grid auto-rows-auto gap-y-2 object-cover">
@@ -99,18 +101,18 @@ export const Card = ({ product, isFetching }: Props) => {
           />
         </NavLink>
 
-        <h3 className="text-sm font-semibold mt-4 line-clamp-1">
+        <h3 className="text-sm font-semibold mt-4 line-clamp-1 dark:text-primary-dark">
           {product.name}
         </h3>
         <div className="flex gap-2">
-          <h3 className="text-xl font-extrabold leading-8 before:content-['$']">
+          <h3 className="text-xl font-extrabold leading-8 before:content-['$'] dark:text-primary-dark">
             {product.priceDiscount}
           </h3>
-          <h3 className="relative text-xl line-through font-semibold leading-8 text-secondary before:content-['$']">
+          <h3 className="relative text-xl line-through font-semibold leading-8 text-secondary-light dark:text-secondary-dark before:content-['$']">
             {product.priceRegular}
           </h3>
         </div>
-        <span className="border border-secondary border-t w-full" />
+        <span className="border border-secondary-light dark:border-secondary-dark border-t w-full" />
         <ProductProperties properties={productProps} />
         <div className="flex justify-between gap-x-[8px]">
           <Button onClick={handleAddToCart} outline={!!isAddedToCart}>
@@ -119,17 +121,18 @@ export const Card = ({ product, isFetching }: Props) => {
           <button
             className={classNames([
               'w-10 h-10',
-              'rounded-full border border-icons',
-              'hover:border-primary hover:scale-105',
+              'rounded-full border border-icons-dark',
+              'hover:border-primary-light hover:scale-105',
+              'dark:hover:border-primary-dark',
               'active:scale-95',
               'flex justify-center items-center shrink-0 duration-300',
             ])}
             onClick={() => handleToggleFav(product)}
           >
             {isFavourite(product._id) ? (
-              <FaHeart className="text-secondary-accent" />
+              <FaHeart className="text-secondary-accent-light dark:text-secondary-accent-dark" />
             ) : (
-              <FiHeart />
+              <FiHeart className="dark:text-white-light" />
             )}
           </button>
         </div>

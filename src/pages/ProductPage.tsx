@@ -106,7 +106,7 @@ const ProductPage = () => {
                 Back
               </span>
             </NavLink>
-            <h1 className="font-extrabold text-4xl text-primary leading-tight mb-6 col-span-4 tablet:col-span-12 desktop:col-span-24 col-start-1">
+            <h1 className="font-extrabold text-4xl text-primary-light dark:text-primary-dark leading-tight mb-6 col-span-4 tablet:col-span-12 desktop:col-span-24 col-start-1">
               {data?.name}
             </h1>
             <section className="col-span-4 gap-12 tablet:col-span-12 desktop:col-span-24 grid grid-cols-4 desktop:grid-cols-24 tablet:grid-cols-12 ">
@@ -124,7 +124,7 @@ const ProductPage = () => {
                       key={index}
                       className={`h-full object-contain border-[2px] rounded ${
                         index === currentImage
-                          ? 'border-primary'
+                          ? 'border-primary-light dark:border-primary-dark'
                           : 'border-secondary'
                       } cursor-pointer`}
                       onClick={() => handleChangeImage(index)}
@@ -155,7 +155,9 @@ const ProductPage = () => {
                 <Line width="col-span-4 w-auto tablet:col-start-7 tablet:col-span-5 tablet:w-auto desktop:col-start-12 desktop:col-span-7 desktop:w-auto mt-6" />
 
                 <div className="mt-6 col-span-4 tablet:col-start-7 tablet:col-span-5 desktop:col-start-12 desktop:col-span-7">
-                  <p className="text-xs text-secondary mb-2">Select capacity</p>
+                  <p className="text-xs text-secondary-light dark:text-secondary-dark mb-2">
+                    Select capacity
+                  </p>
 
                   {data?.capacityAvailable &&
                     data?.capacityAvailable.map((capacity) => (
@@ -168,10 +170,10 @@ const ProductPage = () => {
                 </div>
 
                 <div className="flex mt-8">
-                  <h2 className="mr-2 before:content-['$'] font-extrabold text-4xl text-primary">
+                  <h2 className="mr-2 before:content-['$'] font-extrabold text-4xl text-primary-light dark:text-primary-dark">
                     {data?.priceDiscount}
                   </h2>
-                  <h3 className="text-2xl before:content-['$'] text-secondary font-medium ml-2 flex items-center line-through mr-2">
+                  <h3 className="text-2xl before:content-['$'] text-secondary-light dark:text-secondary-dark font-medium ml-2 flex items-center line-through mr-2">
                     {data?.priceRegular}
                   </h3>
                 </div>
@@ -187,12 +189,12 @@ const ProductPage = () => {
                   <div>
                     <button
                       className="w-12 h-12 rounded-full border border-icons
-                      hover:border-primary hover:scale-110
+                      hover:border-primary-light dark:hover:border-primary-dark hover:scale-110
                       flex justify-center items-center shrink-0 duration-300"
                       onClick={handleToggleFav}
                     >
                       {isFavourite ? (
-                        <FaHeart className="text-secondary-accent" />
+                        <FaHeart className="text-secondary-accent-light dark:text-secondary-accent-dark" />
                       ) : (
                         <FiHeart />
                       )}
@@ -211,7 +213,7 @@ const ProductPage = () => {
                         <p className="text-left text-xs font-semibold text-secondary">
                           {characteristic}
                         </p>
-                        <p className="text-right text-xs font-bold text-primary">
+                        <p className="text-right text-xs font-bold text-primary-light dark:text-primary-dark">
                           {value}
                         </p>
                       </div>
@@ -224,17 +226,17 @@ const ProductPage = () => {
               {data && (
                 <>
                   <div className="desktop:w-1/2">
-                    <h2 className="mt-16 font-extrabold text-2xl text-primary">
+                    <h2 className="mt-16 font-extrabold text-2xl text-primary-light dark:text-primary-dark">
                       About
                     </h2>
                     <Line width="col-span-4 w-auto tablet:col-start-7 tablet:col-span-5 tablet:w-auto desktop:col-start-12 desktop:col-span-7 desktop:w-[320px] mt-6" />
 
                     {data.description.map((descItem: IDescription) => (
                       <div key={descItem._id}>
-                        <h3 className="mt-8 font-bold text-primary text-xl">
+                        <h3 className="mt-8 font-bold text-primary-light dark:text-primary-dark text-xl">
                           {descItem.title}
                         </h3>
-                        <p className="mt-4 text-secondary font-medium text-sm">
+                        <p className="mt-4 text-secondary-light dark:text-secondary-dark font-medium text-sm">
                           {descItem.text.map((textItem) => (
                             <span key={textItem}>{textItem}</span>
                           ))}
@@ -246,7 +248,7 @@ const ProductPage = () => {
               )}
 
               <div className="desktop:w-1/2">
-                <h2 className="mt-16 font-extrabold text-2xl text-primary">
+                <h2 className="mt-16 font-extrabold text-2xl text-primary-light dark:text-primary-dark">
                   Tech specs
                 </h2>
 
@@ -259,10 +261,10 @@ const ProductPage = () => {
                         key={characteristic}
                         className="flex justify-between mt-2"
                       >
-                        <p className="text-left text-secondary font-medium text-sm">
+                        <p className="text-left text-secondary-light dark:text-secondary-dark font-medium text-sm">
                           {characteristic}
                         </p>
-                        <p className="text-right text-primary font-semibold text-sm">
+                        <p className="text-right text-primary-light dark:text-primary-dark font-semibold text-sm">
                           {value}
                         </p>
                       </div>

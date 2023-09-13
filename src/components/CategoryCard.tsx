@@ -9,6 +9,10 @@ type Props = {
 const CategoryCard = ({ type, image }: Props) => {
   const normalizedType = type.toLowerCase();
   const { data } = useGetProductsByCategoryQuery(normalizedType);
+  const modelCounter =
+    data?.totalProducts === 1
+      ? `${data?.totalProducts} model`
+      : `${data?.totalProducts} models`;
 
   return (
     <NavLink
@@ -20,11 +24,11 @@ const CategoryCard = ({ type, image }: Props) => {
         alt="phone-category"
         className="w-full h-4/5 border-0 box-border rounded-lg"
       />
-      <p className="font-mont font-bold text-[22px] mt-[24px] text-primary">
+      <p className="font-mont font-bold text-[22px] mt-[24px] text-primary-light dark:text-primary-dark">
         {type}
       </p>
-      <p className="font-mont font-semibold text-[14px] text-secondary">
-        {data?.totalProducts} models
+      <p className="font-mont font-semibold text-[14px] text-secondary dark:text-secondary-dark">
+        {modelCounter}
       </p>
     </NavLink>
   );

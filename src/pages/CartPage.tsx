@@ -40,9 +40,8 @@ const CartPage = () => {
         )}
       >
         <BreadCrumb />
-
         <div className="mb-8">
-          <h1 className="mb-2 text-[32px] font-extrabold leading-[41px] tracking-[0.32px] tablet:mt-10 tablet:text-5xl">
+          <h1 className="mb-2 text-[32px] font-extrabold leading-[41px] tracking-[0.32px] tablet:mt-10 tablet:text-5xl dark:text-primary-dark">
             Cart
           </h1>
         </div>
@@ -55,14 +54,14 @@ const CartPage = () => {
               ))}
             </div>
 
-            <div className="box-border flex flex-col mx-auto desktop:mx-0 items-center rounded-lg p-6 w-full border border-elements bg-hover-bg desktop:w-[368px]">
-              <h3 className="select-none text-center text-primary text-[32px] font-extrabold leading-[41px]">
+            <div className="box-border flex flex-col mx-auto desktop:mx-0 items-center rounded-lg p-6 w-full border border-elements-light dark:border-elements-dark bg-hover-bg-light dark:bg-hover-bg-dark desktop:w-[368px]">
+              <h3 className="select-none text-center text-primary-light dark:text-primary-dark text-[32px] font-extrabold leading-[41px]">
                 {`${totalCost}$`}
               </h3>
-              <div className="text-center text-secondary text-sm font-semibold leading-[21px] mb-4">
+              <div className="text-center text-secondary-light dark:text-secondary-dark text-sm font-semibold leading-[21px] mb-4">
                 {`Total for ${totalItemsCount} items`}
               </div>
-              <span className="w-full h-[0px] border text-elements mb-4"></span>
+              <span className="w-full h-[0px] border border-elements-light dark:border-elements-dark mb-4"></span>
               <Button onClick={handlePaymentSuccess}>Checkout</Button>
             </div>
           </div>

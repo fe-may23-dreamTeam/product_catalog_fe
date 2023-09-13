@@ -10,7 +10,7 @@ const App = () => {
     <div>
       <Header />
 
-      <div className="min-h-[74vh] bg-hover-bg">
+      <div className="min-h-[82vh] bg-hover-bg-light dark:bg-hover-bg-dark">
         <Outlet />
       </div>
 

@@ -8,7 +8,7 @@ interface LineProps {
 const Line: React.FC<LineProps> = ({ width, height = '1px' }) => {
   return (
     <span
-      className={`bg-elements inline-block ${width}`}
+      className={`bg-elements-light dark:bg-elements-dark inline-block ${width}`}
       style={{
         height,
       }}

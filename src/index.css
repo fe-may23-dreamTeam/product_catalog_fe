@@ -68,6 +68,10 @@
   border-radius: 0 !important;
 }
 
+.dark .swiper-pagination-bullet-active {
+  background-color: #f1f2f9 !important;
+}
+
 @media (width >= 640px) {
   .swiper-wrapper {
     height: 300px !important;
@@ -98,6 +102,11 @@
     cursor: default !important;
   }
 
+  .dark .swiper-button-next,
+  .dark .swiper-button-prev {
+    background: #0f1121 !important;
+  }
+
   .swiper-button-prev::after,
   .swiper-button-next::after {
     display: flex !important;
@@ -111,6 +120,11 @@
     border: 1px solid #89939a !important;
     cursor: pointer !important;
   }
+}
+
+.dark .swiper-button-prev::after,
+.dark .swiper-button-next::after {
+  color: #fafbfc !important;
 }
 
 @media (width >= 1200px) {
