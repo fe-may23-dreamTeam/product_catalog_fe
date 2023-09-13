@@ -38,8 +38,8 @@ const CartPage = () => {
           'container mx-auto flex flex-col p-4 pb-6 tablet:px-6 desktop:w-[1200px]',
           { 'blur pointer-events-none': showModal },
         )}
-      >    
-        <BreadCrumb />    
+      >
+        <BreadCrumb />
         <div className="mb-8">
           <h1 className="mb-2 text-[32px] font-extrabold leading-[41px] tracking-[0.32px] tablet:mt-10 tablet:text-5xl dark:text-primary-dark">
             Cart
