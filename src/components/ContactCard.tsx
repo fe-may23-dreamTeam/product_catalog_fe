@@ -22,15 +22,15 @@ const ContactCard: React.FC<Props> = ({ contact }) => {
       className="card box-border p-8 relative
         flex flex-col gap-4
         border border-secondary rounded-lg
-        min-w-[272px]
+        min-w-[272px] max-w-[335px]
         bg-white text-primary
         hover:shadow-card"
     >
-      <a href={linkedIn} target="_blank">
+      <a href={linkedIn} target="_blank" className="self-center">
         <img
           alt={devName}
           src={require(`../assets/images/team/${image}`)}
-          className="w-[210px] h-[210px] object-cover rounded-full self-center"
+          className="w-[210px] h-[210px] object-cover rounded-full"
         />
       </a>
 
