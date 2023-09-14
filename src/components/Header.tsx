@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FiHeart, FiMenu, FiShoppingBag, FiX } from 'react-icons/fi';
 import { NavLink, useLocation } from 'react-router-dom';
 import logo from '../assets/images/logo.svg';
@@ -7,13 +8,7 @@ import BurgerMenu from '../pages/BurgerMenu';
 import { useAppSelector } from '../redux';
 import { ItemCounter } from './ItemCounter';
 import ThemeToggle from './ThemeToggle';
-
-const navLinks = [
-  { name: 'Home', path: '/' },
-  { name: 'Phones', path: 'phones' },
-  { name: 'Tablets', path: 'tablets' },
-  { name: 'Accessories', path: 'accessories' },
-];
+import LanguageSelector from './LanguageSelector';
 
 export const Header: React.FC = () => {
   const { favouriteItems } = useAppSelector((state) => state.favourites);
@@ -21,6 +16,14 @@ export const Header: React.FC = () => {
   const { pathname } = useLocation();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const iconColor = classNames('dark:text-primary-dark');
+  const { t } = useTranslation();
+
+  const navLinks = [
+    { name: t('home'), path: '/' },
+    { name: t('phones'), path: 'phones' },
+    { name: t('tablets'), path: 'tablets' },
+    { name: t('accessories'), path: 'accessories' },
+  ];
 
   const handleOpenMenu = () => setMenuIsOpen((prev) => !prev);
 
@@ -58,6 +61,7 @@ export const Header: React.FC = () => {
       </div>
 
       <div className="flex items-center justify-end">
+        <LanguageSelector/>
         <ThemeToggle />
         <div className="border-l border-elements-light dark:border-elements-dark box-border">
           <NavLink

@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useGetProductsByCategoryQuery } from '../redux/api/productApi';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   type: string;
@@ -7,12 +8,13 @@ type Props = {
 };
 
 const CategoryCard = ({ type, image }: Props) => {
+  const { t } = useTranslation();
   const normalizedType = type.toLowerCase();
   const { data } = useGetProductsByCategoryQuery(normalizedType);
   const modelCounter =
     data?.totalProducts === 1
-      ? `${data?.totalProducts} model`
-      : `${data?.totalProducts} models`;
+      ? `${data?.totalProducts} ${t('model')}`
+      : `${data?.totalProducts} ${t('models')}`;
 
   return (
     <NavLink
@@ -25,7 +27,7 @@ const CategoryCard = ({ type, image }: Props) => {
         className="w-full h-4/5 border-0 box-border rounded-lg"
       />
       <p className="font-mont font-bold text-[22px] mt-[24px] text-primary-light dark:text-primary-dark">
-        {type}
+        {t(normalizedType)}
       </p>
       <p className="font-mont font-semibold text-[14px] text-secondary dark:text-secondary-dark">
         {modelCounter}

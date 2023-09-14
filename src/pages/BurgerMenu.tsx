@@ -2,10 +2,12 @@ import { FiHeart, FiShoppingBag } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
 import { ItemCounter } from '../components/ItemCounter';
 import { useAppSelector } from '../redux';
+import { useTranslation } from 'react-i18next';
 
 const BurgerMenu = () => {
   const { favouriteItems } = useAppSelector((state) => state.favourites);
   const { items } = useAppSelector((state) => state.cart);
+  const { t } = useTranslation();
 
   return (
     <div className="fixed inset-0 top-12 z-50 bg-white-light dark:bg-white-dark -translate-x-full peer-checked/nav:-translate-x-0 duration-300 flex justify-between flex-col ">
@@ -14,25 +16,25 @@ const BurgerMenu = () => {
           to="/"
           className="block py-2 mt-4 leading-tight text-center text-secondary-light dark:text-secondary-dark text-xs uppercase tracking-widest transition-colors hover:text-primary-light dark:hover:text-primary-dark"
         >
-          <p className="whitespace-nowrap">home</p>
+          <p className="whitespace-nowrap">{t('home')}</p>
         </NavLink>
         <NavLink
           to="/phones"
           className="block py-2 mt-4 leading-tight text-center text-secondary-light dark:text-secondary-dark text-xs uppercase tracking-widest transition-colors hover:text-primary-light dark:hover:text-primary-dark"
         >
-          <p className="whitespace-nowrap">phones</p>
+          <p className="whitespace-nowrap">{t('phones')}</p>
         </NavLink>
         <NavLink
           to="/tablets"
           className="block py-2 mt-4 leading-tight text-center text-secondary-light dark:text-secondary-dark text-xs uppercase tracking-widest transition-colors hover:text-primary-light dark:hover:text-primary-dark"
         >
-          <p className="whitespace-nowrap">tablets</p>
+          <p className="whitespace-nowrap">{t('tablets')}</p>
         </NavLink>
         <NavLink
           to="/accessories"
           className="block py-2 mt-4 leading-tight text-center text-secondary-light dark:text-secondary-dark text-xs uppercase tracking-widest transition-colors hover:text-primary-light dark:hover:text-primary-dark"
         >
-          <p className="whitespace-nowrap">accessories</p>
+          <p className="whitespace-nowrap">{t('accessories')}</p>
         </NavLink>
       </main>
 

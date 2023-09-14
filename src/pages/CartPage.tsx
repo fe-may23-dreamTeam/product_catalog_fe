@@ -1,21 +1,33 @@
 import classNames from 'classnames';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
+import BreadCrumb from '../components/BreadCrumb';
 import { Button } from '../components/Button';
 import CartItem from '../components/CartItem';
 import { CheckoutModal } from '../components/CheckoutModal';
 import { clearCart, useAppDispatch, useAppSelector } from '../redux';
 import { getTotalProductsCost } from '../utils/getTotalCost';
 import { getTotalItemsCount } from '../utils/getTotalItemsCount';
-import BreadCrumb from '../components/BreadCrumb';
 
 const CartPage = () => {
   const { items: cartItems } = useAppSelector((state) => state.cart);
   const [showModal, setShowModal] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   const totalCost = getTotalProductsCost(cartItems);
   const totalItemsCount = getTotalItemsCount(cartItems);
+
+  let itemCounter;
+
+  if (totalItemsCount === 1) {
+    itemCounter = `${t('totalFor')} ${totalItemsCount} ${t('item')}`;
+  } else if (totalItemsCount >= 2 && totalItemsCount <= 4) {
+    itemCounter = `${t('totalFor')} ${totalItemsCount} ${t('itemu')}`;
+  } else {
+    itemCounter = `${t('totalFor')} ${totalItemsCount} ${t('items')}`;
+  }
 
   const handlePaymentSuccess = () => {
     localStorage.removeItem('cart-items');
@@ -42,7 +54,7 @@ const CartPage = () => {
         <BreadCrumb />
         <div className="mb-8">
           <h1 className="mb-2 text-[32px] font-extrabold leading-[41px] tracking-[0.32px] tablet:mt-10 tablet:text-5xl dark:text-primary-dark">
-            Cart
+            {t('cart')}
           </h1>
         </div>
 
@@ -59,17 +71,17 @@ const CartPage = () => {
                 {`${totalCost}$`}
               </h3>
               <div className="text-center text-secondary-light dark:text-secondary-dark text-sm font-semibold leading-[21px] mb-4">
-                {`Total for ${totalItemsCount} items`}
+                {itemCounter}
               </div>
               <span className="w-full h-[0px] border border-elements-light dark:border-elements-dark mb-4"></span>
-              <Button onClick={handlePaymentSuccess}>Checkout</Button>
+              <Button onClick={handlePaymentSuccess}>{t('checkout')}</Button>
             </div>
           </div>
         ) : (
           <>
-            <h3 className="mb-2">Your cart is empty</h3>
+            <h3 className="mb-2">{t('emptyCart')}</h3>
             <NavLink to="/phones" className="cursor-pointer font-bold w-fit">
-              Start shopping now!
+              {t('startShopping')}
             </NavLink>
           </>
         )}

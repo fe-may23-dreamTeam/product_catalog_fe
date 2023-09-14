@@ -1,18 +1,19 @@
 import classNames from 'classnames';
 import { useState } from 'react';
-import { FiHeart } from 'react-icons/fi';
+import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 import { FaHeart } from 'react-icons/fa';
+import { FiHeart } from 'react-icons/fi';
+import { NavLink } from 'react-router-dom';
 import {
   addItemToCart,
-  useAppDispatch,
   toggleFavourite,
+  useAppDispatch,
   useAppSelector,
 } from '../redux';
+import { IProduct } from '../types/Product';
 import { Button } from './Button';
 import { ProductProperties } from './ProductProperties';
-import { IProduct } from '../types/Product';
-import toast from 'react-hot-toast';
-import { NavLink } from 'react-router-dom';
 
 type Props = {
   product: IProduct;
@@ -24,6 +25,7 @@ export const Card = ({ product, isFetching }: Props) => {
   const { items } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
   const [favorite, setFavorite] = useState(false);
+  const { t } = useTranslation();
 
   const isFavourite = (id: string) =>
     favouriteItems.some((item) => item._id === id);
@@ -52,7 +54,7 @@ export const Card = ({ product, isFetching }: Props) => {
 
   const handleAddToCart = () => {
     if (items.some(({ id }) => id === product._id)) {
-      toast.error('This product is already in your cart');
+      toast.error(t('toTheCartError'));
 
       return;
     }
@@ -69,7 +71,7 @@ export const Card = ({ product, isFetching }: Props) => {
     };
 
     dispatch(addItemToCart(itemData));
-    toast.success('Successfully added to your cart!');
+    toast.success(t('toTheCart'));
   };
 
   return (
@@ -116,7 +118,7 @@ export const Card = ({ product, isFetching }: Props) => {
         <ProductProperties properties={productProps} />
         <div className="flex justify-between gap-x-[8px]">
           <Button onClick={handleAddToCart} outline={!!isAddedToCart}>
-            {isAddedToCart ? 'Added to cart' : 'Add to cart'}
+            {isAddedToCart ? t('addedToCart') : t('addToCart')}
           </Button>
           <button
             className={classNames([
