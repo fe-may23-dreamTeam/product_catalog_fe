@@ -30,7 +30,7 @@ const NotFoundPage = () => {
             href="/"
             className="text-sm font-semibold text-primary-light dark:text-primary-dark"
           >
-            {('contactSupport')} <span aria-hidden="true">&rarr;</span>
+            {'contactSupport'} <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </div>

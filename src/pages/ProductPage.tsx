@@ -142,7 +142,9 @@ const ProductPage = () => {
               </div>
 
               <div className="col-span-4 tablet:col-span-5 desktop:col-span-12">
-                <p className="text-xs text-secondary-light dark:text-secondary-dark">{t('availableColors')}</p>
+                <p className="text-xs text-secondary-light dark:text-secondary-dark">
+                  {t('availableColors')}
+                </p>
 
                 <div className="flex space-x-2 mt-2">
                   {data?.colorsAvailable.map((color) => (

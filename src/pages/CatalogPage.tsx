@@ -64,7 +64,8 @@ const CatalogPage: React.FC = () => {
 
   const total = products ? products.totalProducts : 0;
 
-  const modelCounter = total === 1 ? `${total} ${t('models')}` : `${total} ${t('models')}`;
+  const modelCounter =
+    total === 1 ? `${total} ${t('models')}` : `${total} ${t('models')}`;
 
   const handlePageNumber = (pageNo: number) => {
     searchParams.set('page', pageNo.toString());

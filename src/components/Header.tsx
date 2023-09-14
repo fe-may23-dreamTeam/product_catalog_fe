@@ -61,7 +61,7 @@ export const Header: React.FC = () => {
       </div>
 
       <div className="flex items-center justify-end">
-        <LanguageSelector/>
+        <LanguageSelector />
         <ThemeToggle />
         <div className="border-l border-elements-light dark:border-elements-dark box-border">
           <NavLink
