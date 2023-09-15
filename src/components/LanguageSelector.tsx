@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { FiGlobe } from 'react-icons/fi';
 
 const LanguageSelector = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -15,16 +16,16 @@ const LanguageSelector = () => {
   };
 
   return (
-    <div className="relative pr-4">
+    <div className="relative hover:shadow-lg dark:hover:shadow-custom-dark duration-200 p-4 tablet:py-6 flex border-x border-elements-light dark:border-elements-dark">
       <button
         type="button"
-        className="text-sm font-semibold text-gray-900 dark:text-white-light"
+        className="text-sm font-semibold text-gray-900 dark:text-white-light items-center justify-center h-4 w-4"
         onClick={toggleMenu}
       >
-        {t('language')}
+        <FiGlobe className='h-4 w-4'/>
       </button>
       {isMenuOpen && (
-        <div className="absolute mt-3 tablet:mt-5 flex justify-center">
+        <div className="absolute left-0 mt-9 tablet:mt-11 flex justify-center mb-2">
           <div className="flex border rounded-lg shadow-md desktop:flex-col flex-row">
             <button
               onClick={() => changeLanguage('en')}
