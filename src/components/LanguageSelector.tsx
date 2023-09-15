@@ -16,11 +16,13 @@ const LanguageSelector = () => {
   };
 
   return (
-    <div className="relative hover:shadow-lg dark:hover:shadow-custom-dark duration-200 p-4 tablet:py-6 flex border-x border-elements-light dark:border-elements-dark">
+    <div
+    onClick={toggleMenu}
+    className="cursor-pointer relative hover:shadow-lg dark:hover:shadow-custom-dark duration-200 p-4 tablet:p-6 flex border-x border-elements-light dark:border-elements-dark"
+    >
       <button
         type="button"
         className="text-sm font-semibold text-gray-900 dark:text-white-light items-center justify-center h-4 w-4"
-        onClick={toggleMenu}
       >
         <FiGlobe className="h-4 w-4" />
       </button>
