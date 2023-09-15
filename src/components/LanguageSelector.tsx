@@ -22,7 +22,7 @@ const LanguageSelector = () => {
         className="text-sm font-semibold text-gray-900 dark:text-white-light items-center justify-center h-4 w-4"
         onClick={toggleMenu}
       >
-        <FiGlobe className='h-4 w-4'/>
+        <FiGlobe className="h-4 w-4" />
       </button>
       {isMenuOpen && (
         <div className="absolute left-0 mt-9 tablet:mt-11 flex justify-center mb-2">
