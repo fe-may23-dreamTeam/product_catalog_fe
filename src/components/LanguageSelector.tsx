@@ -17,8 +17,8 @@ const LanguageSelector = () => {
 
   return (
     <div
-    onClick={toggleMenu}
-    className="cursor-pointer relative hover:shadow-lg dark:hover:shadow-custom-dark duration-200 p-4 tablet:p-6 flex border-x border-elements-light dark:border-elements-dark"
+      onClick={toggleMenu}
+      className="cursor-pointer relative hover:shadow-lg dark:hover:shadow-custom-dark duration-200 p-4 tablet:p-6 flex border-x border-elements-light dark:border-elements-dark"
     >
       <button
         type="button"
