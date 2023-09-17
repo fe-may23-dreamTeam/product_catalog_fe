@@ -21,10 +21,11 @@ const ContactCard: React.FC<Props> = ({ contact }) => {
     <article
       className="card box-border p-8 relative
         flex flex-col gap-4
-        border border-secondary rounded-lg
+        border rounded-lg
         min-w-[272px] max-w-[335px]
-        bg-white text-primary
-        hover:shadow-card"
+        bg-white-light text-primary-light dark:text-primary-dark
+        dark:bg-gray-surface dark:border-none
+        hover:shadow-card dark:hover:shadow-card-dark"
     >
       <a href={linkedIn} target="_blank" className="self-center">
         <img
@@ -36,11 +37,13 @@ const ContactCard: React.FC<Props> = ({ contact }) => {
 
       <h2 className="font-bold text-xl">{devName}</h2>
 
-      <ul className="text-secondary">
+      <ul className="text-secondary-light dark:text-secondary-dark">
         <li>
           <a
             href={linkedIn}
-            className="flex gap-2 items-center hover:text-secondary-accent"
+            className="flex gap-2 items-center
+              hover:text-secondary-accent-light
+              dark:hover:text-secondary-accent-dark"
             target="_blank"
           >
             <FiLinkedin />
@@ -50,7 +53,9 @@ const ContactCard: React.FC<Props> = ({ contact }) => {
         <li>
           <a
             href={github}
-            className="flex gap-2 items-center hover:text-secondary-accent"
+            className="flex gap-2 items-center
+              hover:text-secondary-accent-light
+              dark:hover:text-secondary-accent-dark"
             target="_blank"
           >
             <FiGithub />
@@ -60,7 +65,9 @@ const ContactCard: React.FC<Props> = ({ contact }) => {
         <li>
           <a
             href={`mailto:${email}`}
-            className="flex gap-2 items-center hover:text-secondary-accent"
+            className="flex gap-2 items-center
+              hover:text-secondary-accent-light
+              dark:hover:text-secondary-accent-dark"
           >
             <FiMail />
             Email
@@ -69,7 +76,9 @@ const ContactCard: React.FC<Props> = ({ contact }) => {
         <li>
           <a
             href={telegramLink}
-            className="flex gap-2 items-center hover:text-secondary-accent"
+            className="flex gap-2 items-center
+              hover:text-secondary-accent-light
+              dark:hover:text-secondary-accent-dark"
             target="_blank"
           >
             <FiSend />
