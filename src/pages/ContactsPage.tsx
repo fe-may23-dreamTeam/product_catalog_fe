@@ -6,6 +6,7 @@ const ContactsPage = () => {
   return (
     <main
       className="container mx-auto flex flex-col items-center
+        text-primary-light dark:text-primary-dark
         tablet:items-start p-4 pb-6 tablet:px-6 desktop:w-[1200px]"
     >
       <BreadCrumb />
