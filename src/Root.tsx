@@ -5,15 +5,16 @@ import {
   Route,
   Routes,
 } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import App from './App';
 import CatalogPage from './pages/CatalogPage';
-import NotFound from './pages/NotFound';
-import { ProductPage } from './pages/ProductPage';
+import NotFoundPage from './pages/NotFoundPage';
+import ProductPage from './pages/ProductPage';
 import ScrollToTop from './components/ScrollToTop';
-import { FavouritesPage } from './pages/FavouritesPage';
-import { CartPage } from './pages/CartPage';
+import FavouritesPage from './pages/FavouritesPage';
+import CartPage from './pages/CartPage';
 import HomePage from './pages/HomePage';
-import { Toaster } from 'react-hot-toast';
+import ContactsPage from './pages/ContactsPage';
 
 export const Root = () => (
   <BrowserRouter>
@@ -37,7 +38,8 @@ export const Root = () => (
         </Route>
         <Route path="favourites" element={<FavouritesPage />} />
         <Route path="cart" element={<CartPage />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="contacts" element={<ContactsPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   </BrowserRouter>

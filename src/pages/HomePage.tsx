@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -10,17 +11,18 @@ const HomePage = () => {
   const phonesImage = require('../assets/images/phones-category.png');
   const tabletsImage = require('../assets/images/tablets-category.png');
   const accessoriesoneImage = require('../assets/images/accessories-category.png');
+  const { t } = useTranslation();
 
   return (
     <main>
       <h1
-        className="py-[24px] mx-[16px] max-w-[288px] font-mont font-extrabold text-[32px] line-clamp-2
+        className="py-[28px] mx-[16px] font-mont font-extrabold text-[28px] line-clamp-2
     tablet:line-clamp-none tablet:max-w-full tablet:text-[48px] tablet:py-[32px] tablet:mx-[24px]
-    desktop:max-w-[1136px] desktop:py-[56px] desktop:mx-[32px]"
+    desktop:max-w-[1136px] desktop:py-[56px] desktop:mx-[32px] dark:text-primary-dark"
       >
-        Welcome to Nice Gadgets store!
+        {t('title')}
       </h1>
-      <div className="w-full tablet:w-4/5 mx-auto">
+      <div className="select-none w-full tablet:w-4/5 mx-auto">
         <Swiper
           modules={[Pagination, Navigation]}
           pagination={true}
@@ -59,11 +61,11 @@ const HomePage = () => {
         </Swiper>
       </div>
 
-      <Carousel title={'Brand new models'} type={'new'} />
+      <Carousel title={t('newModels')} type={'new'} />
 
-      <section className="mt-[57px] tablet:mt-[64px] desktop:mt-[80px] desktop:max-w-[1136px] desktop:mx-auto">
-        <h2 className="font-mont font-extrabold text-[22px] tablet:text-[32px] text-primary mx-[16px] tablet:mx-[24px] desktop:mx-[32px]">
-          Shop by category
+      <section className="desktop:max-w-[1136px] desktop:mx-auto">
+        <h2 className="font-mont font-extrabold text-[22px] tablet:text-[32px] text-primary-light dark:text-primary-dark mx-[16px] tablet:mx-[24px] desktop:mx-[32px]">
+          {t('shopByCategory')}
         </h2>
         <div className="grid grid-cols-4 gap-8 tablet:grid-cols-12 tablet:gap-4 tablet:mx-[24px] desktop:mx-[32px] desktop:grid-cols-24 mx-[16px] mt-[24px]">
           <CategoryCard type={'Phones'} image={phonesImage} />
@@ -71,7 +73,7 @@ const HomePage = () => {
           <CategoryCard type={'Accessories'} image={accessoriesoneImage} />
         </div>
       </section>
-      <Carousel title={'Hot prices'} type={'discount'} />
+      <Carousel title={t('hotPrices')} type={'discount'} />
     </main>
   );
 };

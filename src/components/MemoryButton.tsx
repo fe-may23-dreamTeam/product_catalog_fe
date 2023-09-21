@@ -29,9 +29,10 @@ const MemoryButton: React.FC<MemoryButtonProps> = ({ capacity, isActive }) => {
   return (
     <button
       className={classNames(
-        'border-icons border rounded-md text-primary mr-2 p-2',
+        'border-icons-light dark:border-icons-dark border rounded-md text-primary-light dark:text-primary-dark mr-2 p-2',
         {
-          'bg-primary text-white': isActive,
+          'bg-primary-light dark:bg-primary-dark text-white-light dark:text-white-dark':
+            isActive,
         },
       )}
       onClick={handleChangeCapacity}

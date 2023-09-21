@@ -1,8 +1,10 @@
+import classNames from 'classnames';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 import { FaHeart } from 'react-icons/fa';
 import { FiChevronLeft, FiHeart } from 'react-icons/fi';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useLocation, useParams } from 'react-router-dom';
 import BreadCrumb from '../components/BreadCrumb';
 import { Button } from '../components/Button';
 import { Carousel } from '../components/Carousel';
@@ -20,26 +22,22 @@ import {
 import { useGetProductByIdQuery } from '../redux/api/productApi';
 import { IDescription } from '../types/Description';
 
-export const ProductPage = () => {
+const ProductPage = () => {
+  const { productId } = useParams();
+  const { pathname } = useLocation();
   const [favorite, setFavorite] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
-
   const { favouriteItems } = useAppSelector((state) => state.favourites);
-  const { productId } = useParams();
   const { items } = useAppSelector((state) => state.cart);
-  const { data, isError, isFetching } = useGetProductByIdQuery(productId!);
   const dispatch = useAppDispatch();
-  const links = [
-    {
-      label: 'Phone',
-      url: '/phones',
-    },
-    {
-      label: data?.name!,
-      url: `/phones/${data?._id!}`,
-    },
-  ];
+  const { data, isError, isLoading, isFetching } = useGetProductByIdQuery(
+    productId!,
+  );
+  const { t } = useTranslation();
 
+  const route = pathname.split('/')[1];
+  const isFavourite = favouriteItems.some((item) => item._id === data?._id);
+  const isAddedToCart = items.some((item) => item.id === productId);
   const characteristicsData = {
     Screen: data?.screen,
     Resolution: data?.resolution,
@@ -50,15 +48,27 @@ export const ProductPage = () => {
     Zoom: data?.zoom,
     Cell: data?.cell?.join(', '),
   };
+  const itemData = {
+    id: data?._id,
+    name: data?.name,
+    price: data?.priceDiscount ? data?.priceDiscount : data?.priceRegular,
+    image: data?.images[0],
+    count: 1,
+  };
+  const links = [
+    {
+      label: route[0].toUpperCase() + route.slice(1),
+      url: `/${route}`,
+    },
+    {
+      label: data?.name!,
+      url: `/phones/${data?._id!}`,
+    },
+  ];
 
   const handleChangeImage = (index: number) => {
     setCurrentImage(index);
   };
-
-  const isFavourite = (id: string) =>
-    favouriteItems.some((item) => item._id === id);
-
-  const isAddedToCart = items.some((item) => item.id === productId);
 
   const handleToggleFav = () => {
     dispatch(toggleFavourite(data));
@@ -67,28 +77,27 @@ export const ProductPage = () => {
 
   const handleAddToCart = () => {
     if (items.some(({ id }) => id === data?._id)) {
-      toast.error('This product is already in your cart');
+      toast.error(t('toTheCartError'));
 
       return;
     }
 
-    const itemData = {
-      id: data?._id,
-      name: data?.name,
-      price: data?.priceDiscount ? data?.priceDiscount : data?.priceRegular,
-      image: data?.images[0],
-      count: 1,
-    };
-
     dispatch(addItemToCart(itemData));
-    toast.success('Successfully added to your cart!');
+    toast.success(t('toTheCart'));
   };
 
   return (
     <>
-      <main className="desktop:container mx-2 grid grid-cols-4 desktop:grid-cols-24 tablet:grid-cols-12 desktop:mx-auto gap-4 relative">
+      <main
+        className={classNames(
+          'desktop:container mx-2 grid grid-cols-4 desktop:grid-cols-24 tablet:grid-cols-12 desktop:mx-auto gap-4 relative',
+          {
+            'opacity-75 pointer-events-none': isFetching,
+          },
+        )}
+      >
         <ErrorMessage isError={isError}>
-          <Loader isLoading={isFetching}>
+          <Loader isLoading={isLoading}>
             <BreadCrumb links={links} />
             <NavLink
               to=".."
@@ -96,10 +105,10 @@ export const ProductPage = () => {
             >
               <span>
                 <FiChevronLeft className="inline mr-1" />
-                Back
+                {t('back')}
               </span>
             </NavLink>
-            <h1 className="font-extrabold text-4xl text-primary leading-tight mb-6 col-span-4 tablet:col-span-12 desktop:col-span-24 col-start-1">
+            <h1 className="font-extrabold text-4xl text-primary-light dark:text-primary-dark leading-tight mb-6 col-span-4 tablet:col-span-12 desktop:col-span-24 col-start-1">
               {data?.name}
             </h1>
             <section className="col-span-4 gap-12 tablet:col-span-12 desktop:col-span-24 grid grid-cols-4 desktop:grid-cols-24 tablet:grid-cols-12 ">
@@ -117,7 +126,7 @@ export const ProductPage = () => {
                       key={index}
                       className={`h-full object-contain border-[2px] rounded ${
                         index === currentImage
-                          ? 'border-primary'
+                          ? 'border-primary-light dark:border-primary-dark'
                           : 'border-secondary'
                       } cursor-pointer`}
                       onClick={() => handleChangeImage(index)}
@@ -133,7 +142,9 @@ export const ProductPage = () => {
               </div>
 
               <div className="col-span-4 tablet:col-span-5 desktop:col-span-12">
-                <p className="text-xs text-secondary">Available colors</p>
+                <p className="text-xs text-secondary-light dark:text-secondary-dark">
+                  {t('availableColors')}
+                </p>
 
                 <div className="flex space-x-2 mt-2">
                   {data?.colorsAvailable.map((color) => (
@@ -148,7 +159,9 @@ export const ProductPage = () => {
                 <Line width="col-span-4 w-auto tablet:col-start-7 tablet:col-span-5 tablet:w-auto desktop:col-start-12 desktop:col-span-7 desktop:w-auto mt-6" />
 
                 <div className="mt-6 col-span-4 tablet:col-start-7 tablet:col-span-5 desktop:col-start-12 desktop:col-span-7">
-                  <p className="text-xs text-secondary mb-2">Select capacity</p>
+                  <p className="text-xs text-secondary-light dark:text-secondary-dark mb-2">
+                    {t('selectCapacity')}
+                  </p>
 
                   {data?.capacityAvailable &&
                     data?.capacityAvailable.map((capacity) => (
@@ -161,10 +174,10 @@ export const ProductPage = () => {
                 </div>
 
                 <div className="flex mt-8">
-                  <h2 className="mr-2 before:content-['$'] font-extrabold text-4xl text-primary">
+                  <h2 className="mr-2 before:content-['$'] font-extrabold text-4xl text-primary-light dark:text-primary-dark">
                     {data?.priceDiscount}
                   </h2>
-                  <h3 className="text-2xl before:content-['$'] text-secondary font-medium ml-2 flex items-center line-through mr-2">
+                  <h3 className="text-2xl before:content-['$'] text-secondary-light dark:text-secondary-dark font-medium ml-2 flex items-center line-through mr-2">
                     {data?.priceRegular}
                   </h3>
                 </div>
@@ -175,17 +188,17 @@ export const ProductPage = () => {
                     onClick={handleAddToCart}
                     outline={!!isAddedToCart}
                   >
-                    {isAddedToCart ? 'Added to cart' : 'Add to cart'}
+                    {isAddedToCart ? t('addedToCart') : t('addToCart')}
                   </Button>
                   <div>
                     <button
                       className="w-12 h-12 rounded-full border border-icons
-                      hover:border-primary hover:scale-110
+                      hover:border-primary-light dark:hover:border-primary-dark hover:scale-110
                       flex justify-center items-center shrink-0 duration-300"
                       onClick={handleToggleFav}
                     >
-                      {isFavourite(data?._id!) ? (
-                        <FaHeart className="text-secondary-accent" />
+                      {isFavourite ? (
+                        <FaHeart className="text-secondary-accent-light dark:text-secondary-accent-dark" />
                       ) : (
                         <FiHeart />
                       )}
@@ -201,10 +214,10 @@ export const ProductPage = () => {
                         key={characteristic}
                         className="col-span-4 tablet:col-span-12"
                       >
-                        <p className="text-left text-xs font-semibold text-secondary">
+                        <p className="text-left text-xs font-semibold text-primary-light dark:text-secondary-dark">
                           {characteristic}
                         </p>
-                        <p className="text-right text-xs font-bold text-primary">
+                        <p className="text-right text-xs font-bold text-primary-light dark:text-primary-dark">
                           {value}
                         </p>
                       </div>
@@ -217,17 +230,17 @@ export const ProductPage = () => {
               {data && (
                 <>
                   <div className="desktop:w-1/2">
-                    <h2 className="mt-16 font-extrabold text-2xl text-primary">
-                      About
+                    <h2 className="mt-16 font-extrabold text-2xl text-primary-light dark:text-primary-dark">
+                      {t('about')}
                     </h2>
                     <Line width="col-span-4 w-auto tablet:col-start-7 tablet:col-span-5 tablet:w-auto desktop:col-start-12 desktop:col-span-7 desktop:w-[320px] mt-6" />
 
                     {data.description.map((descItem: IDescription) => (
                       <div key={descItem._id}>
-                        <h3 className="mt-8 font-bold text-primary text-xl">
-                          {descItem.title}
+                        <h3 className="mt-8 font-bold text-primary-light dark:text-primary-dark text-xl">
+                          {t(descItem.title)}
                         </h3>
-                        <p className="mt-4 text-secondary font-medium text-sm">
+                        <p className="mt-4 text-secondary-light dark:text-secondary-dark font-medium text-sm">
                           {descItem.text.map((textItem) => (
                             <span key={textItem}>{textItem}</span>
                           ))}
@@ -239,8 +252,8 @@ export const ProductPage = () => {
               )}
 
               <div className="desktop:w-1/2">
-                <h2 className="mt-16 font-extrabold text-2xl text-primary">
-                  Tech specs
+                <h2 className="mt-16 font-extrabold text-2xl text-primary-light dark:text-primary-dark">
+                  {t('techSpecs')}
                 </h2>
 
                 <Line width="col-span-4 w-auto tablet:col-start-7 tablet:col-span-5 tablet:w-auto desktop:col-start-12 desktop:col-span-7 desktop:w-[320px] mt-6" />
@@ -252,10 +265,10 @@ export const ProductPage = () => {
                         key={characteristic}
                         className="flex justify-between mt-2"
                       >
-                        <p className="text-left text-secondary font-medium text-sm">
+                        <p className="text-left text-secondary-light dark:text-secondary-dark font-medium text-sm">
                           {characteristic}
                         </p>
-                        <p className="text-right text-primary font-semibold text-sm">
+                        <p className="text-right text-primary-light dark:text-primary-dark font-semibold text-sm">
                           {value}
                         </p>
                       </div>
@@ -264,11 +277,14 @@ export const ProductPage = () => {
                 </div>
               </div>
             </section>
-
-            <Carousel title={'Recommended'} type={'recommended'} />
+            <section className="col-span-4 tablet:col-span-12 desktop:col-span-24">
+              <Carousel title={t('recomended')} type={'recommended'} />
+            </section>
           </Loader>
         </ErrorMessage>
       </main>
     </>
   );
 };
+
+export default ProductPage;

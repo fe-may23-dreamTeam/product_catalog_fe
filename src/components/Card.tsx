@@ -1,18 +1,19 @@
 import classNames from 'classnames';
 import { useState } from 'react';
-import { FiHeart } from 'react-icons/fi';
+import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 import { FaHeart } from 'react-icons/fa';
+import { FiHeart } from 'react-icons/fi';
+import { NavLink } from 'react-router-dom';
 import {
   addItemToCart,
-  useAppDispatch,
   toggleFavourite,
+  useAppDispatch,
   useAppSelector,
 } from '../redux';
+import { IProduct } from '../types/Product';
 import { Button } from './Button';
 import { ProductProperties } from './ProductProperties';
-import { IProduct } from '../types/Product';
-import toast from 'react-hot-toast';
-import { NavLink } from 'react-router-dom';
 
 type Props = {
   product: IProduct;
@@ -24,6 +25,7 @@ export const Card = ({ product, isFetching }: Props) => {
   const { items } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
   const [favorite, setFavorite] = useState(false);
+  const { t } = useTranslation();
 
   const isFavourite = (id: string) =>
     favouriteItems.some((item) => item._id === id);
@@ -52,7 +54,7 @@ export const Card = ({ product, isFetching }: Props) => {
 
   const handleAddToCart = () => {
     if (items.some(({ id }) => id === product._id)) {
-      toast.error('This product is already in your cart');
+      toast.error(t('toTheCartError'));
 
       return;
     }
@@ -69,64 +71,70 @@ export const Card = ({ product, isFetching }: Props) => {
     };
 
     dispatch(addItemToCart(itemData));
-    toast.success('Successfully added to your cart!');
+    toast.success(t('toTheCart'));
   };
 
   return (
     <article
       className={classNames([
         'card box-border p-8 relative',
-        'border border-secondary rounded-lg',
+        'border border-secondary-light dark:border-none rounded-lg',
         'min-w-[272px]  max-h-[440px]',
-        'bg-white',
-        'hover:shadow-card tablet:max-h-[506px]',
+        'bg-white-light',
+        'dark:bg-gray-surface',
+        'dark:bg-surface',
+        'hover:shadow-card dark:hover:shadow-card-dark tablet:max-h-[506px]',
       ])}
     >
       <div
         className={classNames('absolute inset-0 opacity-50 -z-10', {
-          'bg-secondary !z-10': isFetching,
+          'bg-secondary-light dark:bg-secondary-dark !z-10': isFetching,
         })}
       />
       <div className="grid auto-rows-auto gap-y-2 object-cover">
-        <NavLink to={`/${product.category.name}/${product._id}`}>
+        <NavLink
+          to={`/${product.category.name}/${product._id}`}
+          className="max-h-[130px] tablet:max-h-[200px]"
+        >
           <img
-            className="mx-auto max-h-[130px] tablet:max-h-[200px]"
+            className="mx-auto object-contain h-full tablet:aspect-square"
             src={product.images[0]}
             alt={product.namespaceId}
           />
         </NavLink>
 
-        <h3 className="text-sm font-semibold mt-4 line-clamp-1">
+        <h3 className="text-sm font-semibold mt-4 line-clamp-1 dark:text-primary-dark">
           {product.name}
         </h3>
         <div className="flex gap-2">
-          <h3 className="text-xl font-extrabold leading-8 before:content-['$']">
+          <h3 className="text-xl font-extrabold leading-8 before:content-['$'] dark:text-primary-dark">
             {product.priceDiscount}
           </h3>
-          <h3 className="relative text-xl line-through font-semibold leading-8 text-secondary before:content-['$']">
+          <h3 className="relative text-xl line-through font-semibold leading-8 text-secondary-light dark:text-secondary-dark before:content-['$']">
             {product.priceRegular}
           </h3>
         </div>
-        <span className="border border-secondary border-t w-full" />
+        <span className="border border-secondary-light dark:border-secondary-dark border-t w-full" />
         <ProductProperties properties={productProps} />
         <div className="flex justify-between gap-x-[8px]">
           <Button onClick={handleAddToCart} outline={!!isAddedToCart}>
-            {isAddedToCart ? 'Added to cart' : 'Add to cart'}
+            {isAddedToCart ? t('addedToCart') : t('addToCart')}
           </Button>
           <button
             className={classNames([
               'w-10 h-10',
-              'rounded-full border border-icons',
-              'hover:border-primary hover:scale-105',
+              'rounded-full border border-icons-dark',
+              'hover:border-primary-light hover:scale-105',
+              'dark:hover:border-primary-dark',
               'active:scale-95',
               'flex justify-center items-center shrink-0 duration-300',
             ])}
             onClick={() => handleToggleFav(product)}
           >
             {isFavourite(product._id) ? (
-              <FaHeart className="text-secondary-accent" />
+              <FaHeart className="text-secondary-accent-light dark:text-secondary-accent-dark" />
             ) : (
-              <FiHeart />
+              <FiHeart className="dark:text-white-light" />
             )}
           </button>
         </div>

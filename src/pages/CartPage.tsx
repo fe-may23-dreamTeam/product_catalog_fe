@@ -1,7 +1,8 @@
 import classNames from 'classnames';
-import React, { useState } from 'react';
-import { FiChevronLeft } from 'react-icons/fi';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { NavLink } from 'react-router-dom';
+import BreadCrumb from '../components/BreadCrumb';
 import { Button } from '../components/Button';
 import CartItem from '../components/CartItem';
 import { CheckoutModal } from '../components/CheckoutModal';
@@ -9,12 +10,24 @@ import { clearCart, useAppDispatch, useAppSelector } from '../redux';
 import { getTotalProductsCost } from '../utils/getTotalCost';
 import { getTotalItemsCount } from '../utils/getTotalItemsCount';
 
-export const CartPage: React.FC = () => {
-  const navigate = useNavigate();
-
+const CartPage = () => {
   const { items: cartItems } = useAppSelector((state) => state.cart);
   const [showModal, setShowModal] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
+
+  const totalCost = getTotalProductsCost(cartItems);
+  const totalItemsCount = getTotalItemsCount(cartItems);
+
+  let itemCounter;
+
+  if (totalItemsCount === 1) {
+    itemCounter = `${t('totalFor')} ${totalItemsCount} ${t('item')}`;
+  } else if (totalItemsCount >= 2 && totalItemsCount <= 4) {
+    itemCounter = `${t('totalFor')} ${totalItemsCount} ${t('itemu')}`;
+  } else {
+    itemCounter = `${t('totalFor')} ${totalItemsCount} ${t('items')}`;
+  }
 
   const handlePaymentSuccess = () => {
     localStorage.removeItem('cart-items');
@@ -27,9 +40,6 @@ export const CartPage: React.FC = () => {
     setShowModal(false);
   };
 
-  const totalCost = getTotalProductsCost(cartItems);
-  const totalItemsCount = getTotalItemsCount(cartItems);
-
   return (
     <>
       {showModal && (
@@ -37,20 +47,14 @@ export const CartPage: React.FC = () => {
       )}
       <main
         className={classNames(
-          'container mx-auto flex flex-col px-4 py-6 tablet:px-6 desktop:w-[1200px] desktop:px-8',
+          'container mx-auto flex flex-col p-4 pb-6 tablet:px-6 desktop:w-[1200px]',
           { 'blur pointer-events-none': showModal },
         )}
       >
-        <span
-          onClick={() => navigate(-1)}
-          className="select-none cursor-pointer flex items-center gap-1"
-        >
-          <FiChevronLeft />
-          Back
-        </span>
+        <BreadCrumb />
         <div className="mb-8">
-          <h1 className="mb-2 text-[32px] font-extrabold leading-[41px] tracking-[0.32px] tablet:mt-10 tablet:text-5xl">
-            Cart
+          <h1 className="mb-2 text-[32px] font-extrabold leading-[41px] tracking-[0.32px] tablet:mt-10 tablet:text-5xl dark:text-primary-dark">
+            {t('cart')}
           </h1>
         </div>
 
@@ -62,22 +66,22 @@ export const CartPage: React.FC = () => {
               ))}
             </div>
 
-            <div className="box-border flex flex-col mx-auto desktop:mx-0 items-center rounded-lg p-6 w-full border border-elements bg-hover-bg desktop:w-[368px]">
-              <h3 className="select-none text-center text-primary text-[32px] font-extrabold leading-[41px]">
+            <div className="box-border flex flex-col mx-auto desktop:mx-0 items-center rounded-lg p-6 w-full border border-elements-light dark:border-elements-dark bg-hover-bg-light dark:bg-hover-bg-dark desktop:w-[368px]">
+              <h3 className="select-none text-center text-primary-light dark:text-primary-dark text-[32px] font-extrabold leading-[41px]">
                 {`${totalCost}$`}
               </h3>
-              <div className="text-center text-secondary text-sm font-semibold leading-[21px] mb-4">
-                {`Total for ${totalItemsCount} items`}
+              <div className="text-center text-secondary-light dark:text-secondary-dark text-sm font-semibold leading-[21px] mb-4">
+                {itemCounter}
               </div>
-              <span className="w-full h-[0px] border text-elements mb-4"></span>
-              <Button onClick={handlePaymentSuccess}>Checkout</Button>
+              <span className="w-full h-[0px] border border-elements-light dark:border-elements-dark mb-4"></span>
+              <Button onClick={handlePaymentSuccess}>{t('checkout')}</Button>
             </div>
           </div>
         ) : (
           <>
-            <h3 className="mb-2">Your cart is empty</h3>
+            <h3 className="mb-2">{t('emptyCart')}</h3>
             <NavLink to="/phones" className="cursor-pointer font-bold w-fit">
-              Start shopping now!
+              {t('startShopping')}
             </NavLink>
           </>
         )}
@@ -85,3 +89,5 @@ export const CartPage: React.FC = () => {
     </>
   );
 };
+
+export default CartPage;
