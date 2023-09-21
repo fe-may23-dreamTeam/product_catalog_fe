@@ -15,6 +15,8 @@ const LanguageSelector = () => {
     setIsMenuOpen(false);
   };
 
+  const languageCodes = ['en', 'uk', 'ja'];
+
   return (
     <div
       onClick={toggleMenu}
@@ -28,26 +30,17 @@ const LanguageSelector = () => {
       </button>
       {isMenuOpen && (
         <div className="absolute left-0 mt-9 tablet:mt-11 flex justify-center mb-2">
-          <div className="flex border rounded-lg shadow-md desktop:flex-col flex-row">
+        <div className="flex border rounded-lg shadow-md desktop:flex-col flex-row">
+          {languageCodes.map((code, index) => (
             <button
-              onClick={() => changeLanguage('en')}
-              className="px-3 py-1 tablet:px-4 tablet:py-2 desktop:px-7 text-sm text-gray-900 text-center dark:text-white-light"
+              key={index}
+              onClick={() => changeLanguage(code)}
+              className={`px-3 py-1 tablet:px-4 tablet:py-2 desktop:px-7 text-sm text-gray-900 text-center dark:text-white-light`}
             >
-              EN
+              {code.toUpperCase()}
             </button>
-            <button
-              onClick={() => changeLanguage('uk')}
-              className="px-3 py-1 tablet:px-4 tablet:py-2 desktop:px-7  text-sm text-gray-900 text-center dark:text-white-light"
-            >
-              UA
-            </button>
-            <button
-              onClick={() => changeLanguage('ja')}
-              className="px-3 py-1 tablet:px-4 tablet:py-2 desktop:px-7  text-sm text-gray-900 text-center dark:text-white-light"
-            >
-              JA
-            </button>
-          </div>
+          ))}
+        </div>
         </div>
       )}
     </div>
