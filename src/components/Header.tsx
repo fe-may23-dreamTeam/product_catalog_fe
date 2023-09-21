@@ -1,7 +1,14 @@
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FiHeart, FiMenu, FiShoppingBag, FiX } from 'react-icons/fi';
+import {
+  FiHeart,
+  FiMenu,
+  FiShoppingBag,
+  FiUser,
+  FiUserMinus,
+  FiX,
+} from 'react-icons/fi';
 import { NavLink, useLocation } from 'react-router-dom';
 import logo from '../assets/images/logo.svg';
 import BurgerMenu from '../pages/BurgerMenu';
@@ -9,15 +16,17 @@ import { useAppSelector } from '../redux';
 import { ItemCounter } from './ItemCounter';
 import ThemeToggle from './ThemeToggle';
 import LanguageSelector from './LanguageSelector';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export const Header: React.FC = () => {
   const { favouriteItems } = useAppSelector((state) => state.favourites);
   const { items } = useAppSelector((state) => state.cart);
   const { pathname } = useLocation();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const iconColor = classNames('dark:text-primary-dark');
   const { t } = useTranslation();
+  const { isAuthenticated, loginWithPopup, logout } = useAuth0();
 
+  const iconColor = classNames('dark:text-primary-dark');
   const navLinks = [
     { name: t('home'), path: '/' },
     { name: t('phones'), path: 'phones' },
@@ -35,6 +44,14 @@ export const Header: React.FC = () => {
           isActive,
       },
     );
+
+  const handleSignIn = () => {
+    if (isAuthenticated) {
+      return logout({ logoutParams: { returnTo: window.location.origin } });
+    } else {
+      return loginWithPopup();
+    }
+  };
 
   useEffect(() => {
     setMenuIsOpen(false);
@@ -61,8 +78,20 @@ export const Header: React.FC = () => {
       </div>
 
       <div className="flex items-center justify-end">
-        <LanguageSelector />
         <ThemeToggle />
+        <LanguageSelector />
+        <div className="border-l border-elements-light dark:border-elements-dark box-border">
+          <span
+            className="relative cursor-pointer hover:shadow-lg dark:hover:shadow-custom-dark duration-200 px-4 py-6 desktop:p-6 hidden tablet:flex"
+            onClick={handleSignIn}
+          >
+            {isAuthenticated ? (
+              <FiUserMinus className={iconColor} />
+            ) : (
+              <FiUser className={iconColor} />
+            )}
+          </span>
+        </div>
         <div className="border-l border-elements-light dark:border-elements-dark box-border">
           <NavLink
             className="relative hover:shadow-lg dark:hover:shadow-custom-dark duration-200 px-4 py-6 desktop:p-6 hidden tablet:flex"
