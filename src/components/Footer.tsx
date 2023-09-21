@@ -1,8 +1,11 @@
+import { useTranslation } from 'react-i18next';
+import { FiChevronUp } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
 import logo from '../assets/images/logo.svg';
-import { FiChevronUp } from 'react-icons/fi';
 
 export const Footer = () => {
+  const { t } = useTranslation();
+
   const handleClickToTop = () => {
     window.scrollTo({
       top: 0,
@@ -29,7 +32,7 @@ export const Footer = () => {
                   className="duration-150 select-none uppercase text-secondary-light dark:text-secondary-dark font-extrabold text-xs hover:text-primary-light dark:hover:text-primary-dark active:text-primary-light dark:active:text-primary-dark focus:text-primary-light dark:focus:text-primary-dark font-Mont"
                   href="#"
                 >
-                  Github
+                  GitHub
                 </a>
               </li>
 
@@ -38,7 +41,7 @@ export const Footer = () => {
                   className="duration-150 select-none uppercase text-secondary-light dark:text-secondary-dark font-extrabold text-xs hover:text-primary-light dark:hover:text-primary-dark active:text-primary-light dark:active:text-primary-dark focus:text-primary-light dark:focus:text-primary-dark font-Mont"
                   to="/contacts"
                 >
-                  Contacts
+                  {t('contacts')}
                 </NavLink>
               </li>
 
@@ -47,7 +50,7 @@ export const Footer = () => {
                   className="duration-150 select-none uppercase text-secondary-light dark:text-secondary-dark font-extrabold text-xs hover:text-primary-light dark:hover:text-primary-dark active:text-primary-light dark:active:text-primary-dark focus:text-primary-light dark:focus:text-primary-dark font-Mont"
                   href="#"
                 >
-                  Rights
+                  {t('rights')}
                 </a>
               </li>
             </ul>
@@ -56,7 +59,7 @@ export const Footer = () => {
 
         <div className="flex justify-center tablet:justify-center items-center space-x-4 mt-4 tablet:mt-0 ">
           <p className="select-none text-secondary-light dark:text-secondary-dark font-bold text-xs whitespace-nowrap tablet:pl-24">
-            Back to top
+            {t('backToTop')}
           </p>
           <div
             onClick={handleClickToTop}
